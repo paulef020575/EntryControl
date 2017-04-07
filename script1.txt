@@ -1,0 +1,4 @@
+ALTER TABLE DOCMATERIALPERMITITEM
+ADD TONNAGE DECIMAL(10,3) default 0 not null;
+
+/*--------------------------------------------------------------*/

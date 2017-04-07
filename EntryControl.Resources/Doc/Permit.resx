@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Delete" xml:space="preserve">
+    <value>delete from docPermit where id = @id</value>
+  </data>
+  <data name="GeneratorName" xml:space="preserve">
+    <value>gen_docPermit_id</value>
+  </data>
+  <data name="GetLastMoving" xml:space="preserve">
+    <value>select first 1 mov.id, mov.moving, enum.enumerationValue as movingName, mov.entryPoint, pnt.name as entryPointName, mov.userId, usr.lastname as userName, mov.movingTime from docPermitMoving mov, systemEnumerations enum, refEntryPoint as pnt, secUsers usr where mov.permit = @permit and enum.enumerationName = 'permitMoving' and mov.moving = enum.id and pnt.id = mov.entryPoint      and usr.id = mov.userId order by mov.movingTime desc</value>
+  </data>
+  <data name="GetLasUpdateDate" xml:space="preserve">
+    <value>select max(date1) from (select max(dateModified) as date1 from docPermit union select max(dateDeleted) as date1 from docDeleted where documentType='permit')</value>
+  </data>
+  <data name="GetPermitNumber" xml:space="preserve">
+    <value>select permitNumber from getPermitNumber(@period)</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>insert into docPermit (id, creator, createDate, period, docNumber, permitState, dateFrom, dateTo, vehicle, driverName, contact, entryPoint, multiEntry, cargo, comment) values (@id, @creator, @createDate, @period, @docNumber, @permitState, @dateFrom, @dateTo, @vehicle, @driverName, @contact, @entryPoint, @multiEntry, @cargo, @comment)</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>select * from docPermitLoad(@permitId)</value>
+  </data>
+  <data name="LoadByNum" xml:space="preserve">
+    <value>select * from docPermitLoadByNum(@period, @docNumber)</value>
+  </data>
+  <data name="LoadList" xml:space="preserve">
+    <value>select * from docPermitLoadList(@dateStart, @dateFinish, @entryPoint, @defaultState, @page)</value>
+  </data>
+  <data name="MovingDelete" xml:space="preserve">
+    <value>delete from docPermitMoving where id = @id</value>
+  </data>
+  <data name="MovingGenerator" xml:space="preserve">
+    <value>gen_docPermitMoving_id</value>
+  </data>
+  <data name="MovingInsert" xml:space="preserve">
+    <value>insert into docPermitMoving (id, permit, moving, entryPoint, userId, movingTime) values (@id, @permit, @moving, @entryPoint, @userId, @movingTime)</value>
+  </data>
+  <data name="MovingLoadList" xml:space="preserve">
+    <value>select mov.id, mov.id, mov.moving, enum.enumerationValue as movingName, mov.entryPoint, pnt.name as entryPointName, mov.movingTime from docPermitMoving mov, systemEnumerations enum, refEntryPoint as pnt where mov.permit = @permit and enum.enumerationName = 'permitMoving' and mov.moving = enum.id and pnt.id = mov.entryPoint order by mov.movingTime</value>
+  </data>
+  <data name="MovingUpdate" xml:space="preserve">
+    <value>update docPermitMoving set moving = @moving, entryPoint = @entryPoint, userId = @userId, movingTime = @movingTime where id = @id</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>update docPermit set permitState = @permitState, dateFrom = @dateFrom, dateTo = @dateTo, vehicle = @vehicle, driverName = @driverName, contact = @contact, entryPoint = @entryPoint, multiEntry = @multiEntry, cargo = @cargo, comment = @comment where id= @id</value>
+  </data>
+  <data name="CheckClosed" xml:space="preserve">
+    <value>select 1 from docPermit where id = @id and permitState in (4)</value>
+  </data>
+  <data name="CloseMoving" xml:space="preserve">
+    <value>Закрытие</value>
+  </data>
+  <data name="EntryMoving" xml:space="preserve">
+    <value>Въезд</value>
+  </data>
+  <data name="ExitMoving" xml:space="preserve">
+    <value>Выезд</value>
+  </data>
+  <data name="PermitIn" xml:space="preserve">
+    <value>По указанному пропуску а/машина въехала на территорию @dateMoving. Выезд с территории в системе не зафиксирован.
+Игнорировать ошибку данных?</value>
+  </data>
+  <data name="PermitOut" xml:space="preserve">
+    <value>По указанному пропуску а/машина выехала с территории @dateMoving. Новый въезд на территорию в системе не зафиксирован.
+Игнорировать ошибку данных?</value>
+  </data>
+  <data name="WrongEntryPoint" xml:space="preserve">
+    <value>По выбранному пропуску проезд возможен только через пункт @EntryPoint</value>
+  </data>
+  <data name="LoadByVehicle" xml:space="preserve">
+    <value>select * from docPermitLoadByVehicle(@licensePlate)</value>
+  </data>
+  <data name="WrongPeriod" xml:space="preserve">
+    <value>Выбранный пропуск действовал с @dateFrom по @dateTo. Пропуск закрыт.</value>
+  </data>
+  <data name="PermitClose" xml:space="preserve">
+    <value>Пропуск был закрыт @movingTime.</value>
+  </data>
+  <data name="PermitToClose" xml:space="preserve">
+    <value>По пропуску возможен дальнейший въезд. Закрыть пропуск?</value>
+  </data>
+  <data name="LoadPrevious" xml:space="preserve">
+    <value>select * from docPermitLoadPrevious(@cargo, @mark, @licensePlate)</value>
+  </data>
+  <data name="GetEnteredVehicles" xml:space="preserve">
+    <value>select * from getEnteredPermit order by lastTime</value>
+  </data>
+  <data name="GetCount" xml:space="preserve">
+    <value>select permitCount from docPermitGetCount(@dateStart, @dateFinish, @entryPoint, @defaultState)</value>
+  </data>
+  <data name="GetComment" xml:space="preserve">
+    <value>select comment from docPermit where id = @id</value>
+  </data>
+  <data name="HistoryMoving" xml:space="preserve">
+    <value>select * from repMovingHistory(@dateFrom, @dateTo, @vehicleMask) order by movingTime desc</value>
+  </data>
+  <data name="AppointCreator" xml:space="preserve">
+    <value>select * from GETAPPOINTCREATOR(@permitId)</value>
+  </data>
+</root>

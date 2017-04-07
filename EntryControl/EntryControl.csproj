@@ -1,0 +1,658 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3D410AAD-C808-47CF-A170-688071FBA654}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EntryControl</RootNamespace>
+    <AssemblyName>EntryControl</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>&lt;Project Location In Database&gt;</SccProjectName>
+    <SccLocalPath>&lt;Local Binding Root of Project&gt;</SccLocalPath>
+    <SccAuxPath>&lt;Source Control Database&gt;</SccAuxPath>
+    <SccProvider>Mercurial Source Control Package</SccProvider>
+    <PublishUrl>\\172.17.0.30\exchange\EntryControl\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>true</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>Автопропуска</ProductName>
+    <PublisherName>ОАО Кондопога</PublisherName>
+    <MinimumRequiredVersion>0.0.4.4</MinimumRequiredVersion>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>0.0.4.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>warehouse_gates.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\EntryControl.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\EntryControl.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>273D38D4C6FF9D0668D9ACD6F3712B86E8EFA4CF</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>asu_cert.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPV.Controls">
+      <HintPath>..\..\EPV.Framework\EPV.Controls\bin\Release\EPV.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.7.7.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\EPV.Framework\EPV.Database\Firebird\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Base, Version=2008.2.300.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Stimulsoft Reports.Net 2008.2\Bin\Stimulsoft.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report, Version=2008.2.300.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Stimulsoft Reports.Net 2008.2\Bin\Stimulsoft.Report.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.FirebirdDatabase, Version=2008.2.300.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Stimulsoft Reports.Net 2008.2\Bin\Stimulsoft.Report.FirebirdDatabase.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdvancedSettings.cs" />
+    <Compile Include="CustomerForms\ReportPlanAppointForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerForms\ReportPlanAppointForm.Designer.cs">
+      <DependentUpon>ReportPlanAppointForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataItemForms\ContractorItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataItemForms\ContractorItemForm.Designer.cs">
+      <DependentUpon>ContractorItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataItemForms\CargoItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataItemForms\CargoItemForm.Designer.cs">
+      <DependentUpon>CargoItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataItemForms\EntryPointItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataItemForms\EntryPointItemForm.Designer.cs">
+      <DependentUpon>EntryPointItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntryPointControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EntryPointControl.Designer.cs">
+      <DependentUpon>EntryPointControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntryPoint\EnteredVehicle.cs" />
+    <Compile Include="EntryPoint\HistoryMoving.cs" />
+    <Compile Include="EntryPoint\NewPlanAppointForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntryPoint\NewPlanAppointForm.Designer.cs">
+      <DependentUpon>NewPlanAppointForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntryPoint\NotifySettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntryPoint\NotifySettingsForm.Designer.cs">
+      <DependentUpon>NotifySettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListForms\EntryPointListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForms\EntryPointListForm.Designer.cs">
+      <DependentUpon>EntryPointListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ITimeredControl.cs" />
+    <Compile Include="ListForms\CargoListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForms\CargoListForm.Designer.cs">
+      <DependentUpon>CargoListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListForms\ContractorListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForms\ContractorListForm.Designer.cs">
+      <DependentUpon>ContractorListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListForms\VehicleListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForms\VehicleListForm.Designer.cs">
+      <DependentUpon>VehicleListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListForms\MarkListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForms\MarkListForm.Designer.cs">
+      <DependentUpon>MarkListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataItemForms\MarkItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataItemForms\MarkItemForm.Designer.cs">
+      <DependentUpon>MarkItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerForms\PlanAppointViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomerForms\PlanAppointViewControl.Designer.cs">
+      <DependentUpon>PlanAppointViewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceptionForm\MaterialPermitListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReceptionForm\MaterialPermitListForm.Designer.cs">
+      <DependentUpon>MaterialPermitListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PermitControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PermitControl.Designer.cs">
+      <DependentUpon>PermitControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceptionForm\PermitItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReceptionForm\PermitItemForm.Designer.cs">
+      <DependentUpon>PermitItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReferenceBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReferenceBox.Designer.cs">
+      <DependentUpon>ReferenceBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="ListForms\StaffListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForms\StaffListForm.Designer.cs">
+      <DependentUpon>StaffListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StaffItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffItemForm.Designer.cs">
+      <DependentUpon>StaffItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSecurity\AuthorizationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemSecurity\AuthorizationForm.Designer.cs">
+      <DependentUpon>AuthorizationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSecurity\ChangePasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemSecurity\ChangePasswordForm.Designer.cs">
+      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerForms\PlanAppointForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerForms\PlanAppointForm.Designer.cs">
+      <DependentUpon>PlanAppointForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataItemForms\DataItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataItemForms\DataItemForm.Designer.cs">
+      <DependentUpon>DataItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntryControlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntryControlForm.Designer.cs">
+      <DependentUpon>EntryControlForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntryPoint\CentralPointForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntryPoint\CentralPointForm.Designer.cs">
+      <DependentUpon>CentralPointForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListForms\ListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForms\ListForm.Designer.cs">
+      <DependentUpon>ListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceptionForm\ReceptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReceptionForm\ReceptionForm.Designer.cs">
+      <DependentUpon>ReceptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerForms\CustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerForms\CustomerForm.Designer.cs">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemSecurity\MaterialDocumentSecurityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemSecurity\MaterialDocumentSecurityForm.Designer.cs">
+      <DependentUpon>MaterialDocumentSecurityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSecurity\SystemSecurityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemSecurity\SystemSecurityForm.Designer.cs">
+      <DependentUpon>SystemSecurityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataItemForms\VehicleItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataItemForms\VehicleItemForm.Designer.cs">
+      <DependentUpon>VehicleItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSecurity\UserCargoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemSecurity\UserCargoForm.Designer.cs">
+      <DependentUpon>UserCargoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserItemForm.Designer.cs">
+      <DependentUpon>UserItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleOwnerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VehicleOwnerForm.Designer.cs">
+      <DependentUpon>VehicleOwnerForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CustomerForms\ReportPlanAppointForm.resx">
+      <DependentUpon>ReportPlanAppointForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataItemForms\CargoItemForm.resx">
+      <DependentUpon>CargoItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataItemForms\ContractorItemForm.resx">
+      <DependentUpon>ContractorItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataItemForms\MarkItemForm.resx">
+      <DependentUpon>MarkItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataItemForms\VehicleItemForm.resx">
+      <DependentUpon>VehicleItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataItemForms\EntryPointItemForm.resx">
+      <DependentUpon>EntryPointItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntryPointControl.resx">
+      <DependentUpon>EntryPointControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntryPoint\CentralPointForm.resx">
+      <DependentUpon>CentralPointForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntryPoint\NewPlanAppointForm.resx">
+      <DependentUpon>NewPlanAppointForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntryPoint\NotifySettingsForm.resx">
+      <DependentUpon>NotifySettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\CargoListForm.resx">
+      <DependentUpon>CargoListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\ContractorListForm.resx">
+      <DependentUpon>ContractorListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\EntryPointListForm.resx">
+      <DependentUpon>EntryPointListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\MarkListForm.resx">
+      <DependentUpon>MarkListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\VehicleListForm.resx">
+      <DependentUpon>VehicleListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerForms\PlanAppointViewControl.resx">
+      <DependentUpon>PlanAppointViewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceptionForm\MaterialPermitListForm.resx">
+      <DependentUpon>MaterialPermitListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitControl.resx">
+      <DependentUpon>PermitControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceptionForm\PermitItemForm.resx">
+      <DependentUpon>PermitItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceptionForm\ReceptionForm.resx">
+      <DependentUpon>ReceptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReferenceBox.resx">
+      <DependentUpon>ReferenceBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\StaffListForm.resx">
+      <DependentUpon>StaffListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaffItemForm.resx">
+      <DependentUpon>StaffItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemSecurity\AuthorizationForm.resx">
+      <DependentUpon>AuthorizationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemSecurity\ChangePasswordForm.resx">
+      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerForms\CustomerForm.resx">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerForms\PlanAppointForm.resx">
+      <DependentUpon>PlanAppointForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataItemForms\DataItemForm.resx">
+      <DependentUpon>DataItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\ListForm.resx">
+      <DependentUpon>ListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="SystemSecurity\MaterialDocumentSecurityForm.resx">
+      <DependentUpon>MaterialDocumentSecurityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemSecurity\SystemSecurityForm.resx">
+      <DependentUpon>SystemSecurityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemSecurity\UserCargoForm.resx">
+      <DependentUpon>UserCargoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserItemForm.resx">
+      <DependentUpon>UserItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VehicleOwnerForm.resx">
+      <DependentUpon>VehicleOwnerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="asu_cert.pfx" />
+    <Content Include="Permit.mrt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Content Include="Report\PlanAppoint.mrt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Report\PermitList.mrt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Report\MovingHistory.mrt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="images\add2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\pencil.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\delete2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\password.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\refresh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\check2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\find.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\find_next.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\printer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\WoodTrack2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\Entry.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\Exit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="warehouse_gates.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EPV.Framework\EPV.Database\EPV.Database.csproj">
+      <Project>{21701B0B-284E-4721-B559-1E76ED8DCEDA}</Project>
+      <Name>EPV.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EPV.Framework\EPV.Database\EPV.DataItem\EPV.DataItem.csproj">
+      <Project>{3F3C4D8B-E7F3-4BDA-9882-FD2C439AFF5D}</Project>
+      <Name>EPV.DataItem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntryControl.Classes\EntryControl.Classes.csproj">
+      <Project>{71B988EA-2F48-465D-83F0-008105CBA164}</Project>
+      <Name>EntryControl.Classes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntryControl.Resources\EntryControl.Resources.csproj">
+      <Project>{65954688-83AC-468B-A980-8AD4EAF703E6}</Project>
+      <Name>EntryControl.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Stimulsoft.Base">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Stimulsoft.Controls">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Stimulsoft.Controls.Win">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Stimulsoft.Editor">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Stimulsoft.Report">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Stimulsoft.Report.Design">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Stimulsoft.Report.Win">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

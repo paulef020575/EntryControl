@@ -1,0 +1,109 @@
+SET TERM ^ ;
+
+ALTER PROCEDURE DOCPLANAPPOINTLOADLIST (
+    USERID INTEGER,
+    DATESTART DATE)
+RETURNS (
+    ID INTEGER,
+    CREATOR INTEGER,
+    CREATORNAME VARCHAR(50),
+    CREATEDATE DATE,
+    CARGO INTEGER,
+    CARGONAME VARCHAR(50),
+    VEHICLE INTEGER,
+    VEHICLENAME VARCHAR(100),
+    DRIVERNAME VARCHAR(100),
+    CONTACT VARCHAR(100),
+    WHERETO VARCHAR(300),
+    DATEFROM DATE,
+    DATETO DATE,
+    DATEMODIFIED DATE,
+    DATESEEN DATE,
+    PERMIT INTEGER,
+    COMMENT BLOB SUB_TYPE 1 SEGMENT SIZE 4096,
+    PERMITSTATE INTEGER,
+    PERMITDATE DATE)
+AS
+BEGIN
+  FOR SELECT app.ID,
+             app.CREATOR,
+             usr.lastName,
+             app.CREATEDATE,
+             app.CARGO,
+             crg.name,
+             app.VEHICLE,
+             (select m.name || ' ' || v.licensePlate from refVehicle v, refvehiclemark m
+                     where m.id = v.vehiclemark and v.id = app.vehicle),
+             DRIVERNAME,
+             CONTACT,
+             WHERETO,
+             DATEFROM,
+             DATETO,
+             DATEMODIFIED,
+             (select dateSeen from docUserSeen
+                     where documentType = 'planAppoint' and documentId = app.id
+                           and userId = :userId),
+             coalesce(permit, 0),
+             comment,
+             coalesce((select permitState from docPermit where id = permit), 0),
+             coalesce((select dateModified from docPermit where id = permit), '01-jan-2001')
+      FROM DOCPLANAPPOINT app,
+           secUsers usr,
+           refCargos crg
+      where (app.creator = :USERID
+                         or app.cargo in (select cargoId
+                                    from secUserCargo
+                                    where userId = :USERID))
+            and usr.id = app.creator
+            and crg.id = app.cargo
+            and app.datefrom >= :dateStart
+      INTO :ID,
+           :CREATOR,
+           :CREATORNAME,
+           :CREATEDATE,
+           :CARGO,
+           :CARGONAME,
+           :VEHICLE,
+           :VEHICLENAME,
+           :DRIVERNAME,
+           :CONTACT,
+           :WHERETO,
+           :DATEFROM,
+           :DATETO,
+           :DATEMODIFIED,
+           :dateSeen,
+           :permit,
+           :comment,
+           :permitState,
+           :permitDate
+  DO
+  BEGIN
+    SUSPEND;
+  END
+END
+
+^
+
+SET TERM ; ^
+
+
+
+
+insert into systemVariables
+	values ('closedPermitState', '4');
+
+
+SET TERM ^ ;
+
+ALTER TRIGGER DOCPERMIT_BIU0
+ACTIVE BEFORE INSERT OR UPDATE POSITION 0
+AS
+begin
+  /* Trigger text */
+  new.datemodified = current_timestamp;
+end
+
+^
+
+SET TERM ; ^
+

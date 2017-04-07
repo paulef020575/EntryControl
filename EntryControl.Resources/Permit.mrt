@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.0" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <Databases isList="true" count="1">
+      <EntryDatabase Ref="2" type="Stimulsoft.Report.Dictionary.StiFirebirdDatabase" isKey="true">
+        <Alias>EntryDatabase</Alias>
+        <ConnectionString>data source=localhost;initial catalog=d:\prog\dispatcher\dispatcher.fdb;user id=sysdba;password=1</ConnectionString>
+        <Name>EntryDatabase</Name>
+        <PromptUserNameAndPassword>False</PromptUserNameAndPassword>
+      </EntryDatabase>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <PermitData Ref="3" type="Stimulsoft.Report.Dictionary.StiFirebirdSource" isKey="true">
+        <Alias>PermitData</Alias>
+        <Columns isList="true" count="19">
+          <value>ID,System.Int32</value>
+          <value>CREATOR,System.Int32</value>
+          <value>CREATORNAME,System.String</value>
+          <value>CREATEDATE,System.DateTime</value>
+          <value>PERIOD,System.Int32</value>
+          <value>DOCNUMBER,System.Int32</value>
+          <value>PERMITSTATE,System.Int32</value>
+          <value>PERMITSTATENAME,System.String</value>
+          <value>DATEFROM,System.DateTime</value>
+          <value>DATETO,System.DateTime</value>
+          <value>VEHICLE,System.Int32</value>
+          <value>VEHICLENAME,System.String</value>
+          <value>DRIVERNAME,System.String</value>
+          <value>CONTACT,System.String</value>
+          <value>ENTRYPOINT,System.Int32</value>
+          <value>ENTRYPOINTNAME,System.String</value>
+          <value>MULTIENTRY,System.Int16</value>
+          <value>CARGO,System.Int32</value>
+          <value>CARGONAME,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PermitData</Name>
+        <NameInSource>EntryDatabase</NameInSource>
+        <Parameters isList="true" count="1">
+          <value>_x0040_permitId,permitId,10,0</value>
+        </Parameters>
+        <SqlCommand>select * from docPermitLoad(@permitId)</SqlCommand>
+      </PermitData>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="1">
+      <value>,permitId,permitId,System.Int32,_x0031_3,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Страница1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="1">
+        <Данные1 Ref="5" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19,12.2</ClientRectangle>
+          <Components isList="true" count="11">
+            <Текст2 Ref="6" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.8,9.2,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,18,Regular,Point,False,204</Font>
+              <LinesOfUnderline>None</LinesOfUnderline>
+              <Margins>0,0,0,0</Margins>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Текст2</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{(long)PermitData.PERIOD * 100000000 + (long)PermitData.DOCNUMBER}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="7" type="GeneralFormat" isKey="true" />
+              <Type>Expression</Type>
+            </Текст2>
+            <Текст1 Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.2,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <LinesOfUnderline>None</LinesOfUnderline>
+              <Margins>0,0,0,0</Margins>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Текст1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Пропуск №</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="9" type="GeneralFormat" isKey="true" />
+              <Type>Expression</Type>
+            </Текст1>
+            <Штрих_код1 Ref="10" type="Stimulsoft.Report.BarCodes.StiBarCode" isKey="true">
+              <AutoScale>True</AutoScale>
+              <BackColor>Transparent</BackColor>
+              <BarCodeType Ref="11" type="Stimulsoft.Report.BarCodes.StiEAN13BarCodeType" isKey="true" />
+              <ClientRectangle>11,0.2,7.8,3.4</ClientRectangle>
+              <Code>{(long)PermitData.PERIOD * 100000000 + (long)PermitData.DOCNUMBER}</Code>
+              <Conditions isList="true" count="0" />
+              <ForeColor>Black</ForeColor>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Штрих_код1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+            </Штрих_код1>
+            <Текст3 Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.6,4.2,14.2,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,15.75,Regular,Point,False,204</Font>
+              <LinesOfUnderline>None</LinesOfUnderline>
+              <Margins>0,0,0,0</Margins>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Текст3</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{PermitData.VEHICLENAME}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="13" type="GeneralFormat" isKey="true" />
+            </Текст3>
+            <Текст4 Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,4.2,4.6,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,15.75,Regular,Point,False,204</Font>
+              <LinesOfUnderline>None</LinesOfUnderline>
+              <Margins>0,0,0,0</Margins>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Текст4</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Т/средство</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="15" type="GeneralFormat" isKey="true" />
+              <Type>Expression</Type>
+            </Текст4>
+            <Текст5 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.6,5.4,14.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,15.75,Regular,Point,False,204</Font>
+              <LinesOfUnderline>None</LinesOfUnderline>
+              <Margins>0,0,0,0</Margins>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Текст5</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{PermitData.DRIVERNAME}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="17" type="GeneralFormat" isKey="true" />
+            </Текст5>
+            <Текст6 Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,5.4,4.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,15.75,Regular,Point,False,204</Font>
+              <LinesOfUnderline>None</LinesOfUnderline>
+              <Margins>0,0,0,0</Margins>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Текст6</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Водитель</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="19" type="GeneralFormat" isKey="true" />
+              <Type>Expression</Type>
+            </Текст6>
+            <Текст7 Ref="20" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.6,6.4,14.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,15.75,Regular,Point,False,204</Font>
+              <Guid>073234424a544a8baa701b8f12944cb6</Guid>
+              <LinesOfUnderline>None</LinesOfUnderline>
+              <Margins>0,0,0,0</Margins>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Текст7</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{PermitData.CONTACT}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="21" type="GeneralFormat" isKey="true" />
+              <Type>DataColumn</Type>
+            </Текст7>
+            <Текст8 Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,6.4,4.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,15.75,Regular,Point,False,204</Font>
+              <Guid>6ae33b1332c04746b9332466796f3bb3</Guid>
+              <LinesOfUnderline>None</LinesOfUnderline>
+              <Margins>0,0,0,0</Margins>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Текст8</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Телефон</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="23" type="GeneralFormat" isKey="true" />
+              <Type>Expression</Type>
+            </Текст8>
+            <Текст9 Ref="24" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.6,8,14.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,15.75,Regular,Point,False,204</Font>
+              <Guid>b5e8a431bed4433283e454c944294e6f</Guid>
+              <LinesOfUnderline>None</LinesOfUnderline>
+              <Margins>0,0,0,0</Margins>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Текст9</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{PermitData.CARGONAME}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="25" type="GeneralFormat" isKey="true" />
+              <Type>DataColumn</Type>
+            </Текст9>
+            <Текст10 Ref="26" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,8,4.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,15.75,Regular,Point,False,204</Font>
+              <Guid>894f93c57bd84dafb37882652381c8cd</Guid>
+              <LinesOfUnderline>None</LinesOfUnderline>
+              <Margins>0,0,0,0</Margins>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Текст10</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Груз</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="27" type="GeneralFormat" isKey="true" />
+              <Type>Expression</Type>
+            </Текст10>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName />
+          <DataSourceName>PermitData</DataSourceName>
+          <Filters isList="true" count="0" />
+          <MaxHeight>0</MaxHeight>
+          <MinHeight>0</MinHeight>
+          <Name>Данные1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="0" />
+        </Данные1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>fa768706394e4808a2dc6e7660014b73</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Страница1</Name>
+      <Orientation>Landscape</Orientation>
+      <Page isRef="4" />
+      <PageHeight>14.85</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="28" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Страница1>
+  </Pages>
+  <PrinterSettings Ref="29" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Отчет</ReportAlias>
+  <ReportChanged>1/13/2016 9:23:16 AM</ReportChanged>
+  <ReportCreated>1/6/2016 9:56:32 PM</ReportCreated>
+  <ReportGuid>e975e0844ad14e3397f6acf55395f604</ReportGuid>
+  <ReportName>Отчет</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2008.2.300</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    
+    public class Отчет : Stimulsoft.Report.StiReport
+    {
+        
+        public Отчет()
+        {
+            this.InitializeComponent();
+        }
+        #region StiReport Designer generated code - do not modify#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

@@ -30,7 +30,7 @@
     <ProductName>Автопропуска</ProductName>
     <PublisherName>ОАО Кондопога</PublisherName>
     <MinimumRequiredVersion>0.0.5.0</MinimumRequiredVersion>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>0.0.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

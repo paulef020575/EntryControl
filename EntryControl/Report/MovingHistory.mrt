@@ -9,7 +9,7 @@
         <PromptUserNameAndPassword>False</PromptUserNameAndPassword>
       </FbConnection>
     </Databases>
-    <DataSources isList="true" count="1">
+    <DataSources isList="true" count="2">
       <MovingHistory Ref="3" type="Stimulsoft.Report.Dictionary.StiFirebirdSource" isKey="true">
         <Alias>MovingHistory</Alias>
         <Columns isList="true" count="13">
@@ -31,35 +31,51 @@
         <Dictionary isRef="1" />
         <Name>MovingHistory</Name>
         <NameInSource>FbConnection</NameInSource>
-        <Parameters isList="true" count="3">
+        <Parameters isList="true" count="4">
           <value>_x0040_dateFrom,dateFrom,5,0</value>
           <value>_x0040_dateTo,dateTo,5,0</value>
           <value>_x0040_vehicleMask,vehicleMask,16,0</value>
+          <value>_x0040_cargo,cargo,10,0</value>
         </Parameters>
-        <SqlCommand>select * from repMovingHistory(@dateFrom, @dateTo, @vehicleMask)
+        <SqlCommand>select * from repMovingHistory1(@dateFrom, @dateTo, @vehicleMask, @cargo)
 </SqlCommand>
       </MovingHistory>
+      <RefCargo Ref="4" type="Stimulsoft.Report.Dictionary.StiFirebirdSource" isKey="true">
+        <Alias>RefCargo</Alias>
+        <Columns isList="true" count="1">
+          <value>NAME,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>RefCargo</Name>
+        <NameInSource>FbConnection</NameInSource>
+        <Parameters isList="true" count="1">
+          <value>_x0040_cargo,cargo,10,0</value>
+        </Parameters>
+        <SqlCommand>select name from refCargos where id = @cargo</SqlCommand>
+      </RefCargo>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
-    <Variables isList="true" count="3">
+    <Variables isList="true" count="4">
       <value>,dateFrom,dateFrom,System.DateTime,_x0031__x002F_13_x002F_2017,False,False</value>
       <value>,dateTo,dateTo,System.DateTime,_x0031__x002F_14_x002F_2017,False,False</value>
       <value>,vehicleMask,vehicleMask,System.String,,False,False</value>
+      <value>,cargo,cargo,System.Int32,_x0030_,False,False</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
   <Pages isList="true" count="1">
-    <Страница1 Ref="4" type="Page" isKey="true">
+    <Страница1 Ref="5" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <Components isList="true" count="4">
-        <ЗаголовокОтчета1 Ref="5" type="ReportTitleBand" isKey="true">
+        <ЗаголовокОтчета1 Ref="6" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,19,1.6</ClientRectangle>
-          <Components isList="true" count="3">
-            <Текст1 Ref="6" type="Text" isKey="true">
+          <Components isList="true" count="4">
+            <Текст1 Ref="7" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,19,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -70,14 +86,14 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>Текст1</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
+              <Page isRef="5" />
+              <Parent isRef="6" />
               <Text>{ReportName}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="7" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="8" type="GeneralFormat" isKey="true" />
               <Type>Expression</Type>
             </Текст1>
-            <Текст2 Ref="8" type="Text" isKey="true">
+            <Текст2 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0.6,19,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -88,46 +104,67 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>Текст2</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
+              <Page isRef="5" />
+              <Parent isRef="6" />
               <Text>Период: {dateFrom.ToString("dd.MM.yyyy HH:mm")} - {dateTo.ToString("dd.MM.yyyy HH:mm")}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="9" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="10" type="GeneralFormat" isKey="true" />
               <Type>Expression</Type>
             </Текст2>
-            <Текст3 Ref="10" type="Text" isKey="true">
+            <Текст3 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,1,19,0.6</ClientRectangle>
+              <ClientRectangle>0,1,9.2,0.6</ClientRectangle>
               <Conditions isList="true" count="1">
                 <value>_x007B_Length_x0028_vehicleMask_x0029__x0020__x003D__x003D__x0020_0_x007D_,Red,Transparent,Arial_x002C_8,False,False,</value>
               </Conditions>
-              <Dock>Fill</Dock>
+              <Dock>Left</Dock>
               <Font>Arial,8,Bold</Font>
               <LinesOfUnderline>None</LinesOfUnderline>
               <Margins>0,0,0,0</Margins>
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>Текст3</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
+              <Page isRef="5" />
+              <Parent isRef="6" />
               <Text>Номер т/средства: {vehicleMask}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="11" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="12" type="GeneralFormat" isKey="true" />
               <Type>Expression</Type>
             </Текст3>
+            <Текст4 Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.2,1,9.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="1">
+                <value>_x007B_cargo_x0020__x003D__x003D__x0020_0_x007D_,Red,Transparent,Arial_x002C_8,False,False,</value>
+              </Conditions>
+              <Dock>Left</Dock>
+              <Font>Arial,8,Bold</Font>
+              <Guid>505ec4c6628d4060a58e24dbae289643</Guid>
+              <LinesOfUnderline>None</LinesOfUnderline>
+              <Margins>0,0,0,0</Margins>
+              <MaxSize>0,0</MaxSize>
+              <MinSize>0,0</MinSize>
+              <Name>Текст4</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>Груз: {RefCargo.NAME}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="14" type="GeneralFormat" isKey="true" />
+              <Type>Expression</Type>
+            </Текст4>
           </Components>
           <Conditions isList="true" count="0" />
           <MaxHeight>0</MaxHeight>
           <MinHeight>0</MinHeight>
           <Name>ЗаголовокОтчета1</Name>
-          <Page isRef="4" />
-          <Parent isRef="4" />
+          <Page isRef="5" />
+          <Parent isRef="5" />
         </ЗаголовокОтчета1>
-        <Заголовок_данныхMovingHistory Ref="12" type="HeaderBand" isKey="true">
+        <Заголовок_данныхMovingHistory Ref="15" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,2.8,19,0.8</ClientRectangle>
           <Components isList="true" count="7">
-            <Заголовок_данныхMovingHistory_MOVINGTIME Ref="13" type="Text" isKey="true">
+            <Заголовок_данныхMovingHistory_MOVINGTIME Ref="16" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,2.2,0.8</ClientRectangle>
@@ -138,15 +175,15 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>Заголовок_данныхMovingHistory_MOVINGTIME</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
+              <Page isRef="5" />
+              <Parent isRef="15" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="14" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="17" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Заголовок_данныхMovingHistory_MOVINGTIME>
-            <Заголовок_данныхMovingHistory_ENTRYPOINTNAME Ref="15" type="Text" isKey="true">
+            <Заголовок_данныхMovingHistory_ENTRYPOINTNAME Ref="18" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>2.2,0,2.8,0.8</ClientRectangle>
@@ -157,16 +194,16 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>Заголовок_данныхMovingHistory_ENTRYPOINTNAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
+              <Page isRef="5" />
+              <Parent isRef="15" />
               <Text>п/пропуска</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="16" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="19" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Заголовок_данныхMovingHistory_ENTRYPOINTNAME>
-            <Заголовок_данныхMovingHistory_VEHICLENAME Ref="17" type="Text" isKey="true">
+            <Заголовок_данныхMovingHistory_VEHICLENAME Ref="20" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>5,0,2.8,0.8</ClientRectangle>
@@ -177,15 +214,15 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>Заголовок_данныхMovingHistory_VEHICLENAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
+              <Page isRef="5" />
+              <Parent isRef="15" />
               <Text>т/средство</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="18" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="21" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </Заголовок_данныхMovingHistory_VEHICLENAME>
-            <Заголовок_данныхMovingHistory_DRIVERNAME Ref="19" type="Text" isKey="true">
+            <Заголовок_данныхMovingHistory_DRIVERNAME Ref="22" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>7.8,0,4.2,0.8</ClientRectangle>
@@ -196,15 +233,15 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>Заголовок_данныхMovingHistory_DRIVERNAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
+              <Page isRef="5" />
+              <Parent isRef="15" />
               <Text>водитель</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="20" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="23" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </Заголовок_данныхMovingHistory_DRIVERNAME>
-            <Заголовок_данныхMovingHistory_MOVINGNAME Ref="21" type="Text" isKey="true">
+            <Заголовок_данныхMovingHistory_MOVINGNAME Ref="24" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>12,0,2,0.8</ClientRectangle>
@@ -215,14 +252,14 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>Заголовок_данныхMovingHistory_MOVINGNAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
+              <Page isRef="5" />
+              <Parent isRef="15" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="22" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="25" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </Заголовок_данныхMovingHistory_MOVINGNAME>
-            <Заголовок_данныхMovingHistory_CARGONAME Ref="23" type="Text" isKey="true">
+            <Заголовок_данныхMovingHistory_CARGONAME Ref="26" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>14,0,2.8,0.8</ClientRectangle>
@@ -233,15 +270,15 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>Заголовок_данныхMovingHistory_CARGONAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
+              <Page isRef="5" />
+              <Parent isRef="15" />
               <Text>груз</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="24" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="27" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </Заголовок_данныхMovingHistory_CARGONAME>
-            <Заголовок_данныхMovingHistory_PERMIT Ref="25" type="Text" isKey="true">
+            <Заголовок_данныхMovingHistory_PERMIT Ref="28" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>16.8,0,2.2,0.8</ClientRectangle>
@@ -252,11 +289,11 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>Заголовок_данныхMovingHistory_PERMIT</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
+              <Page isRef="5" />
+              <Parent isRef="15" />
               <Text>номер пропуска</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="26" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="29" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </Заголовок_данныхMovingHistory_PERMIT>
@@ -265,14 +302,14 @@
           <MaxHeight>0</MaxHeight>
           <MinHeight>0</MinHeight>
           <Name>Заголовок_данныхMovingHistory</Name>
-          <Page isRef="4" />
-          <Parent isRef="4" />
+          <Page isRef="5" />
+          <Parent isRef="5" />
         </Заголовок_данныхMovingHistory>
-        <ДанныеMovingHistory Ref="27" type="DataBand" isKey="true">
+        <ДанныеMovingHistory Ref="30" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,4.4,19,0.8</ClientRectangle>
           <Components isList="true" count="7">
-            <ДанныеMovingHistory_MOVINGTIME Ref="28" type="Text" isKey="true">
+            <ДанныеMovingHistory_MOVINGTIME Ref="31" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -284,17 +321,17 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>ДанныеMovingHistory_MOVINGTIME</Name>
-              <Page isRef="4" />
-              <Parent isRef="27" />
+              <Page isRef="5" />
+              <Parent isRef="30" />
               <Text>{MovingHistory.MOVINGTIME}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="29" type="CustomFormat" isKey="true">
+              <TextFormat Ref="32" type="CustomFormat" isKey="true">
                 <StringFormat>dd.MM HH:mm</StringFormat>
               </TextFormat>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </ДанныеMovingHistory_MOVINGTIME>
-            <ДанныеMovingHistory_ENTRYPOINTNAME Ref="30" type="Text" isKey="true">
+            <ДанныеMovingHistory_ENTRYPOINTNAME Ref="33" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -306,15 +343,15 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>ДанныеMovingHistory_ENTRYPOINTNAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="27" />
+              <Page isRef="5" />
+              <Parent isRef="30" />
               <Text>{MovingHistory.ENTRYPOINTNAME}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="31" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="34" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </ДанныеMovingHistory_ENTRYPOINTNAME>
-            <ДанныеMovingHistory_VEHICLENAME Ref="32" type="Text" isKey="true">
+            <ДанныеMovingHistory_VEHICLENAME Ref="35" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -326,15 +363,15 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>ДанныеMovingHistory_VEHICLENAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="27" />
+              <Page isRef="5" />
+              <Parent isRef="30" />
               <Text>{MovingHistory.VEHICLENAME}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="33" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="36" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </ДанныеMovingHistory_VEHICLENAME>
-            <ДанныеMovingHistory_DRIVERNAME Ref="34" type="Text" isKey="true">
+            <ДанныеMovingHistory_DRIVERNAME Ref="37" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -346,15 +383,15 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>ДанныеMovingHistory_DRIVERNAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="27" />
+              <Page isRef="5" />
+              <Parent isRef="30" />
               <Text>{MovingHistory.DRIVERNAME}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="35" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="38" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </ДанныеMovingHistory_DRIVERNAME>
-            <ДанныеMovingHistory_MOVINGNAME Ref="36" type="Text" isKey="true">
+            <ДанныеMovingHistory_MOVINGNAME Ref="39" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -366,15 +403,15 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>ДанныеMovingHistory_MOVINGNAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="27" />
+              <Page isRef="5" />
+              <Parent isRef="30" />
               <Text>{MovingHistory.MOVINGNAME}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="37" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="40" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </ДанныеMovingHistory_MOVINGNAME>
-            <ДанныеMovingHistory_CARGONAME Ref="38" type="Text" isKey="true">
+            <ДанныеMovingHistory_CARGONAME Ref="41" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -386,15 +423,15 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>ДанныеMovingHistory_CARGONAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="27" />
+              <Page isRef="5" />
+              <Parent isRef="30" />
               <Text>{MovingHistory.CARGONAME}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="39" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="42" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </ДанныеMovingHistory_CARGONAME>
-            <ДанныеMovingHistory_PERMIT Ref="40" type="Text" isKey="true">
+            <ДанныеMovingHistory_PERMIT Ref="43" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -406,11 +443,11 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>ДанныеMovingHistory_PERMIT</Name>
-              <Page isRef="4" />
-              <Parent isRef="27" />
+              <Page isRef="5" />
+              <Parent isRef="30" />
               <Text>{MovingHistory.PERIOD}-{MovingHistory.DOCNUMBER}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="41" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="44" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -423,15 +460,15 @@
           <MaxHeight>0</MaxHeight>
           <MinHeight>0</MinHeight>
           <Name>ДанныеMovingHistory</Name>
-          <Page isRef="4" />
-          <Parent isRef="4" />
+          <Page isRef="5" />
+          <Parent isRef="5" />
           <Sort isList="true" count="0" />
         </ДанныеMovingHistory>
-        <Итог_данныхMovingHistory Ref="42" type="FooterBand" isKey="true">
+        <Итог_данныхMovingHistory Ref="45" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,6,19,0.8</ClientRectangle>
           <Components isList="true" count="7">
-            <FooterMovingHistory_MOVINGTIME Ref="43" type="Text" isKey="true">
+            <FooterMovingHistory_MOVINGTIME Ref="46" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,2.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -442,14 +479,14 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>FooterMovingHistory_MOVINGTIME</Name>
-              <Page isRef="4" />
-              <Parent isRef="42" />
+              <Page isRef="5" />
+              <Parent isRef="45" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="44" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="47" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </FooterMovingHistory_MOVINGTIME>
-            <FooterMovingHistory_ENTRYPOINTNAME Ref="45" type="Text" isKey="true">
+            <FooterMovingHistory_ENTRYPOINTNAME Ref="48" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.2,0,2.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -460,14 +497,14 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>FooterMovingHistory_ENTRYPOINTNAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="42" />
+              <Page isRef="5" />
+              <Parent isRef="45" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="46" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="49" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </FooterMovingHistory_ENTRYPOINTNAME>
-            <FooterMovingHistory_VEHICLENAME Ref="47" type="Text" isKey="true">
+            <FooterMovingHistory_VEHICLENAME Ref="50" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>5,0,2.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -478,14 +515,14 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>FooterMovingHistory_VEHICLENAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="42" />
+              <Page isRef="5" />
+              <Parent isRef="45" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="48" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="51" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </FooterMovingHistory_VEHICLENAME>
-            <FooterMovingHistory_DRIVERNAME Ref="49" type="Text" isKey="true">
+            <FooterMovingHistory_DRIVERNAME Ref="52" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>7.8,0,4.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -496,14 +533,14 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>FooterMovingHistory_DRIVERNAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="42" />
+              <Page isRef="5" />
+              <Parent isRef="45" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="50" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="53" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </FooterMovingHistory_DRIVERNAME>
-            <FooterMovingHistory_MOVINGNAME Ref="51" type="Text" isKey="true">
+            <FooterMovingHistory_MOVINGNAME Ref="54" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>12,0,2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -514,14 +551,14 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>FooterMovingHistory_MOVINGNAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="42" />
+              <Page isRef="5" />
+              <Parent isRef="45" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="52" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="55" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </FooterMovingHistory_MOVINGNAME>
-            <FooterMovingHistory_CARGONAME Ref="53" type="Text" isKey="true">
+            <FooterMovingHistory_CARGONAME Ref="56" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14,0,2.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -532,14 +569,14 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>FooterMovingHistory_CARGONAME</Name>
-              <Page isRef="4" />
-              <Parent isRef="42" />
+              <Page isRef="5" />
+              <Parent isRef="45" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="54" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="57" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </FooterMovingHistory_CARGONAME>
-            <FooterMovingHistory_PERMIT Ref="55" type="Text" isKey="true">
+            <FooterMovingHistory_PERMIT Ref="58" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>16.8,0,2.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -550,10 +587,10 @@
               <MaxSize>0,0</MaxSize>
               <MinSize>0,0</MinSize>
               <Name>FooterMovingHistory_PERMIT</Name>
-              <Page isRef="4" />
-              <Parent isRef="42" />
+              <Page isRef="5" />
+              <Parent isRef="45" />
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="56" type="GeneralFormat" isKey="true" />
+              <TextFormat Ref="59" type="GeneralFormat" isKey="true" />
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </FooterMovingHistory_PERMIT>
@@ -562,25 +599,25 @@
           <MaxHeight>0</MaxHeight>
           <MinHeight>0</MinHeight>
           <Name>Итог_данныхMovingHistory</Name>
-          <Page isRef="4" />
-          <Parent isRef="4" />
+          <Page isRef="5" />
+          <Parent isRef="5" />
         </Итог_данныхMovingHistory>
       </Components>
       <Conditions isList="true" count="0" />
       <Guid>02852abf1be1459bbb41e5084c3fa2da</Guid>
       <Margins>1,1,1,1</Margins>
       <Name>Страница1</Name>
-      <Page isRef="4" />
+      <Page isRef="5" />
       <PageHeight>29.7</PageHeight>
       <PageWidth>21</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="57" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="60" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Страница1>
   </Pages>
-  <PrinterSettings Ref="58" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="61" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -592,9 +629,9 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>История движений через пункты пропуска</ReportAlias>
-  <ReportChanged>1/16/2017 11:28:09 AM</ReportChanged>
+  <ReportChanged>4/10/2017 3:09:47 PM</ReportChanged>
   <ReportCreated>1/16/2017 11:13:34 AM</ReportCreated>
-  <ReportGuid>55ab82740ca24af89afe1da8dff512df</ReportGuid>
+  <ReportGuid>a83b4498cd0c4db1b67886ca1cb626af</ReportGuid>
   <ReportName>История движений через пункты пропуска</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2008.2.300</ReportVersion>

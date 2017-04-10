@@ -210,7 +210,7 @@
     <value>select comment from docPermit where id = @id</value>
   </data>
   <data name="HistoryMoving" xml:space="preserve">
-    <value>select * from repMovingHistory(@dateFrom, @dateTo, @vehicleMask) order by movingTime desc</value>
+    <value>select * from repMovingHistory1(@dateFrom, @dateTo, @vehicleMask, @cargo) order by movingTime desc</value>
   </data>
   <data name="AppointCreator" xml:space="preserve">
     <value>select * from GETAPPOINTCREATOR(@permitId)</value>

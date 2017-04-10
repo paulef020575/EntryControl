@@ -63,11 +63,18 @@ namespace EntryControl
 
         public static List<HistoryMoving> LoadList(Database database, DateTime dateFrom, DateTime dateTo, string vehicleMask)
         {
+            return LoadList(database, dateFrom, dateTo, vehicleMask, new Cargo(0, "ВСЕ ГРУЗЫ"));
+        }
+
+        public static List<HistoryMoving> LoadList(Database database, DateTime dateFrom, DateTime dateTo, string vehicleMask,
+                                                    Cargo cargo)
+        {
             List<HistoryMoving> reportList = new List<EntryControl.HistoryMoving>();
 
             QueryParameters parameters = new QueryParameters("dateFrom", dateFrom);
             parameters.Add("dateTo", dateTo);
             parameters.Add("vehicleMask", vehicleMask);
+            parameters.Add("cargo", cargo.Id);
 
             using (DbDataReader reader = database.ExecuteReader(EntryControl.Resources.Doc.Permit.HistoryMoving, parameters))
             {

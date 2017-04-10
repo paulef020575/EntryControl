@@ -178,7 +178,7 @@ namespace EntryControl.Resources.Doc {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select * from repMovingHistory(@dateFrom, @dateTo, @vehicleMask) order by movingTime desc.
+        ///   Ищет локализованную строку, похожую на select * from repMovingHistory1(@dateFrom, @dateTo, @vehicleMask, @cargo) order by movingTime desc.
         /// </summary>
         public static string HistoryMoving {
             get {

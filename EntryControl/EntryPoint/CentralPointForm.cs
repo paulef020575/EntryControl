@@ -358,13 +358,21 @@ namespace EntryControl
             {
                 dtpDateTo.Value = DateTime.Now;
                 dtpDateFrom.Value = DateTime.Now.AddDays(-1);
+
+                List<Cargo> cargoList = Cargo.LoadList(Database);
+                cargoList.Insert(0, new Cargo(0, "ВСЕ ГРУЗЫ"));
+                cboxCargo.DataSource = cargoList;
             }
         }
 
         private void dtpDateTo_ValueChanged(object sender, EventArgs e)
         {
-            bsHistoryReport.DataSource = HistoryMoving.LoadList(Database, dtpDateFrom.Value, dtpDateTo.Value, tboxVehicleMask.Text);
+            if (cboxCargo.SelectedItem != null)
+            {
+                Cargo cargo = (Cargo)cboxCargo.SelectedItem;
 
+                bsHistoryReport.DataSource = HistoryMoving.LoadList(Database, dtpDateFrom.Value, dtpDateTo.Value, tboxVehicleMask.Text, cargo);
+            }
         }
 
         private void dgvHistoryReport_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
@@ -399,6 +407,7 @@ namespace EntryControl
             report["dateFrom"] = dtpDateFrom.Value;
             report["dateTo"] = dtpDateTo.Value;
             report["vehicleMask"] = tboxVehicleMask.Text;
+            report["cargo"] = ((Cargo)cboxCargo.SelectedItem).Id;
 
             report.Show();
         }

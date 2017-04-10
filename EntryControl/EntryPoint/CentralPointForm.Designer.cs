@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntryPointForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.bgEnteredRefresh = new System.ComponentModel.BackgroundWorker();
             this.bgPlanAppointRefresh = new System.ComponentModel.BackgroundWorker();
@@ -93,6 +93,8 @@
             this.lblCreator = new System.Windows.Forms.Label();
             this.gboxComment = new System.Windows.Forms.GroupBox();
             this.lblComment = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cboxCargo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.bsHistoryReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPlanAppoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsEnteredVehicle)).BeginInit();
@@ -221,9 +223,9 @@
             // ColHstMovingTime
             // 
             this.ColHstMovingTime.DataPropertyName = "MovingTime";
-            dataGridViewCellStyle1.Format = "dd.MM HH:mm";
-            dataGridViewCellStyle1.NullValue = null;
-            this.ColHstMovingTime.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Format = "dd.MM HH:mm";
+            dataGridViewCellStyle7.NullValue = null;
+            this.ColHstMovingTime.DefaultCellStyle = dataGridViewCellStyle7;
             this.ColHstMovingTime.HeaderText = "";
             this.ColHstMovingTime.Name = "ColHstMovingTime";
             this.ColHstMovingTime.ReadOnly = true;
@@ -275,6 +277,8 @@
             // 
             // panelReportHeader
             // 
+            this.panelReportHeader.Controls.Add(this.cboxCargo);
+            this.panelReportHeader.Controls.Add(this.label3);
             this.panelReportHeader.Controls.Add(this.btnPrintHistory);
             this.panelReportHeader.Controls.Add(this.tboxVehicleMask);
             this.panelReportHeader.Controls.Add(this.dtpDateTo);
@@ -289,9 +293,9 @@
             // 
             // btnPrintHistory
             // 
-            this.btnPrintHistory.Location = new System.Drawing.Point(291, 47);
+            this.btnPrintHistory.Location = new System.Drawing.Point(496, 9);
             this.btnPrintHistory.Name = "btnPrintHistory";
-            this.btnPrintHistory.Size = new System.Drawing.Size(186, 33);
+            this.btnPrintHistory.Size = new System.Drawing.Size(154, 33);
             this.btnPrintHistory.TabIndex = 5;
             this.btnPrintHistory.Text = "печать";
             this.btnPrintHistory.UseVisualStyleBackColor = true;
@@ -404,9 +408,9 @@
             // ClmnDateFrom
             // 
             this.ClmnDateFrom.DataPropertyName = "DateFrom";
-            dataGridViewCellStyle2.Format = "dd.MM ";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ClmnDateFrom.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Format = "dd.MM ";
+            dataGridViewCellStyle8.NullValue = null;
+            this.ClmnDateFrom.DefaultCellStyle = dataGridViewCellStyle8;
             this.ClmnDateFrom.FillWeight = 75F;
             this.ClmnDateFrom.HeaderText = "ожидается";
             this.ClmnDateFrom.Name = "ClmnDateFrom";
@@ -415,8 +419,8 @@
             // ClmnDateTo
             // 
             this.ClmnDateTo.DataPropertyName = "DateTo";
-            dataGridViewCellStyle3.Format = "dd.MM";
-            this.ClmnDateTo.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Format = "dd.MM";
+            this.ClmnDateTo.DefaultCellStyle = dataGridViewCellStyle9;
             this.ClmnDateTo.HeaderText = "прибытие";
             this.ClmnDateTo.Name = "ClmnDateTo";
             this.ClmnDateTo.ReadOnly = true;
@@ -498,8 +502,8 @@
             // ColumnEntryTime
             // 
             this.ColumnEntryTime.DataPropertyName = "EntryInfo";
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnEntryTime.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnEntryTime.DefaultCellStyle = dataGridViewCellStyle10;
             this.ColumnEntryTime.HeaderText = "въезд";
             this.ColumnEntryTime.Name = "ColumnEntryTime";
             this.ColumnEntryTime.ReadOnly = true;
@@ -507,8 +511,8 @@
             // ColumnVehicleMark
             // 
             this.ColumnVehicleMark.DataPropertyName = "VehicleInfo";
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnVehicleMark.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnVehicleMark.DefaultCellStyle = dataGridViewCellStyle11;
             this.ColumnVehicleMark.HeaderText = "Автомобиль";
             this.ColumnVehicleMark.Name = "ColumnVehicleMark";
             this.ColumnVehicleMark.ReadOnly = true;
@@ -516,8 +520,8 @@
             // ColumnDriverName
             // 
             this.ColumnDriverName.DataPropertyName = "DriverInfo";
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnDriverName.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnDriverName.DefaultCellStyle = dataGridViewCellStyle12;
             this.ColumnDriverName.HeaderText = "водитель";
             this.ColumnDriverName.Name = "ColumnDriverName";
             this.ColumnDriverName.ReadOnly = true;
@@ -718,6 +722,26 @@
             this.lblComment.Size = new System.Drawing.Size(274, 159);
             this.lblComment.TabIndex = 5;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(311, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Груз";
+            // 
+            // cboxCargo
+            // 
+            this.cboxCargo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboxCargo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboxCargo.FormattingEnabled = true;
+            this.cboxCargo.Location = new System.Drawing.Point(359, 45);
+            this.cboxCargo.Name = "cboxCargo";
+            this.cboxCargo.Size = new System.Drawing.Size(291, 28);
+            this.cboxCargo.TabIndex = 7;
+            this.cboxCargo.SelectedIndexChanged += new System.EventHandler(this.dtpDateTo_ValueChanged);
+            // 
             // EntryPointForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -816,5 +840,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ClmnCargo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClmnDateFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClmnDateTo;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cboxCargo;
     }
 }

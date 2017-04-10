@@ -215,4 +215,7 @@
   <data name="AppointCreator" xml:space="preserve">
     <value>select * from GETAPPOINTCREATOR(@permitId)</value>
   </data>
+  <data name="NoPlanAppoint" xml:space="preserve">
+    <value>Без заявки (Бюро пропусков)</value>
+  </data>
 </root>

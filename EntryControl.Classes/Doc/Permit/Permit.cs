@@ -631,14 +631,15 @@ namespace EntryControl.Classes
 
                 using (DbDataReader reader = database.ExecuteReader(query, parameters))
                 {
-                    if (reader.Read())
+                    if (reader.Read()
+                        && !DBNull.Value.Equals(reader["createDate"]))
                     {
                         result = ((DateTime)reader["createDate"]).ToString("dd.MM.yyyy HH:mm") + " / ";
                         result += (string)reader["creator"];
                     }
                     else
                     {
-                        result = EntryControl.Resources.Message.Error.CannotGetData;
+                        result = EntryControl.Resources.Doc.Permit.NoPlanAppoint;
                     }
 
 

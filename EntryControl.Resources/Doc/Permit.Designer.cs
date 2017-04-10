@@ -286,6 +286,15 @@ namespace EntryControl.Resources.Doc {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Без заявки (Бюро пропусков).
+        /// </summary>
+        public static string NoPlanAppoint {
+            get {
+                return ResourceManager.GetString("NoPlanAppoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Пропуск был закрыт @movingTime..
         /// </summary>
         public static string PermitClose {

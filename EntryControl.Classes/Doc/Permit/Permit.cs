@@ -259,7 +259,8 @@ namespace EntryControl.Classes
 
             period = DateTime.Today.Year;
 
-            permitState = EntryControlDatabase.ConstantPermitState;
+            // permitState = EntryControlDatabase.ConstantPermitState;
+            permitState = EntryControlDatabase.TemporaryPermitState;
 
             dateFrom = DateTime.Today;
             dateTo = new DateTime(dateFrom.Year, 12, 31);

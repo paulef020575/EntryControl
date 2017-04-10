@@ -30,6 +30,7 @@ namespace EntryControl.Classes
                 LoadOneTimePermitState(connection);
                 LoadConstantPermitState(connection);
                 LoadClosedPermitState(connection);
+                LoadTemporaryPermitState(connection);
                 
                 LoadMinimalDate(connection);
                 LoadMovingTypes(connection);
@@ -137,6 +138,21 @@ namespace EntryControl.Classes
             int id = int.Parse(LoadConstant(connection, "constantPermitState"));
 
             constantPermitState = new EnumerationItem(id, "Постоянный");
+        }
+
+        #endregion
+
+        #region TemporaryPermitState - Вид пропуска временный
+
+        private static EnumerationItem temporaryPermitState;
+
+        public static EnumerationItem TemporaryPermitState { get { return temporaryPermitState; } }
+
+        private void LoadTemporaryPermitState(Connection connection)
+        {
+            int id = int.Parse(LoadConstant(connection, "temporaryPermitState"));
+
+            temporaryPermitState = new Classes.EnumerationItem(id, "Временный");
         }
 
         #endregion

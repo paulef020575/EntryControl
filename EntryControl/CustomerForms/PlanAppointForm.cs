@@ -190,6 +190,26 @@ namespace EntryControl
             if (string.Equals(e.PropertyName, "Vehicle", StringComparison.InvariantCultureIgnoreCase))
                 PlanAppoint.GetDriverInfo(Database);
         }
-        
+
+        protected override bool SaveItem()
+        {
+            if (CheckProperties())
+                return base.SaveItem();
+
+            return false;
+        }
+
+        private bool CheckProperties()
+        {
+            bool result = true;
+
+            if (PlanAppoint.Cargo == null || PlanAppoint.Cargo.Id == 0)
+            {
+                formErrorProvider.SetError(rboxCargo, "Выберите груз из справочника");
+                result = false;
+            }
+
+            return result;
+        }
     }
 }

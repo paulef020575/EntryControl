@@ -148,5 +148,32 @@ namespace EntryControl
                 MarkAsModified();
             }
         }
+
+        protected override bool SaveItem()
+        {
+            if (CheckControls())
+                return base.SaveItem();
+
+            return false;
+        }
+
+        private bool CheckControls()
+        {
+            bool result = true;
+
+            if (Vehicle.VehicleMark == null || Vehicle.VehicleMark.Id == 0)
+            {
+                formErrorProvider.SetError(tboxVehicleMark, "Укажите марку Т/С");
+                result = false;
+            }
+
+            if (Vehicle.LicensePlate.Trim().Length == 0)
+            {
+                formErrorProvider.SetError(tboxLicensePlate, "Укажите номер Т/С");
+                result = false;
+            }
+
+            return result;
+        }
     }
 }

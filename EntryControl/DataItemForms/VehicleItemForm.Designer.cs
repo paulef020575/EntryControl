@@ -48,6 +48,7 @@
             this.addItemTool = new System.Windows.Forms.ToolStripButton();
             this.editItemTool = new System.Windows.Forms.ToolStripButton();
             this.deleteItemTool = new System.Windows.Forms.ToolStripButton();
+            this.formErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsDataItem)).BeginInit();
             this.pnlBottom.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -57,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsOwnerList)).BeginInit();
             this.ownerListTools.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.formErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
@@ -247,6 +249,10 @@
             this.deleteItemTool.Text = "удалить";
             this.deleteItemTool.Click += new System.EventHandler(this.deleteItemTool_Click);
             // 
+            // formErrorProvider
+            // 
+            this.formErrorProvider.ContainerControl = this;
+            // 
             // VehicleItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,6 +273,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsOwnerList)).EndInit();
             this.ownerListTools.ResumeLayout(false);
             this.ownerListTools.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.formErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -290,5 +297,6 @@
         private System.Windows.Forms.BindingSource bsOwnerList;
         private System.Windows.Forms.ToolStripButton editItemTool;
         private System.Windows.Forms.ToolStripButton deleteItemTool;
+        private System.Windows.Forms.ErrorProvider formErrorProvider;
     }
 }

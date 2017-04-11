@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlanAppointForm));
             this.tblPanel = new System.Windows.Forms.TableLayoutPanel();
             this.pickDateTo = new System.Windows.Forms.DateTimePicker();
@@ -54,12 +55,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tboxComment = new System.Windows.Forms.TextBox();
+            this.formErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsDataItem)).BeginInit();
             this.pnlBottom.SuspendLayout();
             this.pnlData.SuspendLayout();
             this.tblPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlVehicle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.formErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlBottom
@@ -379,6 +382,10 @@
             this.tboxComment.Size = new System.Drawing.Size(428, 102);
             this.tboxComment.TabIndex = 21;
             // 
+            // formErrorProvider
+            // 
+            this.formErrorProvider.ContainerControl = this;
+            // 
             // PlanAppointForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,6 +401,7 @@
             this.panel1.ResumeLayout(false);
             this.pnlVehicle.ResumeLayout(false);
             this.pnlVehicle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.formErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -425,5 +433,6 @@
         private System.Windows.Forms.DateTimePicker pickDateTo;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tboxComment;
+        private System.Windows.Forms.ErrorProvider formErrorProvider;
     }
 }

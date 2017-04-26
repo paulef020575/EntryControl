@@ -29,8 +29,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Автопропуска</ProductName>
     <PublisherName>ОАО Кондопога</PublisherName>
-    <MinimumRequiredVersion>0.0.5.2</MinimumRequiredVersion>
-    <ApplicationRevision>3</ApplicationRevision>
+    <MinimumRequiredVersion>0.0.5.3</MinimumRequiredVersion>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>0.0.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

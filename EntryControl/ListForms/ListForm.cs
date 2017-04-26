@@ -250,9 +250,16 @@ namespace EntryControl
 
         private void DeleteItem(DataItem item)
         {
-            bsList.Remove(item);
-            item.Delete();
-            item.Save(Database);
+            try
+            {
+                bsList.Remove(item);
+                item.Delete();
+                item.Save(Database);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(EntryControl.Resources.Message.Error.CannotDelete);
+            }
         }
 
         #region Колонки

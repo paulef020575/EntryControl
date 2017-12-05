@@ -124,6 +124,15 @@ namespace EntryControl.Resources.Message {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Не удалось сохранить данные.
+        /// </summary>
+        public static string SavingError {
+            get {
+                return ResourceManager.GetString("SavingError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Неизвестный элемент управления.
         /// </summary>
         public static string UnknownControl {

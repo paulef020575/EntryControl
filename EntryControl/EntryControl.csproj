@@ -552,6 +552,10 @@
       <Project>{71B988EA-2F48-465D-83F0-008105CBA164}</Project>
       <Name>EntryControl.Classes</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EntryControl.Migrations\EntryControl.Migrations.csproj">
+      <Project>{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}</Project>
+      <Name>EntryControl.Migrations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EntryControl.Resources\EntryControl.Resources.csproj">
       <Project>{65954688-83AC-468B-A980-8AD4EAF703E6}</Project>
       <Name>EntryControl.Resources</Name>

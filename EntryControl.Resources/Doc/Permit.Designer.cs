@@ -79,6 +79,15 @@ namespace EntryControl.Resources.Doc {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на select count(*) from checkPermitPoint(@permit, @point).
+        /// </summary>
+        public static string CheckPermitPoint {
+            get {
+                return ResourceManager.GetString("CheckPermitPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Закрытие.
         /// </summary>
         public static string CloseMoving {
@@ -174,6 +183,15 @@ namespace EntryControl.Resources.Doc {
         public static string GetPermitNumber {
             get {
                 return ResourceManager.GetString("GetPermitNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на select * from getPermitPointList(@permit) where pointId &gt; 0.
+        /// </summary>
+        public static string GetPermitPointList {
+            get {
+                return ResourceManager.GetString("GetPermitPointList", resourceCulture);
             }
         }
         
@@ -329,6 +347,15 @@ namespace EntryControl.Resources.Doc {
         public static string PermitToClose {
             get {
                 return ResourceManager.GetString("PermitToClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на execute procedure docSetPermitPoint(@permit, @point, @isAllowed).
+        /// </summary>
+        public static string SetPermitPoint {
+            get {
+                return ResourceManager.GetString("SetPermitPoint", resourceCulture);
             }
         }
         

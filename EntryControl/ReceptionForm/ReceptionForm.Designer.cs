@@ -48,7 +48,6 @@
             this.ColumnPVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPDriver = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPContact = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnEntryPoint = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMultiEntry = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.permitTools = new System.Windows.Forms.ToolStrip();
             this.lblToRefresh = new System.Windows.Forms.ToolStripLabel();
@@ -81,12 +80,9 @@
             this.ColumnMoving = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMovingPoint = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMovingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnlMaterialPermit = new System.Windows.Forms.GroupBox();
-            this.dgvMaterialPermitItems = new System.Windows.Forms.DataGridView();
-            this.ColumnMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnMaterialUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblMaterialPermit = new System.Windows.Forms.Label();
+            this.pnlEntryPoints = new System.Windows.Forms.GroupBox();
+            this.dgvPointList = new System.Windows.Forms.DataGridView();
+            this.ColumnPermitPoint = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gboxPermitComment = new System.Windows.Forms.GroupBox();
             this.tboxPermitComment = new System.Windows.Forms.TextBox();
             this.pagePlanAppointList = new System.Windows.Forms.TabPage();
@@ -116,6 +112,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.materialPermitTool = new System.Windows.Forms.ToolStripButton();
             this.btnChangePassword = new System.Windows.Forms.ToolStripButton();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsPermitList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPlanAppointList)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -125,8 +122,8 @@
             this.permitTopPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMoving)).BeginInit();
-            this.pnlMaterialPermit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialPermitItems)).BeginInit();
+            this.pnlEntryPoints.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPointList)).BeginInit();
             this.gboxPermitComment.SuspendLayout();
             this.pagePlanAppointList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlanAppointList)).BeginInit();
@@ -177,10 +174,10 @@
             this.tabControl.Controls.Add(this.permitPage);
             this.tabControl.Controls.Add(this.pagePlanAppointList);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 25);
+            this.tabControl.Location = new System.Drawing.Point(0, 27);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(760, 466);
+            this.tabControl.Size = new System.Drawing.Size(1015, 464);
             this.tabControl.TabIndex = 0;
             // 
             // permitPage
@@ -192,7 +189,7 @@
             this.permitPage.Location = new System.Drawing.Point(4, 22);
             this.permitPage.Name = "permitPage";
             this.permitPage.Padding = new System.Windows.Forms.Padding(3);
-            this.permitPage.Size = new System.Drawing.Size(752, 440);
+            this.permitPage.Size = new System.Drawing.Size(1007, 438);
             this.permitPage.TabIndex = 0;
             this.permitPage.Text = "Пропуски";
             this.permitPage.UseVisualStyleBackColor = true;
@@ -211,16 +208,15 @@
             this.ColumnPVehicle,
             this.ColumnPDriver,
             this.ColumnPContact,
-            this.ColumnEntryPoint,
             this.ColumnMultiEntry});
             this.dgvPermitList.DataSource = this.bsPermitList;
             this.dgvPermitList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPermitList.Location = new System.Drawing.Point(3, 116);
+            this.dgvPermitList.Location = new System.Drawing.Point(3, 118);
             this.dgvPermitList.MultiSelect = false;
             this.dgvPermitList.Name = "dgvPermitList";
             this.dgvPermitList.ReadOnly = true;
             this.dgvPermitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPermitList.Size = new System.Drawing.Size(396, 321);
+            this.dgvPermitList.Size = new System.Drawing.Size(651, 317);
             this.dgvPermitList.TabIndex = 2;
             this.dgvPermitList.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvPermitList_RowPrePaint);
             // 
@@ -275,13 +271,6 @@
             this.ColumnPContact.Name = "ColumnPContact";
             this.ColumnPContact.ReadOnly = true;
             // 
-            // ColumnEntryPoint
-            // 
-            this.ColumnEntryPoint.DataPropertyName = "EntryPoint";
-            this.ColumnEntryPoint.HeaderText = "П. пропуска";
-            this.ColumnEntryPoint.Name = "ColumnEntryPoint";
-            this.ColumnEntryPoint.ReadOnly = true;
-            // 
             // ColumnMultiEntry
             // 
             this.ColumnMultiEntry.DataPropertyName = "MultiEntry";
@@ -311,7 +300,7 @@
             this.btnNextPermitPage});
             this.permitTools.Location = new System.Drawing.Point(3, 91);
             this.permitTools.Name = "permitTools";
-            this.permitTools.Size = new System.Drawing.Size(396, 25);
+            this.permitTools.Size = new System.Drawing.Size(651, 27);
             this.permitTools.TabIndex = 1;
             this.permitTools.Text = "toolStrip1";
             // 
@@ -319,7 +308,7 @@
             // 
             this.lblToRefresh.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.lblToRefresh.Name = "lblToRefresh";
-            this.lblToRefresh.Size = new System.Drawing.Size(34, 22);
+            this.lblToRefresh.Size = new System.Drawing.Size(43, 24);
             this.lblToRefresh.Text = "0 сек";
             // 
             // addPermitTool
@@ -328,7 +317,7 @@
             this.addPermitTool.Image = ((System.Drawing.Image)(resources.GetObject("addPermitTool.Image")));
             this.addPermitTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.addPermitTool.Name = "addPermitTool";
-            this.addPermitTool.Size = new System.Drawing.Size(23, 22);
+            this.addPermitTool.Size = new System.Drawing.Size(23, 24);
             this.addPermitTool.Text = "добавить";
             this.addPermitTool.Click += new System.EventHandler(this.addPermitTool_Click);
             // 
@@ -338,7 +327,7 @@
             this.editPermitTool.Image = ((System.Drawing.Image)(resources.GetObject("editPermitTool.Image")));
             this.editPermitTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editPermitTool.Name = "editPermitTool";
-            this.editPermitTool.Size = new System.Drawing.Size(23, 22);
+            this.editPermitTool.Size = new System.Drawing.Size(23, 24);
             this.editPermitTool.Text = "изменить";
             this.editPermitTool.Click += new System.EventHandler(this.editPermitTool_Click);
             // 
@@ -348,14 +337,14 @@
             this.deletePermitTool.Image = ((System.Drawing.Image)(resources.GetObject("deletePermitTool.Image")));
             this.deletePermitTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.deletePermitTool.Name = "deletePermitTool";
-            this.deletePermitTool.Size = new System.Drawing.Size(23, 22);
+            this.deletePermitTool.Size = new System.Drawing.Size(23, 24);
             this.deletePermitTool.Text = "toolStripButton1";
             this.deletePermitTool.Click += new System.EventHandler(this.deletePermitTool_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // refreshPermiListTool
             // 
@@ -363,14 +352,14 @@
             this.refreshPermiListTool.Image = ((System.Drawing.Image)(resources.GetObject("refreshPermiListTool.Image")));
             this.refreshPermiListTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.refreshPermiListTool.Name = "refreshPermiListTool";
-            this.refreshPermiListTool.Size = new System.Drawing.Size(23, 22);
+            this.refreshPermiListTool.Size = new System.Drawing.Size(23, 24);
             this.refreshPermiListTool.Text = "обновить";
             this.refreshPermiListTool.Click += new System.EventHandler(this.refreshPermiListTool_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // printPermitListTool
             // 
@@ -378,26 +367,26 @@
             this.printPermitListTool.Image = ((System.Drawing.Image)(resources.GetObject("printPermitListTool.Image")));
             this.printPermitListTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printPermitListTool.Name = "printPermitListTool";
-            this.printPermitListTool.Size = new System.Drawing.Size(23, 22);
+            this.printPermitListTool.Size = new System.Drawing.Size(23, 24);
             this.printPermitListTool.Text = "печать";
             this.printPermitListTool.Click += new System.EventHandler(this.printPermitListTool_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
             // 
             // findLabel
             // 
             this.findLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.findLabel.Name = "findLabel";
-            this.findLabel.Size = new System.Drawing.Size(0, 22);
+            this.findLabel.Size = new System.Drawing.Size(0, 24);
             this.findLabel.Text = "Поиск";
             // 
             // findTextBox
             // 
             this.findTextBox.Name = "findTextBox";
-            this.findTextBox.Size = new System.Drawing.Size(100, 25);
+            this.findTextBox.Size = new System.Drawing.Size(100, 27);
             this.findTextBox.TextChanged += new System.EventHandler(this.findTextBox_TextChanged);
             // 
             // findNextTool
@@ -406,25 +395,25 @@
             this.findNextTool.Image = ((System.Drawing.Image)(resources.GetObject("findNextTool.Image")));
             this.findNextTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.findNextTool.Name = "findNextTool";
-            this.findNextTool.Size = new System.Drawing.Size(23, 22);
+            this.findNextTool.Size = new System.Drawing.Size(23, 24);
             this.findNextTool.Text = "Найти следующий";
             this.findNextTool.Click += new System.EventHandler(this.findNextTool_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(30, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(36, 24);
             this.toolStripLabel2.Text = "Стр.";
             // 
             // lblPermitPage
             // 
             this.lblPermitPage.Name = "lblPermitPage";
-            this.lblPermitPage.Size = new System.Drawing.Size(30, 22);
+            this.lblPermitPage.Size = new System.Drawing.Size(39, 24);
             this.lblPermitPage.Text = "0 / 0";
             // 
             // btnPreviousPermitPage
@@ -433,7 +422,7 @@
             this.btnPreviousPermitPage.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPermitPage.Image")));
             this.btnPreviousPermitPage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPreviousPermitPage.Name = "btnPreviousPermitPage";
-            this.btnPreviousPermitPage.Size = new System.Drawing.Size(23, 20);
+            this.btnPreviousPermitPage.Size = new System.Drawing.Size(23, 24);
             this.btnPreviousPermitPage.Text = "Предыдущая";
             this.btnPreviousPermitPage.Click += new System.EventHandler(this.btnPreviousPermitPage_Click);
             // 
@@ -443,12 +432,13 @@
             this.btnNextPermitPage.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPermitPage.Image")));
             this.btnNextPermitPage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNextPermitPage.Name = "btnNextPermitPage";
-            this.btnNextPermitPage.Size = new System.Drawing.Size(23, 20);
+            this.btnNextPermitPage.Size = new System.Drawing.Size(23, 24);
             this.btnNextPermitPage.Text = "Следующая";
             this.btnNextPermitPage.Click += new System.EventHandler(this.btnNextPermitPage_Click);
             // 
             // permitTopPanel
             // 
+            this.permitTopPanel.Controls.Add(this.label5);
             this.permitTopPanel.Controls.Add(this.cboxPermitType);
             this.permitTopPanel.Controls.Add(this.label3);
             this.permitTopPanel.Controls.Add(this.rboxEntryPoint);
@@ -460,7 +450,7 @@
             this.permitTopPanel.Location = new System.Drawing.Point(3, 3);
             this.permitTopPanel.Name = "permitTopPanel";
             this.permitTopPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.permitTopPanel.Size = new System.Drawing.Size(396, 88);
+            this.permitTopPanel.Size = new System.Drawing.Size(651, 88);
             this.permitTopPanel.TabIndex = 0;
             // 
             // cboxPermitType
@@ -534,12 +524,12 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.dgvMoving);
-            this.panel1.Controls.Add(this.pnlMaterialPermit);
+            this.panel1.Controls.Add(this.pnlEntryPoints);
             this.panel1.Controls.Add(this.gboxPermitComment);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(399, 3);
+            this.panel1.Location = new System.Drawing.Point(654, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(350, 434);
+            this.panel1.Size = new System.Drawing.Size(350, 432);
             this.panel1.TabIndex = 4;
             // 
             // dgvMoving
@@ -557,7 +547,7 @@
             this.dgvMoving.Name = "dgvMoving";
             this.dgvMoving.ReadOnly = true;
             this.dgvMoving.RowHeadersVisible = false;
-            this.dgvMoving.Size = new System.Drawing.Size(350, 170);
+            this.dgvMoving.Size = new System.Drawing.Size(350, 97);
             this.dgvMoving.TabIndex = 5;
             // 
             // ColumnMoving
@@ -583,70 +573,40 @@
             this.ColumnMovingTime.Name = "ColumnMovingTime";
             this.ColumnMovingTime.ReadOnly = true;
             // 
-            // pnlMaterialPermit
+            // pnlEntryPoints
             // 
-            this.pnlMaterialPermit.Controls.Add(this.dgvMaterialPermitItems);
-            this.pnlMaterialPermit.Controls.Add(this.lblMaterialPermit);
-            this.pnlMaterialPermit.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlMaterialPermit.Location = new System.Drawing.Point(0, 278);
-            this.pnlMaterialPermit.Name = "pnlMaterialPermit";
-            this.pnlMaterialPermit.Size = new System.Drawing.Size(350, 156);
-            this.pnlMaterialPermit.TabIndex = 6;
-            this.pnlMaterialPermit.TabStop = false;
-            this.pnlMaterialPermit.Text = "Материальный пропуск";
+            this.pnlEntryPoints.Controls.Add(this.dgvPointList);
+            this.pnlEntryPoints.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlEntryPoints.Location = new System.Drawing.Point(0, 205);
+            this.pnlEntryPoints.Name = "pnlEntryPoints";
+            this.pnlEntryPoints.Size = new System.Drawing.Size(350, 227);
+            this.pnlEntryPoints.TabIndex = 6;
+            this.pnlEntryPoints.TabStop = false;
+            this.pnlEntryPoints.Text = "Разрешенные пункты пропуска";
             // 
-            // dgvMaterialPermitItems
+            // dgvPointList
             // 
-            this.dgvMaterialPermitItems.AllowUserToAddRows = false;
-            this.dgvMaterialPermitItems.AllowUserToDeleteRows = false;
-            this.dgvMaterialPermitItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMaterialPermitItems.ColumnHeadersVisible = false;
-            this.dgvMaterialPermitItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnMaterial,
-            this.ColumnQuantity,
-            this.ColumnMaterialUnit});
-            this.dgvMaterialPermitItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMaterialPermitItems.Location = new System.Drawing.Point(3, 39);
-            this.dgvMaterialPermitItems.Name = "dgvMaterialPermitItems";
-            this.dgvMaterialPermitItems.ReadOnly = true;
-            this.dgvMaterialPermitItems.RowHeadersVisible = false;
-            this.dgvMaterialPermitItems.Size = new System.Drawing.Size(344, 114);
-            this.dgvMaterialPermitItems.TabIndex = 1;
+            this.dgvPointList.AllowUserToAddRows = false;
+            this.dgvPointList.AllowUserToDeleteRows = false;
+            this.dgvPointList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPointList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPointList.ColumnHeadersVisible = false;
+            this.dgvPointList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnPermitPoint});
+            this.dgvPointList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPointList.Location = new System.Drawing.Point(3, 16);
+            this.dgvPointList.Name = "dgvPointList";
+            this.dgvPointList.ReadOnly = true;
+            this.dgvPointList.RowHeadersVisible = false;
+            this.dgvPointList.Size = new System.Drawing.Size(344, 208);
+            this.dgvPointList.TabIndex = 1;
             // 
-            // ColumnMaterial
+            // ColumnPermitPoint
             // 
-            this.ColumnMaterial.DataPropertyName = "Material";
-            this.ColumnMaterial.HeaderText = "Column1";
-            this.ColumnMaterial.Name = "ColumnMaterial";
-            this.ColumnMaterial.ReadOnly = true;
-            this.ColumnMaterial.Width = 200;
-            // 
-            // ColumnQuantity
-            // 
-            this.ColumnQuantity.DataPropertyName = "Quantity";
-            this.ColumnQuantity.HeaderText = "Column1";
-            this.ColumnQuantity.Name = "ColumnQuantity";
-            this.ColumnQuantity.ReadOnly = true;
-            this.ColumnQuantity.Width = 50;
-            // 
-            // ColumnMaterialUnit
-            // 
-            this.ColumnMaterialUnit.DataPropertyName = "MaterialUnit";
-            this.ColumnMaterialUnit.HeaderText = "Column1";
-            this.ColumnMaterialUnit.Name = "ColumnMaterialUnit";
-            this.ColumnMaterialUnit.ReadOnly = true;
-            this.ColumnMaterialUnit.Width = 50;
-            // 
-            // lblMaterialPermit
-            // 
-            this.lblMaterialPermit.AutoSize = true;
-            this.lblMaterialPermit.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblMaterialPermit.Location = new System.Drawing.Point(3, 16);
-            this.lblMaterialPermit.Name = "lblMaterialPermit";
-            this.lblMaterialPermit.Padding = new System.Windows.Forms.Padding(5);
-            this.lblMaterialPermit.Size = new System.Drawing.Size(45, 23);
-            this.lblMaterialPermit.TabIndex = 0;
-            this.lblMaterialPermit.Text = "label3";
+            this.ColumnPermitPoint.DataPropertyName = "Point";
+            this.ColumnPermitPoint.HeaderText = "Column4";
+            this.ColumnPermitPoint.Name = "ColumnPermitPoint";
+            this.ColumnPermitPoint.ReadOnly = true;
             // 
             // gboxPermitComment
             // 
@@ -678,7 +638,7 @@
             this.pagePlanAppointList.Location = new System.Drawing.Point(4, 22);
             this.pagePlanAppointList.Name = "pagePlanAppointList";
             this.pagePlanAppointList.Padding = new System.Windows.Forms.Padding(3);
-            this.pagePlanAppointList.Size = new System.Drawing.Size(752, 440);
+            this.pagePlanAppointList.Size = new System.Drawing.Size(1007, 438);
             this.pagePlanAppointList.TabIndex = 1;
             this.pagePlanAppointList.Text = "tabPage2";
             this.pagePlanAppointList.UseVisualStyleBackColor = true;
@@ -706,7 +666,7 @@
             this.dgvPlanAppointList.Name = "dgvPlanAppointList";
             this.dgvPlanAppointList.ReadOnly = true;
             this.dgvPlanAppointList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPlanAppointList.Size = new System.Drawing.Size(746, 279);
+            this.dgvPlanAppointList.Size = new System.Drawing.Size(1001, 277);
             this.dgvPlanAppointList.TabIndex = 1;
             this.dgvPlanAppointList.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvPlanAppointList_RowPrePaint);
             // 
@@ -774,9 +734,9 @@
             // 
             this.pnlComment.Controls.Add(this.tboxComment);
             this.pnlComment.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlComment.Location = new System.Drawing.Point(3, 337);
+            this.pnlComment.Location = new System.Drawing.Point(3, 335);
             this.pnlComment.Name = "pnlComment";
-            this.pnlComment.Size = new System.Drawing.Size(746, 100);
+            this.pnlComment.Size = new System.Drawing.Size(1001, 100);
             this.pnlComment.TabIndex = 2;
             this.pnlComment.TabStop = false;
             this.pnlComment.Text = "Комментарий";
@@ -788,7 +748,7 @@
             this.tboxComment.Location = new System.Drawing.Point(3, 16);
             this.tboxComment.Multiline = true;
             this.tboxComment.Name = "tboxComment";
-            this.tboxComment.Size = new System.Drawing.Size(740, 81);
+            this.tboxComment.Size = new System.Drawing.Size(995, 81);
             this.tboxComment.TabIndex = 0;
             // 
             // planAppointTools
@@ -804,7 +764,7 @@
             this.btnNextPage});
             this.planAppointTools.Location = new System.Drawing.Point(3, 33);
             this.planAppointTools.Name = "planAppointTools";
-            this.planAppointTools.Size = new System.Drawing.Size(746, 25);
+            this.planAppointTools.Size = new System.Drawing.Size(1001, 25);
             this.planAppointTools.TabIndex = 0;
             this.planAppointTools.Text = "toolStrip1";
             // 
@@ -812,7 +772,7 @@
             // 
             this.lblToRefresh2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.lblToRefresh2.Name = "lblToRefresh2";
-            this.lblToRefresh2.Size = new System.Drawing.Size(34, 22);
+            this.lblToRefresh2.Size = new System.Drawing.Size(43, 22);
             this.lblToRefresh2.Text = "0 сек";
             // 
             // createPermitTool
@@ -843,13 +803,13 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(31, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(38, 22);
             this.toolStripLabel1.Text = "стр. ";
             // 
             // lblPageNumber
             // 
             this.lblPageNumber.Name = "lblPageNumber";
-            this.lblPageNumber.Size = new System.Drawing.Size(30, 22);
+            this.lblPageNumber.Size = new System.Drawing.Size(39, 22);
             this.lblPageNumber.Text = "0 / 0";
             // 
             // btnPreviousPage
@@ -879,7 +839,7 @@
             this.panelFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilter.Location = new System.Drawing.Point(3, 3);
             this.panelFilter.Name = "panelFilter";
-            this.panelFilter.Size = new System.Drawing.Size(746, 30);
+            this.panelFilter.Size = new System.Drawing.Size(1001, 30);
             this.panelFilter.TabIndex = 3;
             // 
             // pickPlanAppointStart
@@ -907,7 +867,7 @@
             this.btnChangePassword});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(760, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1015, 27);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -916,7 +876,7 @@
             this.materialPermitTool.Image = ((System.Drawing.Image)(resources.GetObject("materialPermitTool.Image")));
             this.materialPermitTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.materialPermitTool.Name = "materialPermitTool";
-            this.materialPermitTool.Size = new System.Drawing.Size(163, 22);
+            this.materialPermitTool.Size = new System.Drawing.Size(201, 24);
             this.materialPermitTool.Text = "материальные пропуска";
             this.materialPermitTool.Click += new System.EventHandler(this.materialPermitTool_Click);
             // 
@@ -926,16 +886,26 @@
             this.btnChangePassword.Image = ((System.Drawing.Image)(resources.GetObject("btnChangePassword.Image")));
             this.btnChangePassword.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(116, 22);
+            this.btnChangePassword.Size = new System.Drawing.Size(142, 24);
             this.btnChangePassword.Text = "сменить пароль";
             this.btnChangePassword.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(285, 37);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(113, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "(на выбор не влияет)";
             // 
             // ReceptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(760, 491);
+            this.ClientSize = new System.Drawing.Size(1015, 491);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.toolStrip1);
             this.Name = "ReceptionForm";
@@ -953,9 +923,8 @@
             this.permitTopPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMoving)).EndInit();
-            this.pnlMaterialPermit.ResumeLayout(false);
-            this.pnlMaterialPermit.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialPermitItems)).EndInit();
+            this.pnlEntryPoints.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPointList)).EndInit();
             this.gboxPermitComment.ResumeLayout(false);
             this.gboxPermitComment.PerformLayout();
             this.pagePlanAppointList.ResumeLayout(false);
@@ -1000,15 +969,6 @@
         private System.Windows.Forms.ToolStripLabel lblToRefresh2;
         private System.Windows.Forms.ToolStripButton createPermitTool;
         private System.Windows.Forms.ToolStripButton lockAppointTool;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPermitState;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPeriod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPCargo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPVehicle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPDriver;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPContact;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEntryPoint;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnMultiEntry;
         private System.Windows.Forms.ToolStripButton addPermitTool;
         private System.Windows.Forms.ToolStripButton editPermitTool;
         private System.Windows.Forms.ToolStripButton deletePermitTool;
@@ -1025,12 +985,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMoving;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMovingPoint;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMovingTime;
-        private System.Windows.Forms.GroupBox pnlMaterialPermit;
-        private System.Windows.Forms.Label lblMaterialPermit;
-        private System.Windows.Forms.DataGridView dgvMaterialPermitItems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMaterial;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnQuantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMaterialUnit;
+        private System.Windows.Forms.GroupBox pnlEntryPoints;
+        private System.Windows.Forms.DataGridView dgvPointList;
         private System.Windows.Forms.ToolStripButton btnChangePassword;
         private System.Windows.Forms.ComboBox cboxPermitType;
         private System.Windows.Forms.Label label3;
@@ -1061,6 +1017,15 @@
         private System.Windows.Forms.ToolStripLabel lblPermitPage;
         private System.Windows.Forms.ToolStripButton btnPreviousPermitPage;
         private System.Windows.Forms.ToolStripButton btnNextPermitPage;
-
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPermitState;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPeriod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPCargo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPVehicle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPDriver;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPContact;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnMultiEntry;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPermitPoint;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -117,25 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="bsDataItem.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="ColumnEntryPoint.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ColumnIsAllowed.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="bsPoints.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>131, 17</value>
-  </metadata>
-  <metadata name="ColumnEntryPoint.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ColumnIsAllowed.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="bsPoints.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>131, 17</value>
-  </metadata>
+  <data name="CreateListProcedure" xml:space="preserve">
+    <value>CREATE PROCEDURE GETPERMITPOINTLIST (
+    PERMIT INTEGER)
+RETURNS (
+    POINTID INTEGER,
+    POINTNAME VARCHAR(50),
+    ISALLOWED INTEGER)
+AS
+begin
+  /* Procedure Text */
+  for
+     select id,
+            name
+       from refentrypoint
+      order by id
+       into :POINTID,
+            :POINTNAME
+  do
+  begin
+       select count(*)
+         from docPermitPoint
+        where permit = :PERMIT
+          and point = :POINTID
+         into :ISALLOWED;
+
+       suspend;
+  end
+end</value>
+  </data>
 </root>

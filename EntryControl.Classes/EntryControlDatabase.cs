@@ -10,7 +10,7 @@ namespace EntryControl.Classes
 
         private EntryControlDatabase() : base() { }
 
-        public EntryControlDatabase(string server, string path) : base(server, path) 
+        public EntryControlDatabase(string server, string path) : base(server, path, "entryUser", "entry0211") 
         {
             LoadStaticFields();
         }

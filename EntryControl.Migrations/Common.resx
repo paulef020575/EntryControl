@@ -117,25 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="bsDataItem.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="ColumnEntryPoint.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ColumnIsAllowed.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="bsPoints.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>131, 17</value>
-  </metadata>
-  <metadata name="ColumnEntryPoint.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ColumnIsAllowed.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="bsPoints.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>131, 17</value>
-  </metadata>
+  <data name="CheckMigrationReady" xml:space="preserve">
+    <value>select count(*)
+from RDB$RELATIONS r
+  where rdb$system_flag = 0
+  and upper(rdb$relation_name) = upper('sysmigration')</value>
+  </data>
+  <data name="CreateMigrationTable" xml:space="preserve">
+    <value>create table sysMigration (id integer, dateMigration timestamp)</value>
+  </data>
+  <data name="GetLastMigrationId" xml:space="preserve">
+    <value>select max(id) from sysMigration</value>
+  </data>
+  <data name="InsertMigrationInfo" xml:space="preserve">
+    <value>insert into sysMigration (id, dateMigration) values (@id, @dateMigration)</value>
+  </data>
 </root>

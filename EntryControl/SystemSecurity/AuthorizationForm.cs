@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using EntryControl.Classes;
 using EntryControl.Properties;
 using System.Security.Cryptography;
+using EntryControl.Migrations;
 
 namespace EntryControl
 {
@@ -30,8 +31,12 @@ namespace EntryControl
         {
             try
             {
-                database = new EntryControlDatabase(Settings.Default.ServerName.ToLower(), Settings.Default.Path.ToLower());
+#if DEBUG
+                database = new EntryControlDatabase(Settings.Default.ServerName.ToLower(), Settings.Default.Path.ToLower(), "sysdba", "masterkey");
 
+#else
+                database = new EntryControlDatabase(Settings.Default.ServerName.ToLower(), Settings.Default.Path.ToLower());
+#endif
 
                 if (CheckDomainUser())
                 {
@@ -120,5 +125,20 @@ namespace EntryControl
             return strHash;
         }
 
+        private void AuthorizationForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (DialogResult == DialogResult.OK)
+            {
+                Migrator migrator = new Migrator(database.ConnectionString);
+                try
+                {
+                    migrator.UpdateToLatest();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+            }
+        }
     }
 }

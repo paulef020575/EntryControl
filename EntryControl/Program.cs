@@ -5,6 +5,7 @@ using EntryControl.Properties;
 using EPV.Database;
 using EntryControl.Classes;
 using Stimulsoft.Report;
+using EntryControl.Migrations;
 
 namespace EntryControl
 {
@@ -94,5 +95,13 @@ namespace EntryControl
                 return null;
             }
         }
+
+        private static string migratorLog = string.Empty;
+
+        private static void MigratorLog(string s)
+        {
+            MessageBox.Show(s);
+        }
+
     }
 }

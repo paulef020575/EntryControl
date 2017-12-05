@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tblPanel = new System.Windows.Forms.TableLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,27 +49,55 @@
             this.tboxDriverName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tboxContact = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.rboxEntryPoint = new EntryControl.ReferenceBox();
             this.chkMultiEntry = new System.Windows.Forms.CheckBox();
             this.tboxComment = new System.Windows.Forms.TextBox();
+            this.gboxPoints = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ColumnEntryPoint = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnIsAllowed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.bsPoints = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnClearAllCheck = new System.Windows.Forms.Button();
+            this.btnCheckAllPoints = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bsDataItem)).BeginInit();
             this.pnlBottom.SuspendLayout();
             this.pnlData.SuspendLayout();
             this.tblPanel.SuspendLayout();
             this.pnlDates.SuspendLayout();
+            this.gboxPoints.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPoints)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // pnlBottom
+            // 
+            this.pnlBottom.Size = new System.Drawing.Size(1057, 35);
             // 
             // pnlData
             // 
             this.pnlData.Controls.Add(this.tblPanel);
+            this.pnlData.Size = new System.Drawing.Size(1057, 337);
+            // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(752, 5);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(852, 5);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(952, 5);
             // 
             // tblPanel
             // 
-            this.tblPanel.ColumnCount = 2;
+            this.tblPanel.ColumnCount = 3;
             this.tblPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 154F));
+            this.tblPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
             this.tblPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblPanel.Controls.Add(this.label11, 0, 10);
+            this.tblPanel.Controls.Add(this.label11, 0, 9);
             this.tblPanel.Controls.Add(this.label1, 0, 0);
             this.tblPanel.Controls.Add(this.label2, 0, 1);
             this.tblPanel.Controls.Add(this.lblDocNumber, 1, 1);
@@ -84,15 +113,14 @@
             this.tblPanel.Controls.Add(this.tboxDriverName, 1, 6);
             this.tblPanel.Controls.Add(this.label9, 0, 7);
             this.tblPanel.Controls.Add(this.tboxContact, 1, 7);
-            this.tblPanel.Controls.Add(this.label10, 0, 8);
-            this.tblPanel.Controls.Add(this.rboxEntryPoint, 1, 8);
-            this.tblPanel.Controls.Add(this.chkMultiEntry, 1, 9);
-            this.tblPanel.Controls.Add(this.tboxComment, 1, 10);
+            this.tblPanel.Controls.Add(this.chkMultiEntry, 1, 8);
+            this.tblPanel.Controls.Add(this.tboxComment, 1, 9);
+            this.tblPanel.Controls.Add(this.gboxPoints, 2, 0);
             this.tblPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblPanel.Location = new System.Drawing.Point(0, 0);
             this.tblPanel.Name = "tblPanel";
             this.tblPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.tblPanel.RowCount = 11;
+            this.tblPanel.RowCount = 10;
             this.tblPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -102,18 +130,19 @@
             this.tblPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tblPanel.Size = new System.Drawing.Size(551, 337);
+            this.tblPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblPanel.Size = new System.Drawing.Size(1057, 337);
             this.tblPanel.TabIndex = 0;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(13, 268);
+            this.label11.Location = new System.Drawing.Point(13, 240);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(148, 59);
+            this.label11.Size = new System.Drawing.Size(148, 87);
             this.label11.TabIndex = 18;
             this.label11.Text = "Комментарий";
             this.label11.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -124,7 +153,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Location = new System.Drawing.Point(13, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(525, 22);
+            this.label1.Size = new System.Drawing.Size(448, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -145,7 +174,7 @@
             this.lblDocNumber.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDocNumber.Location = new System.Drawing.Point(167, 32);
             this.lblDocNumber.Name = "lblDocNumber";
-            this.lblDocNumber.Size = new System.Drawing.Size(371, 22);
+            this.lblDocNumber.Size = new System.Drawing.Size(294, 22);
             this.lblDocNumber.TabIndex = 2;
             this.lblDocNumber.Text = "label3";
             this.lblDocNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,7 +195,7 @@
             this.cboxPermitState.FormattingEnabled = true;
             this.cboxPermitState.Location = new System.Drawing.Point(167, 57);
             this.cboxPermitState.Name = "cboxPermitState";
-            this.cboxPermitState.Size = new System.Drawing.Size(371, 21);
+            this.cboxPermitState.Size = new System.Drawing.Size(294, 21);
             this.cboxPermitState.TabIndex = 4;
             // 
             // label4
@@ -187,7 +216,7 @@
             this.pnlDates.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlDates.Location = new System.Drawing.Point(167, 84);
             this.pnlDates.Name = "pnlDates";
-            this.pnlDates.Size = new System.Drawing.Size(371, 22);
+            this.pnlDates.Size = new System.Drawing.Size(294, 22);
             this.pnlDates.TabIndex = 6;
             // 
             // pickDateTo
@@ -238,7 +267,7 @@
             this.rboxCargo.Location = new System.Drawing.Point(167, 112);
             this.rboxCargo.Name = "rboxCargo";
             this.rboxCargo.SelectedItem = null;
-            this.rboxCargo.Size = new System.Drawing.Size(371, 22);
+            this.rboxCargo.Size = new System.Drawing.Size(294, 22);
             this.rboxCargo.TabIndex = 8;
             this.rboxCargo.GetList += new System.EventHandler<EntryControl.ReferenceBox.ReferenceBoxEventArgs>(this.rboxCargo_GetList);
             // 
@@ -262,7 +291,7 @@
             this.rboxVehicle.Location = new System.Drawing.Point(167, 140);
             this.rboxVehicle.Name = "rboxVehicle";
             this.rboxVehicle.SelectedItem = null;
-            this.rboxVehicle.Size = new System.Drawing.Size(371, 22);
+            this.rboxVehicle.Size = new System.Drawing.Size(294, 22);
             this.rboxVehicle.TabIndex = 10;
             this.rboxVehicle.GetList += new System.EventHandler<EntryControl.ReferenceBox.ReferenceBoxEventArgs>(this.rboxVehicle_GetList);
             // 
@@ -282,7 +311,7 @@
             this.tboxDriverName.Dock = System.Windows.Forms.DockStyle.Top;
             this.tboxDriverName.Location = new System.Drawing.Point(167, 168);
             this.tboxDriverName.Name = "tboxDriverName";
-            this.tboxDriverName.Size = new System.Drawing.Size(371, 20);
+            this.tboxDriverName.Size = new System.Drawing.Size(294, 20);
             this.tboxDriverName.TabIndex = 12;
             // 
             // label9
@@ -300,37 +329,13 @@
             this.tboxContact.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tboxContact.Location = new System.Drawing.Point(167, 194);
             this.tboxContact.Name = "tboxContact";
-            this.tboxContact.Size = new System.Drawing.Size(371, 20);
+            this.tboxContact.Size = new System.Drawing.Size(294, 20);
             this.tboxContact.TabIndex = 14;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(13, 217);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(148, 28);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "Пункт пропуска";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // rboxEntryPoint
-            // 
-            this.rboxEntryPoint.Database = null;
-            this.rboxEntryPoint.DataSource = null;
-            this.rboxEntryPoint.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rboxEntryPoint.ListForm = "EntryControl.EntryPointListForm";
-            this.rboxEntryPoint.Location = new System.Drawing.Point(167, 220);
-            this.rboxEntryPoint.Name = "rboxEntryPoint";
-            this.rboxEntryPoint.SelectedItem = null;
-            this.rboxEntryPoint.Size = new System.Drawing.Size(371, 22);
-            this.rboxEntryPoint.TabIndex = 16;
-            this.rboxEntryPoint.GetList += new System.EventHandler<EntryControl.ReferenceBox.ReferenceBoxEventArgs>(this.rboxEntryPoint_GetList);
             // 
             // chkMultiEntry
             // 
             this.chkMultiEntry.AutoSize = true;
-            this.chkMultiEntry.Location = new System.Drawing.Point(167, 248);
+            this.chkMultiEntry.Location = new System.Drawing.Point(167, 220);
             this.chkMultiEntry.Name = "chkMultiEntry";
             this.chkMultiEntry.Size = new System.Drawing.Size(161, 17);
             this.chkMultiEntry.TabIndex = 17;
@@ -341,17 +346,102 @@
             // 
             this.tboxComment.AcceptsReturn = true;
             this.tboxComment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tboxComment.Location = new System.Drawing.Point(167, 271);
+            this.tboxComment.Location = new System.Drawing.Point(167, 243);
             this.tboxComment.Multiline = true;
             this.tboxComment.Name = "tboxComment";
-            this.tboxComment.Size = new System.Drawing.Size(371, 53);
+            this.tboxComment.Size = new System.Drawing.Size(294, 81);
             this.tboxComment.TabIndex = 19;
+            // 
+            // gboxPoints
+            // 
+            this.gboxPoints.Controls.Add(this.dataGridView1);
+            this.gboxPoints.Controls.Add(this.panel1);
+            this.gboxPoints.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gboxPoints.Location = new System.Drawing.Point(467, 13);
+            this.gboxPoints.Name = "gboxPoints";
+            this.tblPanel.SetRowSpan(this.gboxPoints, 10);
+            this.gboxPoints.Size = new System.Drawing.Size(577, 311);
+            this.gboxPoints.TabIndex = 20;
+            this.gboxPoints.TabStop = false;
+            this.gboxPoints.Text = "Пункты пропуска";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnEntryPoint,
+            this.ColumnIsAllowed});
+            this.dataGridView1.DataSource = this.bsPoints;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 51);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(571, 257);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // ColumnEntryPoint
+            // 
+            this.ColumnEntryPoint.DataPropertyName = "Point";
+            this.ColumnEntryPoint.FillWeight = 200F;
+            this.ColumnEntryPoint.HeaderText = "Т. пропуска";
+            this.ColumnEntryPoint.Name = "ColumnEntryPoint";
+            this.ColumnEntryPoint.ReadOnly = true;
+            // 
+            // ColumnIsAllowed
+            // 
+            this.ColumnIsAllowed.DataPropertyName = "IsAllowed";
+            this.ColumnIsAllowed.FillWeight = 25F;
+            this.ColumnIsAllowed.HeaderText = "Разрешен";
+            this.ColumnIsAllowed.Name = "ColumnIsAllowed";
+            // 
+            // bsPoints
+            // 
+            this.bsPoints.AllowNew = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnClearAllCheck);
+            this.panel1.Controls.Add(this.btnCheckAllPoints);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 16);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(5);
+            this.panel1.Size = new System.Drawing.Size(571, 35);
+            this.panel1.TabIndex = 1;
+            // 
+            // btnClearAllCheck
+            // 
+            this.btnClearAllCheck.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnClearAllCheck.Location = new System.Drawing.Point(105, 5);
+            this.btnClearAllCheck.Name = "btnClearAllCheck";
+            this.btnClearAllCheck.Size = new System.Drawing.Size(100, 25);
+            this.btnClearAllCheck.TabIndex = 1;
+            this.btnClearAllCheck.Text = "запретить все";
+            this.btnClearAllCheck.UseVisualStyleBackColor = true;
+            this.btnClearAllCheck.Click += new System.EventHandler(this.btnClearAllCheck_Click);
+            // 
+            // btnCheckAllPoints
+            // 
+            this.btnCheckAllPoints.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnCheckAllPoints.Location = new System.Drawing.Point(5, 5);
+            this.btnCheckAllPoints.Name = "btnCheckAllPoints";
+            this.btnCheckAllPoints.Size = new System.Drawing.Size(100, 25);
+            this.btnCheckAllPoints.TabIndex = 0;
+            this.btnCheckAllPoints.Text = " разрешить все";
+            this.btnCheckAllPoints.UseVisualStyleBackColor = true;
+            this.btnCheckAllPoints.Click += new System.EventHandler(this.btnCheckAllPoints_Click);
             // 
             // PermitItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 372);
+            this.ClientSize = new System.Drawing.Size(1057, 372);
             this.Name = "PermitItemForm";
             this.Text = "PermitItemForm";
             ((System.ComponentModel.ISupportInitialize)(this.bsDataItem)).EndInit();
@@ -360,6 +450,10 @@
             this.tblPanel.ResumeLayout(false);
             this.tblPanel.PerformLayout();
             this.pnlDates.ResumeLayout(false);
+            this.gboxPoints.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPoints)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -385,10 +479,16 @@
         private System.Windows.Forms.TextBox tboxDriverName;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tboxContact;
-        private System.Windows.Forms.Label label10;
-        private ReferenceBox rboxEntryPoint;
         private System.Windows.Forms.CheckBox chkMultiEntry;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox tboxComment;
+        private System.Windows.Forms.GroupBox gboxPoints;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource bsPoints;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEntryPoint;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnIsAllowed;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnClearAllCheck;
+        private System.Windows.Forms.Button btnCheckAllPoints;
     }
 }

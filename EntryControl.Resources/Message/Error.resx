@@ -138,6 +138,9 @@
   <data name="PermitNumberNotFound" xml:space="preserve">
     <value>Не найден пропуск с указанным номером</value>
   </data>
+  <data name="SavingError" xml:space="preserve">
+    <value>Не удалось сохранить данные</value>
+  </data>
   <data name="UnknownControl" xml:space="preserve">
     <value>Неизвестный элемент управления</value>
   </data>

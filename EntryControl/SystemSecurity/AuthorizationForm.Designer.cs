@@ -155,6 +155,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторизация";
             this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AuthorizationForm_FormClosed);
             this.Load += new System.EventHandler(this.AuthorizationForm_Load);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();

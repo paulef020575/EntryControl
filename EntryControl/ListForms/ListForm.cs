@@ -252,9 +252,9 @@ namespace EntryControl
         {
             try
             {
-                bsList.Remove(item);
                 item.Delete();
                 item.Save(Database);
+                bsList.Remove(item);
             }
             catch (Exception)
             {

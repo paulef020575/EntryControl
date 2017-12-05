@@ -40,9 +40,12 @@
             this.pnlPermit = new System.Windows.Forms.GroupBox();
             this.lboxPermitMoving = new System.Windows.Forms.ListBox();
             this.lblPermit = new System.Windows.Forms.Label();
+            this.gboxPointList = new System.Windows.Forms.GroupBox();
+            this.lboxPointList = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.bsItem)).BeginInit();
             this.pnlBottom.SuspendLayout();
             this.pnlPermit.SuspendLayout();
+            this.gboxPointList.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer
@@ -113,6 +116,7 @@
             this.pnlBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pnlBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pnlBottom.Controls.Add(this.pnlPermit, 0, 0);
+            this.pnlBottom.Controls.Add(this.gboxPointList, 1, 0);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBottom.Location = new System.Drawing.Point(18, 257);
             this.pnlBottom.Name = "pnlBottom";
@@ -154,6 +158,29 @@
             this.lblPermit.TabIndex = 1;
             this.lblPermit.Text = "Пропуск на въезд";
             // 
+            // gboxPointList
+            // 
+            this.gboxPointList.Controls.Add(this.lboxPointList);
+            this.gboxPointList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gboxPointList.Location = new System.Drawing.Point(505, 3);
+            this.gboxPointList.Name = "gboxPointList";
+            this.gboxPointList.Size = new System.Drawing.Size(497, 195);
+            this.gboxPointList.TabIndex = 1;
+            this.gboxPointList.TabStop = false;
+            this.gboxPointList.Text = "Разрешенные пункты пропуска";
+            // 
+            // lboxPointList
+            // 
+            this.lboxPointList.DisplayMember = "Point";
+            this.lboxPointList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lboxPointList.FormattingEnabled = true;
+            this.lboxPointList.ItemHeight = 24;
+            this.lboxPointList.Location = new System.Drawing.Point(3, 25);
+            this.lboxPointList.Name = "lboxPointList";
+            this.lboxPointList.Size = new System.Drawing.Size(491, 167);
+            this.lboxPointList.Sorted = true;
+            this.lboxPointList.TabIndex = 0;
+            // 
             // PlanAppointViewControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -174,6 +201,7 @@
             this.pnlBottom.ResumeLayout(false);
             this.pnlPermit.ResumeLayout(false);
             this.pnlPermit.PerformLayout();
+            this.gboxPointList.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,5 +220,7 @@
         private System.Windows.Forms.GroupBox pnlPermit;
         private System.Windows.Forms.Label lblPermit;
         private System.Windows.Forms.ListBox lboxPermitMoving;
+        private System.Windows.Forms.GroupBox gboxPointList;
+        private System.Windows.Forms.ListBox lboxPointList;
     }
 }

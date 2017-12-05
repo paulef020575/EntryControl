@@ -218,4 +218,13 @@
   <data name="NoPlanAppoint" xml:space="preserve">
     <value>Без заявки (Бюро пропусков)</value>
   </data>
+  <data name="SetPermitPoint" xml:space="preserve">
+    <value>execute procedure docSetPermitPoint(@permit, @point, @isAllowed)</value>
+  </data>
+  <data name="GetPermitPointList" xml:space="preserve">
+    <value>select * from getPermitPointList(@permit) where pointId &gt; 0</value>
+  </data>
+  <data name="CheckPermitPoint" xml:space="preserve">
+    <value>select count(*) from checkPermitPoint(@permit, @point)</value>
+  </data>
 </root>

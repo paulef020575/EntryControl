@@ -212,7 +212,17 @@ namespace EntryControl.Classes
 
                 staffList.Remove(staff);
             }
-        }   
+        }
+
+        public override void Save(Database database)
+        {
+            if (rowState == RowState.Deleted && Id == 0)
+            {
+                ClearModified();
+                throw new ArgumentException("Этот элемент удалять нельзя!!!");
+            }
+            base.Save(database);
+        }
 
         #endregion
 

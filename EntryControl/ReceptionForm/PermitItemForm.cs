@@ -12,6 +12,8 @@ namespace EntryControl
 {
     public partial class PermitItemForm : DataItemForm
     {
+        private bool isDataLoaded = false;
+
         public PermitItemForm(Database database)
             : base(database)
         {
@@ -19,7 +21,6 @@ namespace EntryControl
 
             rboxCargo.Database = Database;
             rboxVehicle.Database = Database;
-            rboxEntryPoint.Database = Database;
         }
 
         public PlanAppoint PlanAppoint
@@ -38,6 +39,21 @@ namespace EntryControl
             }
         }
 
+        private void FillPointList()
+        {
+            bsPoints.DataSource = Permit.GetPointList(Database);
+
+            foreach (PermitPoint pp in (List<PermitPoint>)bsPoints.DataSource)
+                pp.PropertyChanged += Pp_PropertyChanged;
+            isDataLoaded = true;
+
+        }
+
+        private void Pp_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Permit.MarkAsModified();
+        }
+
         protected override EPV.DataItem.DataItem CreateNewDataItem()
         {
             Permit permit = null;
@@ -49,6 +65,7 @@ namespace EntryControl
 
             permit.Creator = ((EntryControlDatabase)Database).ConnectedUser;
             permit.DocNumber = EntryControl.Classes.Permit.GetPermitNumber(Database, permit.Period);
+
 
             return permit;
         }
@@ -65,9 +82,10 @@ namespace EntryControl
             rboxVehicle.DataBindings.Add("SelectedItem", bsDataItem, "Vehicle");
             tboxDriverName.DataBindings.Add("Text", bsDataItem, "DriverName");
             tboxContact.DataBindings.Add("Text", bsDataItem, "Contact");
-            rboxEntryPoint.DataBindings.Add("SelectedItem", bsDataItem, "EntryPoint");
             chkMultiEntry.DataBindings.Add("Checked", bsDataItem, "IsMultiEntry");
             tboxComment.DataBindings.Add("Text", bsDataItem, "Comment");
+
+            FillPointList();
         }
 
         protected override void PreloadData()
@@ -90,9 +108,30 @@ namespace EntryControl
             e.ItemList = Vehicle.LoadList(Database);
         }
 
-        private void rboxEntryPoint_GetList(object sender, ReferenceBox.ReferenceBoxEventArgs e)
+        private void btnCheckAllPoints_Click(object sender, EventArgs e)
         {
-            e.ItemList = EntryPoint.LoadList(Database);
+            CheckAllPoints();
+        }
+
+        private void CheckAllPoints()
+        {
+            List<PermitPoint> permitPointList = (List<PermitPoint>)bsPoints.DataSource;
+            foreach (PermitPoint permitPoint in permitPointList)
+                permitPoint.IsAllowed = true;
+            dataGridView1.Refresh();
+        }
+
+        private void btnClearAllCheck_Click(object sender, EventArgs e)
+        {
+            ClearAllPoints();
+        }
+
+        private void ClearAllPoints()
+        {
+            List<PermitPoint> permitPointList = (List<PermitPoint>)bsPoints.DataSource;
+            foreach (PermitPoint permitPoint in permitPointList)
+                permitPoint.IsAllowed = false;
+            dataGridView1.Refresh();
         }
     }
 }

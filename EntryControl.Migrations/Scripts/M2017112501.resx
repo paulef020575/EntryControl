@@ -117,25 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="bsDataItem.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="ColumnEntryPoint.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ColumnIsAllowed.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="bsPoints.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>131, 17</value>
-  </metadata>
-  <metadata name="ColumnEntryPoint.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ColumnIsAllowed.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="bsPoints.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>131, 17</value>
-  </metadata>
+  <data name="CreatePermitFk" xml:space="preserve">
+    <value>alter table docPermitPoint
+add constraint FK_PP_Permit
+foreign key (permit)
+references docPermit(ID)
+on delete CASCADE
+on update CASCADE</value>
+  </data>
+  <data name="CreatePointFK" xml:space="preserve">
+    <value>alter table docPermitPoint
+add constraint FK_PP_Point
+foreign key (point)
+references refEntryPoint(ID)
+on delete CASCADE
+on update CASCADE</value>
+  </data>
+  <data name="CreateTable" xml:space="preserve">
+    <value>create table docPermitPoint(permit integer, point integer)</value>
+  </data>
+  <data name="FillTable" xml:space="preserve">
+    <value>insert into docPermitPoint
+(permit, point)
+select prm.id, pnt.id
+from docPermit prm, refentrypoint pnt
+where (pnt.id = prm.entrypoint or prm.entrypoint = 0)</value>
+  </data>
 </root>

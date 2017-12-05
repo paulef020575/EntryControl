@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntryControl", "EntryControl\EntryControl.csproj", "{3D410AAD-C808-47CF-A170-688071FBA654}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPV.Database", "..\EPV.Framework\EPV.Database\EPV.Database.csproj", "{21701B0B-284E-4721-B559-1E76ED8DCEDA}"
@@ -11,11 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntryControl.Classes", "Ent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntryControl.Resources", "EntryControl.Resources\EntryControl.Resources.csproj", "{65954688-83AC-468B-A980-8AD4EAF703E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntryControl.Migrations", "EntryControl.Migrations\EntryControl.Migrations.csproj", "{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}"
+EndProject
 Global
-	GlobalSection(MercurialSourceControlSolutionProperties) = preSolution
-		SolutionIsControlled = True
-		SolutionBindings = <Solution Location In Database>
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -80,8 +80,24 @@ Global
 		{65954688-83AC-468B-A980-8AD4EAF703E6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{65954688-83AC-468B-A980-8AD4EAF703E6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{65954688-83AC-468B-A980-8AD4EAF703E6}.Release|x86.ActiveCfg = Release|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Debug|x86.Build.0 = Debug|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Release|x86.ActiveCfg = Release|Any CPU
+		{FF6D2081-0284-4F6B-B32D-4A79EDBE3D20}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MercurialSourceControlSolutionProperties) = preSolution
+		SolutionIsControlled = True
+		SolutionBindings = <Solution Location In Database>
 	EndGlobalSection
 EndGlobal

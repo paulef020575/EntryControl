@@ -156,6 +156,8 @@ namespace EntryControl.Classes
 
         private PlanAppoint planAppoint;
 
+        public List<PermitPoint> PointList { get; private set; }
+
         #region Запросы
 
         protected override string GeneratorName
@@ -270,7 +272,7 @@ namespace EntryControl.Classes
             driverName = "ФИО водителя";
             contact = "Контактная информация";
 
-            entryPoint = EntryPoint.Empty;
+            EntryPoint = EntryPoint.Empty;
             multiEntry = 1;
 
             comment = "";
@@ -305,7 +307,7 @@ namespace EntryControl.Classes
 
                 System.Diagnostics.Debug.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff"));
 
-                entryPoint = new EntryPoint((int)reader["entryPoint"], (string)reader["entryPointName"]);
+                EntryPoint = new Classes.EntryPoint((int)reader["entryPoint"], (string)reader["entryPointName"]);
                 multiEntry = (short)reader["multiEntry"];
 
                 System.Diagnostics.Debug.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff"));
@@ -389,6 +391,9 @@ namespace EntryControl.Classes
         {
             if (planAppoint != null)
                 SavePlanAppointPermit(connection);
+
+            if (PointList != null)
+                PermitPoint.SavePointList(connection, PointList);
         }
 
         private void SavePlanAppointPermit(Connection connection)
@@ -400,6 +405,23 @@ namespace EntryControl.Classes
             connection.ExecuteQuery(query, parameters);
         }
 
+        public List<PermitPoint> GetPointList(Database database)
+        {
+            if (PointList == null)
+                PointList = PermitPoint.LoadPointList(database, this);
+
+            return PointList;
+        }
+
+        public List<PermitPoint> GetAllowedPointList(Database database)
+        {
+            GetPointList(database);
+
+            List<PermitPoint> allowedPointList = new List<PermitPoint>();
+            foreach (PermitPoint pp in PointList)
+                if (pp.IsAllowed) allowedPointList.Add(pp);
+            return allowedPointList;
+        }
         #endregion
 
         public static Permit LoadByNumber(EntryControlDatabase database, string fullNumber)
@@ -499,10 +521,16 @@ namespace EntryControl.Classes
         }
 
 
-        public bool CheckEntryPoint(Classes.EntryPoint EPoint)
+        public bool CheckEntryPoint(Database database, Classes.EntryPoint EPoint)
         {
-            return (EntryPoint.Equals(EntryPoint.Empty)
-                        || EntryPoint.Equals(EPoint));
+            string query = EntryControl.Resources.Doc.Permit.CheckPermitPoint;
+            QueryParameters parameters = new QueryParameters("permit", Id);
+            parameters.Add("point", EPoint.Id);
+
+            return ((int)database.ExecuteScalar(query, parameters) > 0);
+
+            //return (EntryPoint.Equals(EntryPoint.Empty)
+            //            || EntryPoint.Equals(EPoint));
         }
 
         public bool CheckPeriod()
@@ -653,5 +681,6 @@ namespace EntryControl.Classes
                 return EntryControl.Resources.Message.Error.CannotGetData;
             }
         }
+
     }
 }

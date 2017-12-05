@@ -80,6 +80,7 @@ namespace EntryControl
                 }
 
                 lboxPermitMoving.DataSource = permit.GetMovingList(Database);
+                lboxPointList.DataSource = permit.GetAllowedPointList(Database);
             }
             else
             {

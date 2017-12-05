@@ -63,7 +63,7 @@ namespace EntryControl
             btnNextPermitPage.Image = EntryControl.Resources.Images.Right;
 
             dgvMoving.AutoGenerateColumns = false;
-            dgvMaterialPermitItems.AutoGenerateColumns = false;
+            dgvPointList.AutoGenerateColumns = false;
 
             materialPermitTool.Image = EntryControl.Resources.Images.Document;
             rboxEntryPoint.Database = Database;
@@ -180,7 +180,7 @@ namespace EntryControl
             parameters.database = Database;
             parameters.dateStart = pickDateStart.Value;
             parameters.dateFinish = pickDateFinish.Value;
-            parameters.entryPoint = (EntryPoint)rboxEntryPoint.SelectedItem;
+            parameters.entryPoint = EntryPoint.Empty;
             parameters.defaultState = (EnumerationItem)cboxPermitType.SelectedItem;
             parameters.pageNumber = PermitListPage;
 
@@ -225,7 +225,7 @@ namespace EntryControl
                 parameters.database = Database;
                 parameters.dateStart = pickDateStart.Value;
                 parameters.dateFinish = pickDateFinish.Value;
-                parameters.entryPoint = (EntryPoint)rboxEntryPoint.SelectedItem;
+                parameters.entryPoint = EntryPoint.Empty;
                 parameters.defaultState = (EnumerationItem)cboxPermitType.SelectedItem;
                 parameters.pageNumber = PermitListPage;
 
@@ -517,29 +517,29 @@ namespace EntryControl
                 tboxPermitComment.Text = permit.GetComment(Database);
 
                 dgvMoving.DataSource = permit.GetMovingList(Database);
+                dgvPointList.DataSource = permit.GetAllowedPointList(Database);
+                //MaterialPermit materialPermit = permit.GetMaterialPermit(Database);
 
-                MaterialPermit materialPermit = permit.GetMaterialPermit(Database);
-
-                if (materialPermit != null)
-                {
-                    lblMaterialPermit.Text = materialPermit.ToString();
-                    dgvMaterialPermitItems.DataSource = materialPermit.GetItemList(Database);
-                    dgvMaterialPermitItems.Visible = true;
-                }
-                else
-                {
-                    lblMaterialPermit.Text = "не привязан";
-                    dgvMaterialPermitItems.DataSource = null;
-                    dgvMaterialPermitItems.Visible = false;
-                }
+                //if (materialPermit != null)
+                //{
+                //    lblMaterialPermit.Text = materialPermit.ToString();
+                //    dgvPointList.DataSource = materialPermit.GetItemList(Database);
+                //    dgvPointList.Visible = true;
+                //}
+                //else
+                //{
+                //    lblMaterialPermit.Text = "не привязан";
+                //    dgvPointList.DataSource = null;
+                //    dgvPointList.Visible = false;
+                //}
             }
             else
             {
                 tboxPermitComment.Text = "";
-                dgvMaterialPermitItems.DataSource = null;
-                lblMaterialPermit.Text = "";
-                dgvMaterialPermitItems.DataSource = null;
-                dgvMaterialPermitItems.Visible = false;
+                dgvPointList.DataSource = null;
+                //lblMaterialPermit.Text = "";
+                dgvPointList.DataSource = null;
+                //dgvPointList.Visible = false;
             }
         }
 
@@ -583,7 +583,7 @@ namespace EntryControl
 
             report["dateFrom"] = pickDateStart.Value;
             report["dateTo"] = pickDateFinish.Value;
-            report["entryPoint"] = rboxEntryPoint.SelectedItem.Id;
+            report["entryPoint"] = EntryPoint.Empty;  //rboxEntryPoint.SelectedItem.Id;
             report["defaultState"] = ((EnumerationItem)cboxPermitType.SelectedItem).Id;
 
             report.Show();
@@ -706,7 +706,7 @@ namespace EntryControl
             args.dateStart = pickDateStart.Value;
             args.dateFinish = pickDateFinish.Value;
 
-            args.entryPoint = (EntryPoint)rboxEntryPoint.SelectedItem;
+            args.entryPoint = EntryPoint.Empty; //(EntryPoint)rboxEntryPoint.SelectedItem;
             args.defaultState = (EnumerationItem)cboxPermitType.SelectedItem;
 
             args.pageNumber = PermitListPage;

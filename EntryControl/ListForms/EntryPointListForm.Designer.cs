@@ -28,8 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnGroups = new System.Windows.Forms.Button();
+            this.pnlBottom.SuspendLayout();
+            this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsList)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pnlTop
+            // 
+            this.pnlTop.Controls.Add(this.btnGroups);
+            // 
+            // btnGroups
+            // 
+            this.btnGroups.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnGroups.Location = new System.Drawing.Point(567, 5);
+            this.btnGroups.Name = "btnGroups";
+            this.btnGroups.Size = new System.Drawing.Size(150, 22);
+            this.btnGroups.TabIndex = 0;
+            this.btnGroups.Text = "Группы проходных";
+            this.btnGroups.UseVisualStyleBackColor = true;
+            this.btnGroups.Click += new System.EventHandler(this.btnGroups_Click);
             // 
             // EntryPointListForm
             // 
@@ -39,11 +57,15 @@
             this.EditItemForm = "EntryControl.EntryPointItemForm";
             this.Name = "EntryPointListForm";
             this.Text = "Справочник пунктов пропуска";
+            this.pnlBottom.ResumeLayout(false);
+            this.pnlTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bsList)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnGroups;
     }
 }

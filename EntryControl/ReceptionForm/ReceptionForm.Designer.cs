@@ -68,6 +68,7 @@
             this.btnPreviousPermitPage = new System.Windows.Forms.ToolStripButton();
             this.btnNextPermitPage = new System.Windows.Forms.ToolStripButton();
             this.permitTopPanel = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.cboxPermitType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rboxEntryPoint = new EntryControl.ReferenceBox();
@@ -112,7 +113,6 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.materialPermitTool = new System.Windows.Forms.ToolStripButton();
             this.btnChangePassword = new System.Windows.Forms.ToolStripButton();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsPermitList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPlanAppointList)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -174,10 +174,10 @@
             this.tabControl.Controls.Add(this.permitPage);
             this.tabControl.Controls.Add(this.pagePlanAppointList);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 27);
+            this.tabControl.Location = new System.Drawing.Point(0, 25);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1015, 464);
+            this.tabControl.Size = new System.Drawing.Size(1015, 466);
             this.tabControl.TabIndex = 0;
             // 
             // permitPage
@@ -189,7 +189,7 @@
             this.permitPage.Location = new System.Drawing.Point(4, 22);
             this.permitPage.Name = "permitPage";
             this.permitPage.Padding = new System.Windows.Forms.Padding(3);
-            this.permitPage.Size = new System.Drawing.Size(1007, 438);
+            this.permitPage.Size = new System.Drawing.Size(1007, 440);
             this.permitPage.TabIndex = 0;
             this.permitPage.Text = "Пропуски";
             this.permitPage.UseVisualStyleBackColor = true;
@@ -211,14 +211,16 @@
             this.ColumnMultiEntry});
             this.dgvPermitList.DataSource = this.bsPermitList;
             this.dgvPermitList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPermitList.Location = new System.Drawing.Point(3, 118);
+            this.dgvPermitList.Location = new System.Drawing.Point(3, 116);
             this.dgvPermitList.MultiSelect = false;
             this.dgvPermitList.Name = "dgvPermitList";
             this.dgvPermitList.ReadOnly = true;
             this.dgvPermitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPermitList.Size = new System.Drawing.Size(651, 317);
+            this.dgvPermitList.Size = new System.Drawing.Size(651, 321);
             this.dgvPermitList.TabIndex = 2;
+            this.dgvPermitList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPermitList_CellDoubleClick);
             this.dgvPermitList.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvPermitList_RowPrePaint);
+            this.dgvPermitList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pickDateStart_KeyDown);
             // 
             // ColumnNumber
             // 
@@ -300,7 +302,7 @@
             this.btnNextPermitPage});
             this.permitTools.Location = new System.Drawing.Point(3, 91);
             this.permitTools.Name = "permitTools";
-            this.permitTools.Size = new System.Drawing.Size(651, 27);
+            this.permitTools.Size = new System.Drawing.Size(651, 25);
             this.permitTools.TabIndex = 1;
             this.permitTools.Text = "toolStrip1";
             // 
@@ -308,7 +310,7 @@
             // 
             this.lblToRefresh.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.lblToRefresh.Name = "lblToRefresh";
-            this.lblToRefresh.Size = new System.Drawing.Size(43, 24);
+            this.lblToRefresh.Size = new System.Drawing.Size(34, 22);
             this.lblToRefresh.Text = "0 сек";
             // 
             // addPermitTool
@@ -317,7 +319,7 @@
             this.addPermitTool.Image = ((System.Drawing.Image)(resources.GetObject("addPermitTool.Image")));
             this.addPermitTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.addPermitTool.Name = "addPermitTool";
-            this.addPermitTool.Size = new System.Drawing.Size(23, 24);
+            this.addPermitTool.Size = new System.Drawing.Size(23, 22);
             this.addPermitTool.Text = "добавить";
             this.addPermitTool.Click += new System.EventHandler(this.addPermitTool_Click);
             // 
@@ -327,7 +329,7 @@
             this.editPermitTool.Image = ((System.Drawing.Image)(resources.GetObject("editPermitTool.Image")));
             this.editPermitTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editPermitTool.Name = "editPermitTool";
-            this.editPermitTool.Size = new System.Drawing.Size(23, 24);
+            this.editPermitTool.Size = new System.Drawing.Size(23, 22);
             this.editPermitTool.Text = "изменить";
             this.editPermitTool.Click += new System.EventHandler(this.editPermitTool_Click);
             // 
@@ -337,14 +339,14 @@
             this.deletePermitTool.Image = ((System.Drawing.Image)(resources.GetObject("deletePermitTool.Image")));
             this.deletePermitTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.deletePermitTool.Name = "deletePermitTool";
-            this.deletePermitTool.Size = new System.Drawing.Size(23, 24);
+            this.deletePermitTool.Size = new System.Drawing.Size(23, 22);
             this.deletePermitTool.Text = "toolStripButton1";
             this.deletePermitTool.Click += new System.EventHandler(this.deletePermitTool_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // refreshPermiListTool
             // 
@@ -352,14 +354,14 @@
             this.refreshPermiListTool.Image = ((System.Drawing.Image)(resources.GetObject("refreshPermiListTool.Image")));
             this.refreshPermiListTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.refreshPermiListTool.Name = "refreshPermiListTool";
-            this.refreshPermiListTool.Size = new System.Drawing.Size(23, 24);
+            this.refreshPermiListTool.Size = new System.Drawing.Size(23, 22);
             this.refreshPermiListTool.Text = "обновить";
             this.refreshPermiListTool.Click += new System.EventHandler(this.refreshPermiListTool_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // printPermitListTool
             // 
@@ -367,26 +369,27 @@
             this.printPermitListTool.Image = ((System.Drawing.Image)(resources.GetObject("printPermitListTool.Image")));
             this.printPermitListTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printPermitListTool.Name = "printPermitListTool";
-            this.printPermitListTool.Size = new System.Drawing.Size(23, 24);
+            this.printPermitListTool.Size = new System.Drawing.Size(23, 22);
             this.printPermitListTool.Text = "печать";
             this.printPermitListTool.Click += new System.EventHandler(this.printPermitListTool_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // findLabel
             // 
             this.findLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.findLabel.Name = "findLabel";
-            this.findLabel.Size = new System.Drawing.Size(0, 24);
+            this.findLabel.Size = new System.Drawing.Size(0, 22);
             this.findLabel.Text = "Поиск";
             // 
             // findTextBox
             // 
             this.findTextBox.Name = "findTextBox";
-            this.findTextBox.Size = new System.Drawing.Size(100, 27);
+            this.findTextBox.Size = new System.Drawing.Size(100, 25);
+            this.findTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pickDateStart_KeyDown);
             this.findTextBox.TextChanged += new System.EventHandler(this.findTextBox_TextChanged);
             // 
             // findNextTool
@@ -395,25 +398,25 @@
             this.findNextTool.Image = ((System.Drawing.Image)(resources.GetObject("findNextTool.Image")));
             this.findNextTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.findNextTool.Name = "findNextTool";
-            this.findNextTool.Size = new System.Drawing.Size(23, 24);
+            this.findNextTool.Size = new System.Drawing.Size(23, 22);
             this.findNextTool.Text = "Найти следующий";
             this.findNextTool.Click += new System.EventHandler(this.findNextTool_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(36, 24);
+            this.toolStripLabel2.Size = new System.Drawing.Size(30, 22);
             this.toolStripLabel2.Text = "Стр.";
             // 
             // lblPermitPage
             // 
             this.lblPermitPage.Name = "lblPermitPage";
-            this.lblPermitPage.Size = new System.Drawing.Size(39, 24);
+            this.lblPermitPage.Size = new System.Drawing.Size(30, 22);
             this.lblPermitPage.Text = "0 / 0";
             // 
             // btnPreviousPermitPage
@@ -422,7 +425,7 @@
             this.btnPreviousPermitPage.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPermitPage.Image")));
             this.btnPreviousPermitPage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPreviousPermitPage.Name = "btnPreviousPermitPage";
-            this.btnPreviousPermitPage.Size = new System.Drawing.Size(23, 24);
+            this.btnPreviousPermitPage.Size = new System.Drawing.Size(23, 22);
             this.btnPreviousPermitPage.Text = "Предыдущая";
             this.btnPreviousPermitPage.Click += new System.EventHandler(this.btnPreviousPermitPage_Click);
             // 
@@ -432,7 +435,7 @@
             this.btnNextPermitPage.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPermitPage.Image")));
             this.btnNextPermitPage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNextPermitPage.Name = "btnNextPermitPage";
-            this.btnNextPermitPage.Size = new System.Drawing.Size(23, 24);
+            this.btnNextPermitPage.Size = new System.Drawing.Size(23, 22);
             this.btnNextPermitPage.Text = "Следующая";
             this.btnNextPermitPage.Click += new System.EventHandler(this.btnNextPermitPage_Click);
             // 
@@ -453,6 +456,16 @@
             this.permitTopPanel.Size = new System.Drawing.Size(651, 88);
             this.permitTopPanel.TabIndex = 0;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(285, 37);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(113, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "(на выбор не влияет)";
+            // 
             // cboxPermitType
             // 
             this.cboxPermitType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -462,6 +475,7 @@
             this.cboxPermitType.Size = new System.Drawing.Size(183, 21);
             this.cboxPermitType.TabIndex = 6;
             this.cboxPermitType.SelectedIndexChanged += new System.EventHandler(this.pickDateStart_ValueChanged);
+            this.cboxPermitType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pickDateStart_KeyDown);
             // 
             // label3
             // 
@@ -484,6 +498,7 @@
             this.rboxEntryPoint.TabIndex = 4;
             this.rboxEntryPoint.GetList += new System.EventHandler<EntryControl.ReferenceBox.ReferenceBoxEventArgs>(this.rboxEntryPoint_GetList);
             this.rboxEntryPoint.SelectedItemChanged += new System.EventHandler(this.pickDateStart_ValueChanged);
+            this.rboxEntryPoint.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pickDateStart_KeyDown);
             // 
             // label2
             // 
@@ -502,6 +517,7 @@
             this.pickDateFinish.Size = new System.Drawing.Size(98, 20);
             this.pickDateFinish.TabIndex = 2;
             this.pickDateFinish.ValueChanged += new System.EventHandler(this.pickDateStart_ValueChanged);
+            this.pickDateFinish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pickDateStart_KeyDown);
             // 
             // pickDateStart
             // 
@@ -511,6 +527,7 @@
             this.pickDateStart.Size = new System.Drawing.Size(98, 20);
             this.pickDateStart.TabIndex = 1;
             this.pickDateStart.ValueChanged += new System.EventHandler(this.pickDateStart_ValueChanged);
+            this.pickDateStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pickDateStart_KeyDown);
             // 
             // label1
             // 
@@ -529,7 +546,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(654, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(350, 432);
+            this.panel1.Size = new System.Drawing.Size(350, 434);
             this.panel1.TabIndex = 4;
             // 
             // dgvMoving
@@ -547,7 +564,7 @@
             this.dgvMoving.Name = "dgvMoving";
             this.dgvMoving.ReadOnly = true;
             this.dgvMoving.RowHeadersVisible = false;
-            this.dgvMoving.Size = new System.Drawing.Size(350, 97);
+            this.dgvMoving.Size = new System.Drawing.Size(350, 99);
             this.dgvMoving.TabIndex = 5;
             // 
             // ColumnMoving
@@ -577,7 +594,7 @@
             // 
             this.pnlEntryPoints.Controls.Add(this.dgvPointList);
             this.pnlEntryPoints.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlEntryPoints.Location = new System.Drawing.Point(0, 205);
+            this.pnlEntryPoints.Location = new System.Drawing.Point(0, 207);
             this.pnlEntryPoints.Name = "pnlEntryPoints";
             this.pnlEntryPoints.Size = new System.Drawing.Size(350, 227);
             this.pnlEntryPoints.TabIndex = 6;
@@ -638,7 +655,7 @@
             this.pagePlanAppointList.Location = new System.Drawing.Point(4, 22);
             this.pagePlanAppointList.Name = "pagePlanAppointList";
             this.pagePlanAppointList.Padding = new System.Windows.Forms.Padding(3);
-            this.pagePlanAppointList.Size = new System.Drawing.Size(1007, 438);
+            this.pagePlanAppointList.Size = new System.Drawing.Size(1007, 440);
             this.pagePlanAppointList.TabIndex = 1;
             this.pagePlanAppointList.Text = "tabPage2";
             this.pagePlanAppointList.UseVisualStyleBackColor = true;
@@ -666,7 +683,7 @@
             this.dgvPlanAppointList.Name = "dgvPlanAppointList";
             this.dgvPlanAppointList.ReadOnly = true;
             this.dgvPlanAppointList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPlanAppointList.Size = new System.Drawing.Size(1001, 277);
+            this.dgvPlanAppointList.Size = new System.Drawing.Size(1001, 279);
             this.dgvPlanAppointList.TabIndex = 1;
             this.dgvPlanAppointList.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvPlanAppointList_RowPrePaint);
             // 
@@ -734,7 +751,7 @@
             // 
             this.pnlComment.Controls.Add(this.tboxComment);
             this.pnlComment.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlComment.Location = new System.Drawing.Point(3, 335);
+            this.pnlComment.Location = new System.Drawing.Point(3, 337);
             this.pnlComment.Name = "pnlComment";
             this.pnlComment.Size = new System.Drawing.Size(1001, 100);
             this.pnlComment.TabIndex = 2;
@@ -772,7 +789,7 @@
             // 
             this.lblToRefresh2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.lblToRefresh2.Name = "lblToRefresh2";
-            this.lblToRefresh2.Size = new System.Drawing.Size(43, 22);
+            this.lblToRefresh2.Size = new System.Drawing.Size(34, 22);
             this.lblToRefresh2.Text = "0 сек";
             // 
             // createPermitTool
@@ -803,13 +820,13 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(38, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(31, 22);
             this.toolStripLabel1.Text = "стр. ";
             // 
             // lblPageNumber
             // 
             this.lblPageNumber.Name = "lblPageNumber";
-            this.lblPageNumber.Size = new System.Drawing.Size(39, 22);
+            this.lblPageNumber.Size = new System.Drawing.Size(30, 22);
             this.lblPageNumber.Text = "0 / 0";
             // 
             // btnPreviousPage
@@ -867,7 +884,7 @@
             this.btnChangePassword});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1015, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1015, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -876,7 +893,7 @@
             this.materialPermitTool.Image = ((System.Drawing.Image)(resources.GetObject("materialPermitTool.Image")));
             this.materialPermitTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.materialPermitTool.Name = "materialPermitTool";
-            this.materialPermitTool.Size = new System.Drawing.Size(201, 24);
+            this.materialPermitTool.Size = new System.Drawing.Size(163, 22);
             this.materialPermitTool.Text = "материальные пропуска";
             this.materialPermitTool.Click += new System.EventHandler(this.materialPermitTool_Click);
             // 
@@ -886,20 +903,10 @@
             this.btnChangePassword.Image = ((System.Drawing.Image)(resources.GetObject("btnChangePassword.Image")));
             this.btnChangePassword.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(142, 24);
+            this.btnChangePassword.Size = new System.Drawing.Size(116, 22);
             this.btnChangePassword.Text = "сменить пароль";
             this.btnChangePassword.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(285, 37);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "(на выбор не влияет)";
             // 
             // ReceptionForm
             // 

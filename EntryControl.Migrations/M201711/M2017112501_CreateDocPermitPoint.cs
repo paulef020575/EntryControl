@@ -16,10 +16,10 @@ namespace EntryControl.Migrations
 
         public override void Up(FbDatabase database)
         {
-            database.ExecuteQuery(Scripts.M2017112501.CreateTable);
-            database.ExecuteQuery(Scripts.M2017112501.CreatePermitFk);
-            database.ExecuteQuery(Scripts.M2017112501.CreatePointFK);
-            database.ExecuteQuery(Scripts.M2017112501.FillTable);
+            //database.ExecuteQuery(Scripts.M2017112501.CreateTable);
+            //database.ExecuteQuery(Scripts.M2017112501.CreatePermitFk);
+            //database.ExecuteQuery(Scripts.M2017112501.CreatePointFK);
+            //database.ExecuteQuery(Scripts.M2017112501.FillTable);
         }
     }
 }

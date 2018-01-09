@@ -43,6 +43,7 @@
     <Compile Include="M201711\M2017112502_CreateDocPermitPointProcedure.cs" />
     <Compile Include="M201711\M2017112601_GetPermitPointListProc.cs" />
     <Compile Include="M201711\M2017112801_CheckPermitPointProc.cs" />
+    <Compile Include="M201712\M2017122301.cs" />
     <Compile Include="Migration.cs" />
     <Compile Include="M201711\M2017112501_CreateDocPermitPoint.cs" />
     <Compile Include="Migrator.cs" />
@@ -67,6 +68,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>M2017112801.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scripts\M2017122301.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>M2017122301.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Common.resx">
@@ -88,6 +94,10 @@
     <EmbeddedResource Include="Scripts\M2017112801.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>M2017112801.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\M2017122301.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>M2017122301.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

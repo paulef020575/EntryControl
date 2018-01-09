@@ -46,7 +46,7 @@
             // tblPanel
             // 
             this.tblPanel.ColumnCount = 2;
-            this.tblPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblPanel.Controls.Add(this.label1, 0, 0);
             this.tblPanel.Controls.Add(this.tboxName, 1, 0);
@@ -68,7 +68,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(269, 26);
+            this.label1.Size = new System.Drawing.Size(83, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Наименование";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -76,9 +76,9 @@
             // tboxName
             // 
             this.tboxName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxName.Location = new System.Drawing.Point(278, 3);
+            this.tboxName.Location = new System.Drawing.Point(92, 3);
             this.tboxName.Name = "tboxName";
-            this.tboxName.Size = new System.Drawing.Size(270, 20);
+            this.tboxName.Size = new System.Drawing.Size(456, 20);
             this.tboxName.TabIndex = 1;
             // 
             // label2
@@ -87,7 +87,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(3, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(269, 26);
+            this.label2.Size = new System.Drawing.Size(83, 26);
             this.label2.TabIndex = 2;
             this.label2.Text = "Телефоны";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -95,9 +95,9 @@
             // tboxPhone
             // 
             this.tboxPhone.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxPhone.Location = new System.Drawing.Point(278, 29);
+            this.tboxPhone.Location = new System.Drawing.Point(92, 29);
             this.tboxPhone.Name = "tboxPhone";
-            this.tboxPhone.Size = new System.Drawing.Size(270, 20);
+            this.tboxPhone.Size = new System.Drawing.Size(456, 20);
             this.tboxPhone.TabIndex = 3;
             // 
             // EntryPointItemForm

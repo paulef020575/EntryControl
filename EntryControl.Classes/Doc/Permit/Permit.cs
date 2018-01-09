@@ -307,7 +307,10 @@ namespace EntryControl.Classes
 
                 System.Diagnostics.Debug.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff"));
 
-                EntryPoint = new Classes.EntryPoint((int)reader["entryPoint"], (string)reader["entryPointName"]);
+                if (DBNull.Value.Equals(reader["entryPointName"]))
+                    EntryPoint = EntryPoint.Empty;
+                else
+                    EntryPoint = new Classes.EntryPoint((int)reader["entryPoint"], (string)reader["entryPointName"]);
                 multiEntry = (short)reader["multiEntry"];
 
                 System.Diagnostics.Debug.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff"));
@@ -410,6 +413,12 @@ namespace EntryControl.Classes
             if (PointList == null)
                 PointList = PermitPoint.LoadPointList(database, this);
 
+            return PointList;
+        }
+
+        public List<PermitPoint> ReloadPointList(Database database)
+        {
+            PointList = PermitPoint.LoadPointList(database, this);
             return PointList;
         }
 

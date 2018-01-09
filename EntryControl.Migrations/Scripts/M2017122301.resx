@@ -117,16 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="bsDataItem.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="ColumnEntryPoint.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ColumnIsAllowed.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="bsPoints.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
-  </metadata>
+  <data name="CreateForeignKey" xml:space="preserve">
+    <value>alter table REFENTRYPOINTGROUP
+add constraint FK_REFENTRYPOINTGROUP
+foreign key (ENTRYPOINT)
+references REFENTRYPOINT(ID)
+on delete CASCADE
+on update CASCADE</value>
+  </data>
+  <data name="CreateIndex" xml:space="preserve">
+    <value>alter table REFENTRYPOINTGROUP
+add constraint UNQ_REFENTRYPOINTGROUP
+unique (GROUPNAME,ENTRYPOINT)</value>
+  </data>
+  <data name="CreateProcedure" xml:space="preserve">
+    <value>CREATE PROCEDURE SETENTRYPOINTGROUP (
+    GROUPNAME VARCHAR(50),
+    ENTRYPOINT INTEGER,
+    ISINCLUDED SMALLINT)
+AS
+begin
+  /* Procedure Text */
+  if (:ISINCLUDED = 1) then
+  begin
+    update or insert
+        into refentrypointgroup
+            (groupName, entrypoint)
+        values
+            (:GROUPNAME, :ENTRYPOINT)
+        matching
+            (groupName, entryPoint);
+  end
+  else
+  begin
+    delete
+        from refentrypointgroup
+        where groupName = :GROUPNAME
+          and entryPoint = :ENTRYPOINT;
+  end
+end</value>
+  </data>
+  <data name="CreateTable" xml:space="preserve">
+    <value>CREATE TABLE REFENTRYPOINTGROUP(
+    GROUPNAME VARCHAR(50) NOT NULL,
+    ENTRYPOINT INTEGER NOT NULL)</value>
+  </data>
 </root>

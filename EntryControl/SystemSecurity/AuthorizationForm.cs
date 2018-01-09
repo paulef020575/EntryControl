@@ -29,32 +29,43 @@ namespace EntryControl
 
         private void AuthorizationForm_Load(object sender, EventArgs e)
         {
-            try
-            {
+            bool exit = false;
+            while (!exit)
+                try
+                {
 #if DEBUG
-                database = new EntryControlDatabase(Settings.Default.ServerName.ToLower(), Settings.Default.Path.ToLower(), "sysdba", "masterkey");
+                    database = new EntryControlDatabase(Settings.Default.ServerName.ToLower(), Settings.Default.Path.ToLower(), "sysdba", "masterkey");
 
 #else
                 database = new EntryControlDatabase(Settings.Default.ServerName.ToLower(), Settings.Default.Path.ToLower());
 #endif
 
-                if (CheckDomainUser())
-                {
-                    DialogResult = System.Windows.Forms.DialogResult.OK;
+
+
+                    if (CheckDomainUser())
+                    {
+                        DialogResult = System.Windows.Forms.DialogResult.OK;
+                    }
+                    else
+                    {
+                        cboxUser.DataSource = LoadUserList();
+                        GetLastUser();
+                    }
+
+                    return;
                 }
-                else
+                catch (Exception exc)
                 {
-                    cboxUser.DataSource = LoadUserList();
-                    GetLastUser();
+                    Settings.Default.StartForm = 0;
+                    Settings.Default.Save();
+                    //MessageBox.Show(exc.Message, "ОШИБКА СОЕДИНЕНИЯ");
+                    //Environment.Exit(1);
+
+                    DatabaseInitializingForm form = new DatabaseInitializingForm();
+                    exit = (form.ShowDialog() == DialogResult.Cancel);
                 }
-            }
-            catch (Exception exc)
-            {
-                Settings.Default.StartForm = 0;
-                Settings.Default.Save();
-                MessageBox.Show(exc.Message, "ОШИБКА СОЕДИНЕНИЯ");
-                Environment.Exit(1);
-            }
+
+            Environment.Exit(1);
         }
 
         private void GetLastUser()

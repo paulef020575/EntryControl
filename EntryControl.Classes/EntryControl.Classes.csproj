@@ -63,6 +63,7 @@
     <Compile Include="Ref\Contractor\ContractorContact.cs" />
     <Compile Include="Ref\Contractor\ContractorGroup.cs" />
     <Compile Include="Ref\EntryPoint.cs" />
+    <Compile Include="Ref\EntryPointGroup.cs" />
     <Compile Include="Ref\Staff.cs" />
     <Compile Include="Ref\Unit.cs" />
     <Compile Include="Ref\Vehicle\Vehicle.cs" />

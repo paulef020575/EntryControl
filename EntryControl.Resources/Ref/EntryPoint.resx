@@ -120,6 +120,9 @@
   <data name="AddStaff" xml:space="preserve">
     <value>insert into docPointStaff (point, staff, dateFrom) values (@entryPoint, @staff, @date)</value>
   </data>
+  <data name="ClearGroup" xml:space="preserve">
+    <value>delete from refEntryPointGroup where groupName = @groupName</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>delete from refEntryPoint where id = @id</value>
   </data>
@@ -132,11 +135,20 @@
   <data name="Load" xml:space="preserve">
     <value>select * from refEntryPoint where id = @id</value>
   </data>
+  <data name="LoadGroupList" xml:space="preserve">
+    <value>select pnt.id, pnt.name, pnt.phone, gr.groupName from refEntryPoint pnt left join refEntryPointGroup gr on (gr.entryPoint = pnt.id and gr.groupName = @groupName) where pnt.id &gt; 0</value>
+  </data>
+  <data name="LoadGroups" xml:space="preserve">
+    <value>select groupName from RefEntryPointGroup group by groupName order by groupName</value>
+  </data>
   <data name="LoadList" xml:space="preserve">
     <value>select * from refEntryPoint order by name</value>
   </data>
   <data name="RemoveStaff" xml:space="preserve">
     <value>update docPointStaff set dateTo = @date where point = @entryPoint and staff =@staff and @date1 between dateFrom and dateTo</value>
+  </data>
+  <data name="SetPointGroup" xml:space="preserve">
+    <value>execute procedure setEntryPointGroup(@groupName, @pointId, @isIncluded)</value>
   </data>
   <data name="StaffList" xml:space="preserve">
     <value>select staff from docPointStaff where point = @entryPoint and @date between dateFrom and dateTo</value>

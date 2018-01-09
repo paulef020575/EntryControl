@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntryPointForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.bgEnteredRefresh = new System.ComponentModel.BackgroundWorker();
             this.bgPlanAppointRefresh = new System.ComponentModel.BackgroundWorker();
@@ -55,6 +55,8 @@
             this.ColHstMoving = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColHstPermit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelReportHeader = new System.Windows.Forms.Panel();
+            this.cboxCargo = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnPrintHistory = new System.Windows.Forms.Button();
             this.tboxVehicleMask = new System.Windows.Forms.TextBox();
             this.dtpDateTo = new System.Windows.Forms.DateTimePicker();
@@ -93,8 +95,6 @@
             this.lblCreator = new System.Windows.Forms.Label();
             this.gboxComment = new System.Windows.Forms.GroupBox();
             this.lblComment = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cboxCargo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.bsHistoryReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPlanAppoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsEnteredVehicle)).BeginInit();
@@ -219,13 +219,14 @@
             this.dgvHistoryReport.Size = new System.Drawing.Size(663, 400);
             this.dgvHistoryReport.TabIndex = 0;
             this.dgvHistoryReport.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvHistoryReport_RowPrePaint);
+            this.dgvHistoryReport.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tboxVehicleMask_KeyDown);
             // 
             // ColHstMovingTime
             // 
             this.ColHstMovingTime.DataPropertyName = "MovingTime";
-            dataGridViewCellStyle7.Format = "dd.MM HH:mm";
-            dataGridViewCellStyle7.NullValue = null;
-            this.ColHstMovingTime.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Format = "dd.MM HH:mm";
+            dataGridViewCellStyle1.NullValue = null;
+            this.ColHstMovingTime.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColHstMovingTime.HeaderText = "";
             this.ColHstMovingTime.Name = "ColHstMovingTime";
             this.ColHstMovingTime.ReadOnly = true;
@@ -291,6 +292,26 @@
             this.panelReportHeader.Size = new System.Drawing.Size(663, 86);
             this.panelReportHeader.TabIndex = 0;
             // 
+            // cboxCargo
+            // 
+            this.cboxCargo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboxCargo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboxCargo.FormattingEnabled = true;
+            this.cboxCargo.Location = new System.Drawing.Point(359, 45);
+            this.cboxCargo.Name = "cboxCargo";
+            this.cboxCargo.Size = new System.Drawing.Size(291, 28);
+            this.cboxCargo.TabIndex = 7;
+            this.cboxCargo.SelectedIndexChanged += new System.EventHandler(this.dtpDateTo_ValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(311, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Груз";
+            // 
             // btnPrintHistory
             // 
             this.btnPrintHistory.Location = new System.Drawing.Point(496, 9);
@@ -308,6 +329,7 @@
             this.tboxVehicleMask.Size = new System.Drawing.Size(186, 26);
             this.tboxVehicleMask.TabIndex = 4;
             this.tboxVehicleMask.TextChanged += new System.EventHandler(this.dtpDateTo_ValueChanged);
+            this.tboxVehicleMask.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tboxVehicleMask_KeyDown);
             // 
             // dtpDateTo
             // 
@@ -380,6 +402,7 @@
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(663, 461);
             this.dataGridView2.TabIndex = 1;
+            this.dataGridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tboxVehicleMask_KeyDown);
             // 
             // ClmVehicle
             // 
@@ -408,9 +431,9 @@
             // ClmnDateFrom
             // 
             this.ClmnDateFrom.DataPropertyName = "DateFrom";
-            dataGridViewCellStyle8.Format = "dd.MM ";
-            dataGridViewCellStyle8.NullValue = null;
-            this.ClmnDateFrom.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Format = "dd.MM ";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ClmnDateFrom.DefaultCellStyle = dataGridViewCellStyle2;
             this.ClmnDateFrom.FillWeight = 75F;
             this.ClmnDateFrom.HeaderText = "ожидается";
             this.ClmnDateFrom.Name = "ClmnDateFrom";
@@ -419,8 +442,8 @@
             // ClmnDateTo
             // 
             this.ClmnDateTo.DataPropertyName = "DateTo";
-            dataGridViewCellStyle9.Format = "dd.MM";
-            this.ClmnDateTo.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Format = "dd.MM";
+            this.ClmnDateTo.DefaultCellStyle = dataGridViewCellStyle3;
             this.ClmnDateTo.HeaderText = "прибытие";
             this.ClmnDateTo.Name = "ClmnDateTo";
             this.ClmnDateTo.ReadOnly = true;
@@ -498,12 +521,13 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(663, 486);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tboxVehicleMask_KeyDown);
             // 
             // ColumnEntryTime
             // 
             this.ColumnEntryTime.DataPropertyName = "EntryInfo";
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnEntryTime.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnEntryTime.DefaultCellStyle = dataGridViewCellStyle4;
             this.ColumnEntryTime.HeaderText = "въезд";
             this.ColumnEntryTime.Name = "ColumnEntryTime";
             this.ColumnEntryTime.ReadOnly = true;
@@ -511,8 +535,8 @@
             // ColumnVehicleMark
             // 
             this.ColumnVehicleMark.DataPropertyName = "VehicleInfo";
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnVehicleMark.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnVehicleMark.DefaultCellStyle = dataGridViewCellStyle5;
             this.ColumnVehicleMark.HeaderText = "Автомобиль";
             this.ColumnVehicleMark.Name = "ColumnVehicleMark";
             this.ColumnVehicleMark.ReadOnly = true;
@@ -520,8 +544,8 @@
             // ColumnDriverName
             // 
             this.ColumnDriverName.DataPropertyName = "DriverInfo";
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnDriverName.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnDriverName.DefaultCellStyle = dataGridViewCellStyle6;
             this.ColumnDriverName.HeaderText = "водитель";
             this.ColumnDriverName.Name = "ColumnDriverName";
             this.ColumnDriverName.ReadOnly = true;
@@ -567,6 +591,7 @@
             this.rbtn3.Text = "история";
             this.rbtn3.UseVisualStyleBackColor = true;
             this.rbtn3.CheckedChanged += new System.EventHandler(this.rbtn1_CheckedChanged);
+            this.rbtn3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tboxVehicleMask_KeyDown);
             // 
             // rbtn2
             // 
@@ -584,6 +609,7 @@
             this.rbtn2.Text = "заявки на пропуск";
             this.rbtn2.UseVisualStyleBackColor = true;
             this.rbtn2.CheckedChanged += new System.EventHandler(this.rbtn1_CheckedChanged);
+            this.rbtn2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tboxVehicleMask_KeyDown);
             // 
             // rbtn1
             // 
@@ -603,6 +629,7 @@
             this.rbtn1.Text = "машины на территории";
             this.rbtn1.UseVisualStyleBackColor = true;
             this.rbtn1.CheckedChanged += new System.EventHandler(this.rbtn1_CheckedChanged);
+            this.rbtn1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tboxVehicleMask_KeyDown);
             // 
             // panel3
             // 
@@ -721,26 +748,6 @@
             this.lblComment.Name = "lblComment";
             this.lblComment.Size = new System.Drawing.Size(274, 159);
             this.lblComment.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(311, 48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 20);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Груз";
-            // 
-            // cboxCargo
-            // 
-            this.cboxCargo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboxCargo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboxCargo.FormattingEnabled = true;
-            this.cboxCargo.Location = new System.Drawing.Point(359, 45);
-            this.cboxCargo.Name = "cboxCargo";
-            this.cboxCargo.Size = new System.Drawing.Size(291, 28);
-            this.cboxCargo.TabIndex = 7;
-            this.cboxCargo.SelectedIndexChanged += new System.EventHandler(this.dtpDateTo_ValueChanged);
             // 
             // EntryPointForm
             // 

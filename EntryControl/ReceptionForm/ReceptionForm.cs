@@ -10,6 +10,7 @@ using EntryControl.Classes;
 using Stimulsoft.Report;
 using System.IO;
 using Stimulsoft.Report.Dictionary;
+using EntryControl.Properties;
 
 namespace EntryControl
 {
@@ -730,5 +731,28 @@ namespace EntryControl
                 RefreshPlanAppointList();
         }
 
+        private void dgvPermitList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (SelectedPermit != null)
+                EditPermit(SelectedPermit);
+        }
+
+        private void pickDateStart_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1 && e.Control)
+                ClearSettings();
+        }
+
+        private void ClearSettings()
+        {
+            if (MessageBox.Show("Сбросить настройки приложения?", "ВНИМАНИЕ", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Settings.Default.StartForm = 0;
+                Settings.Default.Save();
+
+                Environment.Exit(0);
+            }
+
+        }
     }
 }

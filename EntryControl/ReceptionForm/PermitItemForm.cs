@@ -41,12 +41,10 @@ namespace EntryControl
 
         private void FillPointList()
         {
-            bsPoints.DataSource = Permit.GetPointList(Database);
+            bsPoints.DataSource = Permit.ReloadPointList(Database);
 
             foreach (PermitPoint pp in (List<PermitPoint>)bsPoints.DataSource)
                 pp.PropertyChanged += Pp_PropertyChanged;
-            isDataLoaded = true;
-
         }
 
         private void Pp_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -86,6 +84,11 @@ namespace EntryControl
             tboxComment.DataBindings.Add("Text", bsDataItem, "Comment");
 
             FillPointList();
+
+            FillCboxSelection();
+
+            isDataLoaded = true;
+
         }
 
         protected override void PreloadData()
@@ -132,6 +135,61 @@ namespace EntryControl
             foreach (PermitPoint permitPoint in permitPointList)
                 permitPoint.IsAllowed = false;
             dataGridView1.Refresh();
+        }
+
+        private void btnSprEntryPoint_Click(object sender, EventArgs e)
+        {
+            EntryPointListForm form = new EntryControl.EntryPointListForm(Database);
+            form.FormClosed += EntryPointListFormClosed;
+            form.Show();
+        }
+
+        private void EntryPointListFormClosed(object sender, FormClosedEventArgs e)
+        {
+            isDataLoaded = false;
+            FillPointList();
+            FillCboxSelection();
+            isDataLoaded = true;
+        }
+
+        private void FillCboxSelection()
+        {
+            cboxSelection.Items.Clear();
+            cboxSelection.Items.Add("Снять все");
+            cboxSelection.Items.Add("Разрешить все");
+
+            List<string> groupList = EntryPointGroup.LoadGroupList(Database);
+            foreach (string groupName in groupList)
+                cboxSelection.Items.Add(groupName);
+        }
+
+        private void cboxSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (isDataLoaded)
+            {
+                if (cboxSelection.SelectedIndex == 0)
+                    ClearAllPoints();
+
+                if (cboxSelection.SelectedIndex == 1)
+                    CheckAllPoints();
+
+                if (cboxSelection.SelectedIndex > 1)
+                    CheckGroupPoints(cboxSelection.Text);
+            }
+        }
+
+        private void CheckGroupPoints(string text)
+        {
+            List<EntryPointGroup> groupPoints = EntryPointGroup.LoadGroup(Database, text);
+            Dictionary<EntryPoint, bool> pointList = new Dictionary<EntryPoint, bool>();
+            foreach (EntryPointGroup item in groupPoints)
+                pointList.Add(item.EntryPoint, item.IsIncluded);
+
+            List<PermitPoint> permitPointList = (List<PermitPoint>)bsPoints.DataSource;
+            foreach (PermitPoint item in permitPointList)
+                item.IsAllowed = pointList[item.Point];
+            dataGridView1.Refresh();
+
         }
     }
 }

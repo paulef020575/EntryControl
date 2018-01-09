@@ -28,5 +28,11 @@ namespace EntryControl
         {
             return new BindingList<EntryPoint>(EntryPoint.LoadList(Database));
         }
+
+        private void btnGroups_Click(object sender, EventArgs e)
+        {
+            EntryPointGroupsForm form = new EntryPointGroupsForm(Database);
+            form.Show();
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace EntryControl
         {
             Settings.Default.ServerName = cboxServer.Text;
             if (cboxServer.SelectedIndex == 2)
-                Settings.Default.Path = @"D:\Prog\dispatcher\DISPATCHER.FDB";
+                Settings.Default.Path = @"c:\Prog\dispatcher\DISPATCHER.FDB";
             else
                 Settings.Default.Path = @"c:\DB_Pulp\Dispatcher.fdb";
             Settings.Default.Save();

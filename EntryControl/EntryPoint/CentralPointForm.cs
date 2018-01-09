@@ -454,6 +454,24 @@ namespace EntryControl
                 ShowCreator("");
             }
         }
+
+        private void tboxVehicleMask_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1 && e.Control)
+                ClearSettings();
+        }
+
+        private void ClearSettings()
+        {
+            if (MessageBox.Show("Сбросить настройки приложения?", "ВНИМАНИЕ", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Settings.Default.StartForm = 0;
+                Settings.Default.Save();
+
+                Environment.Exit(0);
+            }
+
+        }
     }
 }
 

@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using EPV.Database;
 using EntryControl.Classes;
+using EntryControl.Properties;
 
 namespace EntryControl
 {
@@ -603,6 +604,20 @@ namespace EntryControl
         {
             if (e.KeyCode == Keys.Return)
                 btnSearch_Click(sender, EventArgs.Empty);
+
+            if (e.KeyCode == Keys.F1 && e.Control)
+                ClearSettings();
+        }
+
+        private void ClearSettings()
+        {
+            if (MessageBox.Show("Сбросить настройки приложения?", "ВНИМАНИЕ", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Settings.Default.StartForm = 0;
+                Settings.Default.Save();
+
+                Environment.Exit(0);
+            }
         }
 
         private void changePasswordTool_Click(object sender, EventArgs e)
@@ -616,10 +631,5 @@ namespace EntryControl
             ReportPlanAppointForm form = new ReportPlanAppointForm(Database);
             form.Show();
         }
-
-        
-
-
-
     }
 }

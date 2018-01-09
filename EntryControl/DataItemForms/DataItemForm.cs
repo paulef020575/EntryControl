@@ -98,7 +98,7 @@ namespace EntryControl
 
         protected virtual bool SaveItem()
         {
-            if (Item != null) Item.Save(Database);
+            WrapAction(Database, Item.Save);
             RaiseItemSaved();
 
             return true;

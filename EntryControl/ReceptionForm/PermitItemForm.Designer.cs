@@ -57,8 +57,8 @@
             this.ColumnIsAllowed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.bsPoints = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnClearAllCheck = new System.Windows.Forms.Button();
-            this.btnCheckAllPoints = new System.Windows.Forms.Button();
+            this.cboxSelection = new System.Windows.Forms.ComboBox();
+            this.btnSprEntryPoint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bsDataItem)).BeginInit();
             this.pnlBottom.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -155,7 +155,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(448, 22);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "  Данные пропуска";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -406,36 +406,36 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnClearAllCheck);
-            this.panel1.Controls.Add(this.btnCheckAllPoints);
+            this.panel1.Controls.Add(this.cboxSelection);
+            this.panel1.Controls.Add(this.btnSprEntryPoint);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 16);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(5);
+            this.panel1.Padding = new System.Windows.Forms.Padding(7);
             this.panel1.Size = new System.Drawing.Size(571, 35);
             this.panel1.TabIndex = 1;
             // 
-            // btnClearAllCheck
+            // cboxSelection
             // 
-            this.btnClearAllCheck.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnClearAllCheck.Location = new System.Drawing.Point(105, 5);
-            this.btnClearAllCheck.Name = "btnClearAllCheck";
-            this.btnClearAllCheck.Size = new System.Drawing.Size(100, 25);
-            this.btnClearAllCheck.TabIndex = 1;
-            this.btnClearAllCheck.Text = "запретить все";
-            this.btnClearAllCheck.UseVisualStyleBackColor = true;
-            this.btnClearAllCheck.Click += new System.EventHandler(this.btnClearAllCheck_Click);
+            this.cboxSelection.Dock = System.Windows.Forms.DockStyle.Left;
+            this.cboxSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxSelection.FormattingEnabled = true;
+            this.cboxSelection.Location = new System.Drawing.Point(7, 7);
+            this.cboxSelection.Name = "cboxSelection";
+            this.cboxSelection.Size = new System.Drawing.Size(200, 21);
+            this.cboxSelection.TabIndex = 3;
+            this.cboxSelection.SelectedIndexChanged += new System.EventHandler(this.cboxSelection_SelectedIndexChanged);
             // 
-            // btnCheckAllPoints
+            // btnSprEntryPoint
             // 
-            this.btnCheckAllPoints.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnCheckAllPoints.Location = new System.Drawing.Point(5, 5);
-            this.btnCheckAllPoints.Name = "btnCheckAllPoints";
-            this.btnCheckAllPoints.Size = new System.Drawing.Size(100, 25);
-            this.btnCheckAllPoints.TabIndex = 0;
-            this.btnCheckAllPoints.Text = " разрешить все";
-            this.btnCheckAllPoints.UseVisualStyleBackColor = true;
-            this.btnCheckAllPoints.Click += new System.EventHandler(this.btnCheckAllPoints_Click);
+            this.btnSprEntryPoint.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSprEntryPoint.Location = new System.Drawing.Point(464, 7);
+            this.btnSprEntryPoint.Name = "btnSprEntryPoint";
+            this.btnSprEntryPoint.Size = new System.Drawing.Size(100, 21);
+            this.btnSprEntryPoint.TabIndex = 2;
+            this.btnSprEntryPoint.Text = "справочник";
+            this.btnSprEntryPoint.UseVisualStyleBackColor = true;
+            this.btnSprEntryPoint.Click += new System.EventHandler(this.btnSprEntryPoint_Click);
             // 
             // PermitItemForm
             // 
@@ -488,7 +488,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEntryPoint;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnIsAllowed;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnClearAllCheck;
-        private System.Windows.Forms.Button btnCheckAllPoints;
+        private System.Windows.Forms.Button btnSprEntryPoint;
+        private System.Windows.Forms.ComboBox cboxSelection;
     }
 }

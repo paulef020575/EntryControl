@@ -28,6 +28,8 @@ namespace EntryControl
         {
             tboxName.DataBindings.Add("Text", bsDataItem, "Name");
             tboxPhone.DataBindings.Add("Text", bsDataItem, "Phone");
+
+            Text = EntryPoint.ToString();
         }
 
         protected override EPV.DataItem.DataItem CreateNewDataItem()

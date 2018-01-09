@@ -27,5 +27,43 @@ namespace EntryControl
 
             Database = (EntryControlDatabase)database;
         }
+
+        protected void WrapAction(Database param, Action<Database> action)
+        {
+            bool exit = false;
+
+            while (!exit)
+            {
+                try
+                {
+                    action(param);
+                    exit = true;
+                }
+                catch (Exception exc)
+                {
+                    ExceptionForm form = new EntryControl.ExceptionForm(exc);
+                    exit = (form.ShowDialog() == DialogResult.Cancel);
+                }
+            }
+        }
+
+        protected void WrapAction(Delegate action)
+        {
+            bool exit = false;
+
+            while (!exit)
+            {
+                try
+                {
+                    action.DynamicInvoke();
+                    exit = true;
+                }
+                catch (Exception exc)
+                {
+                    ExceptionForm form = new EntryControl.ExceptionForm(exc);
+                    exit = (form.ShowDialog() == DialogResult.Cancel);
+                }
+            }
+        }
     }
 }

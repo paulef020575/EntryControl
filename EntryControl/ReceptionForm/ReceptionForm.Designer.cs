@@ -110,9 +110,18 @@
             this.panelFilter = new System.Windows.Forms.Panel();
             this.pickPlanAppointStart = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.materialDocumentPage = new System.Windows.Forms.TabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dgvMaterialPermitList = new System.Windows.Forms.DataGridView();
+            this.bsMaterialDocumentList = new System.Windows.Forms.BindingSource(this.components);
+            this.materialPermitToolStrip = new System.Windows.Forms.ToolStrip();
+            this.lblToRefresh3 = new System.Windows.Forms.ToolStripLabel();
+            this.pnlMaterialPermitFilter = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.materialPermitTool = new System.Windows.Forms.ToolStripButton();
             this.btnChangePassword = new System.Windows.Forms.ToolStripButton();
+            this.bgGetMaterialDocumentList = new System.ComponentModel.BackgroundWorker();
+            this.bgLastMaterialDocumentDate = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.bsPermitList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPlanAppointList)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -130,6 +139,12 @@
             this.pnlComment.SuspendLayout();
             this.planAppointTools.SuspendLayout();
             this.panelFilter.SuspendLayout();
+            this.materialDocumentPage.SuspendLayout();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialPermitList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMaterialDocumentList)).BeginInit();
+            this.materialPermitToolStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,6 +188,7 @@
             // 
             this.tabControl.Controls.Add(this.permitPage);
             this.tabControl.Controls.Add(this.pagePlanAppointList);
+            this.tabControl.Controls.Add(this.materialDocumentPage);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 25);
             this.tabControl.Name = "tabControl";
@@ -877,6 +893,73 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Заявки не ранее";
             // 
+            // materialDocumentPage
+            // 
+            this.materialDocumentPage.Controls.Add(this.splitContainer1);
+            this.materialDocumentPage.Location = new System.Drawing.Point(4, 22);
+            this.materialDocumentPage.Name = "materialDocumentPage";
+            this.materialDocumentPage.Padding = new System.Windows.Forms.Padding(3);
+            this.materialDocumentPage.Size = new System.Drawing.Size(1007, 440);
+            this.materialDocumentPage.TabIndex = 2;
+            this.materialDocumentPage.Text = "materialDocumentPage";
+            this.materialDocumentPage.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dgvMaterialPermitList);
+            this.splitContainer1.Panel1.Controls.Add(this.materialPermitToolStrip);
+            this.splitContainer1.Panel1.Controls.Add(this.pnlMaterialPermitFilter);
+            this.splitContainer1.Size = new System.Drawing.Size(1001, 434);
+            this.splitContainer1.SplitterDistance = 670;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // dgvMaterialPermitList
+            // 
+            this.dgvMaterialPermitList.AllowUserToAddRows = false;
+            this.dgvMaterialPermitList.AllowUserToDeleteRows = false;
+            this.dgvMaterialPermitList.AutoGenerateColumns = false;
+            this.dgvMaterialPermitList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMaterialPermitList.DataSource = this.bsMaterialDocumentList;
+            this.dgvMaterialPermitList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMaterialPermitList.Location = new System.Drawing.Point(0, 60);
+            this.dgvMaterialPermitList.Name = "dgvMaterialPermitList";
+            this.dgvMaterialPermitList.ReadOnly = true;
+            this.dgvMaterialPermitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMaterialPermitList.Size = new System.Drawing.Size(670, 374);
+            this.dgvMaterialPermitList.TabIndex = 2;
+            // 
+            // materialPermitToolStrip
+            // 
+            this.materialPermitToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblToRefresh3});
+            this.materialPermitToolStrip.Location = new System.Drawing.Point(0, 35);
+            this.materialPermitToolStrip.Name = "materialPermitToolStrip";
+            this.materialPermitToolStrip.Size = new System.Drawing.Size(670, 25);
+            this.materialPermitToolStrip.TabIndex = 1;
+            this.materialPermitToolStrip.Text = "toolStrip2";
+            // 
+            // lblToRefresh3
+            // 
+            this.lblToRefresh3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lblToRefresh3.Name = "lblToRefresh3";
+            this.lblToRefresh3.Size = new System.Drawing.Size(34, 22);
+            this.lblToRefresh3.Text = "0 сек";
+            // 
+            // pnlMaterialPermitFilter
+            // 
+            this.pnlMaterialPermitFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlMaterialPermitFilter.Location = new System.Drawing.Point(0, 0);
+            this.pnlMaterialPermitFilter.Name = "pnlMaterialPermitFilter";
+            this.pnlMaterialPermitFilter.Padding = new System.Windows.Forms.Padding(5);
+            this.pnlMaterialPermitFilter.Size = new System.Drawing.Size(670, 35);
+            this.pnlMaterialPermitFilter.TabIndex = 0;
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -917,7 +1000,6 @@
             this.Controls.Add(this.toolStrip1);
             this.Name = "ReceptionForm";
             this.Text = "Бюро пропусков";
-            this.Load += new System.EventHandler(this.ReceptionForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsPermitList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPlanAppointList)).EndInit();
             this.tabControl.ResumeLayout(false);
@@ -943,6 +1025,14 @@
             this.planAppointTools.PerformLayout();
             this.panelFilter.ResumeLayout(false);
             this.panelFilter.PerformLayout();
+            this.materialDocumentPage.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialPermitList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMaterialDocumentList)).EndInit();
+            this.materialPermitToolStrip.ResumeLayout(false);
+            this.materialPermitToolStrip.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1034,5 +1124,14 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnMultiEntry;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPermitPoint;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TabPage materialDocumentPage;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataGridView dgvMaterialPermitList;
+        private System.Windows.Forms.BindingSource bsMaterialDocumentList;
+        private System.Windows.Forms.ToolStrip materialPermitToolStrip;
+        private System.Windows.Forms.Panel pnlMaterialPermitFilter;
+        private System.ComponentModel.BackgroundWorker bgGetMaterialDocumentList;
+        private System.Windows.Forms.ToolStripLabel lblToRefresh3;
+        private System.ComponentModel.BackgroundWorker bgLastMaterialDocumentDate;
     }
 }

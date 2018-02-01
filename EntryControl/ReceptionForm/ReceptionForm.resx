@@ -124,19 +124,19 @@
     <value>197, 60</value>
   </metadata>
   <metadata name="bgRefreshPermitList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>350, 20</value>
+    <value>156, 31</value>
   </metadata>
   <metadata name="refreshTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>237, 20</value>
+    <value>848, 51</value>
   </metadata>
   <metadata name="bgLastUpdateDate.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>499, 21</value>
+    <value>348, 27</value>
   </metadata>
   <metadata name="bgLastPlanAppointDate.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 60</value>
   </metadata>
   <metadata name="bgRefreshPlanAppointList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>652, 21</value>
+    <value>349, 56</value>
   </metadata>
   <metadata name="ColumnNumber.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -163,7 +163,7 @@
     <value>True</value>
   </metadata>
   <metadata name="permitTools.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>135, 17</value>
+    <value>835, 75</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="addPermitTool.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -254,26 +254,26 @@
         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
-        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
+        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
 </value>
   </data>
   <data name="deletePermitTool.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -492,7 +492,7 @@
     <value>True</value>
   </metadata>
   <metadata name="planAppointTools.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>346, 60</value>
+    <value>975, 27</value>
   </metadata>
   <data name="createPermitTool.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -615,8 +615,14 @@
         TgDQASA1MVpwzwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="bsMaterialDocumentList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>24, 97</value>
+  </metadata>
+  <metadata name="materialPermitToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>959, 79</value>
+  </metadata>
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>494, 60</value>
+    <value>986, 50</value>
   </metadata>
   <data name="materialPermitTool.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -648,7 +654,13 @@
         TgDQASA1MVpwzwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="bgGetMaterialDocumentList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>186, 97</value>
+  </metadata>
+  <metadata name="bgLastMaterialDocumentDate.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>391, 97</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>100</value>
+    <value>130</value>
   </metadata>
 </root>

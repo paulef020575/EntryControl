@@ -16,37 +16,14 @@ namespace EntryControl
 {
     public partial class ReceptionForm : EntryControlForm
     {
+        #region Constructor
+
         private ReceptionForm()
             : base()
         {
             InitializeComponent();
         }
 
-        private int planAppointPage = 1;
-
-        public int PlanAppointPage
-        {
-            get { return planAppointPage; }
-            set
-            {
-                planAppointPage = value;
-
-                RefreshPlanAppointList();
-            }
-        }
-
-        private int permitListPage = 1;
-        public int PermitListPage
-        {
-            get { return permitListPage; }
-            set
-            {
-                permitListPage = value;
-                RefreshPermitList();
-            }
-        }
-
-        
         public ReceptionForm(Database database)
             : base(database)
         {
@@ -63,10 +40,11 @@ namespace EntryControl
             btnPreviousPermitPage.Image = EntryControl.Resources.Images.Left;
             btnNextPermitPage.Image = EntryControl.Resources.Images.Right;
 
+            materialPermitTool.Image = EntryControl.Resources.Images.Document;
+
             dgvMoving.AutoGenerateColumns = false;
             dgvPointList.AutoGenerateColumns = false;
 
-            materialPermitTool.Image = EntryControl.Resources.Images.Document;
             rboxEntryPoint.Database = Database;
 
             InitializeFilterControls();
@@ -74,25 +52,106 @@ namespace EntryControl
             //tboxPermitComment.DataBindings.Add("Text", bsPermitList, "Comment", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
+        #endregion
+
+        #region Properties & fields
+
+
+        #region PlanAppointPage - страница списка заявок на пропуск
+
+        private int planAppointPage = 1;
+
+        public int PlanAppointPage
+        {
+            get { return planAppointPage; }
+            set
+            {
+                planAppointPage = value;
+
+                RefreshPlanAppointList();
+            }
+        }
+
+        #endregion
+
+
+        #region PermitListPage - страница списка пропусков
+
+        private int permitListPage = 1;
+        public int PermitListPage
+        {
+            get { return permitListPage; }
+            set
+            {
+                permitListPage = value;
+                RefreshPermitList();
+            }
+        }
+
+        #endregion
+
+
+        #region Значения для отсчета времени
+
         private int secToUpdate = 0;
         private int startSeconds = 45;
+
+        #endregion
+
+        #region Даты внесения последних изменений в таблицы
+
+
         private DateTime lastPermitModifiedDate = DateTime.MinValue;
         private DateTime lastPlanAppouintModifiedDate = DateTime.MinValue;
+        private DateTime lastMaterialDocumentModifiedDate = DateTime.MinValue;
+
+        #endregion
+
+        /// <summary>
+        ///     признак "Контролы инициализированы"
+        /// </summary>
         bool isInitialized = false;
 
+        /// <summary>
+        ///     признак "Выполняется обновление"
+        /// </summary>
         private bool isRefreshing = false;
 
+
+        #region Выбранные в списках документы
+
+        /// <summary>
+        ///     Пропуск
+        /// </summary>
         public Permit SelectedPermit
         {
             get { return (Permit)bsPermitList.Current; }
             set { bsPermitList.Position = bsPermitList.IndexOf(value); }
         }
 
+        /// <summary>
+        ///     Заявка на пропуск
+        /// </summary>
         public PlanAppoint SelectedPlanAppoint
         {
             get { return (PlanAppoint)bsPlanAppointList.Current; }
             set { bsPlanAppointList.Position = bsPlanAppointList.IndexOf(value); }
         }
+
+        /// <summary>
+        ///     Материальный пропуск
+        /// </summary>
+        public MaterialPermit SelectedMaterialDocument
+        {
+            get { return bsMaterialDocumentList.Current as MaterialPermit; }
+            set { bsMaterialDocumentList.Position = bsMaterialDocumentList.IndexOf(value); }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Структуры для выполнения фоновых задач
 
         private struct RefreshParams
         {
@@ -113,6 +172,13 @@ namespace EntryControl
             public object List;
         }
 
+        #endregion
+
+        #region Методы
+
+        /// <summary>
+        ///     инициализирует элементы управления фильтром
+        /// </summary>
         private void InitializeFilterControls()
         {
             DateTime today = DateTime.Today;
@@ -137,22 +203,9 @@ namespace EntryControl
             ForceRefreshData();
         }
 
-        private void rboxEntryPoint_GetList(object sender, ReferenceBox.ReferenceBoxEventArgs e)
-        {
-            e.ItemList = EntryPoint.LoadList(Database);
-        }
-
-
-        private void refreshTimer_Tick(object sender, EventArgs e)
-        {
-            secToUpdate--;
-            lblToRefresh.Text = secToUpdate.ToString() + " сек.";
-            lblToRefresh2.Text = secToUpdate.ToString() + " сек.";
-
-            if (secToUpdate <= 0)
-                RefreshData();
-        }
-
+        /// <summary>
+        ///     запускает обновление данных при наличии изменений в таблицах
+        /// </summary>
         private void RefreshData()
         {
             if (isRefreshing) return;
@@ -160,13 +213,51 @@ namespace EntryControl
             isRefreshing = true;
             refreshTimer.Stop();
 
-            lblToRefresh.Text = "обновляем...";
-            lblToRefresh2.Text = "обновляем...";
+            string refreshingText = "обновляем...";
+            lblToRefresh.Text = refreshingText;
+            lblToRefresh2.Text = refreshingText;
+            lblToRefresh3.Text = refreshingText;
 
             bgLastUpdateDate.RunWorkerAsync(Database);
             bgLastPlanAppointDate.RunWorkerAsync(Database);
+            bgLastMaterialDocumentDate.RunWorkerAsync(Database);
         }
 
+        /// <summary>
+        ///     обновляет список заявок на пропуск
+        /// </summary>
+        private void RefreshPlanAppointList()
+        {
+            RefreshParams args = new RefreshParams();
+            args.database = Database;
+            args.pageNumber = PlanAppointPage;
+            args.dateStart = pickPlanAppointStart.Value;
+
+            bgRefreshPlanAppointList.RunWorkerAsync(args);
+        }
+
+        /// <summary>
+        ///     обновляет список пропусков
+        /// </summary>
+        private void RefreshPermitList()
+        {
+            RefreshParams args = new RefreshParams();
+            args.database = Database;
+            args.dateStart = pickDateStart.Value;
+            args.dateFinish = pickDateFinish.Value;
+
+            args.entryPoint = EntryPoint.Empty; //(EntryPoint)rboxEntryPoint.SelectedItem;
+            args.defaultState = (EnumerationItem)cboxPermitType.SelectedItem;
+
+            args.pageNumber = PermitListPage;
+
+            bgRefreshPermitList.RunWorkerAsync(args);
+        }
+
+
+        /// <summary>
+        ///     принудительно обновляет данные
+        /// </summary>
         private void ForceRefreshData()
         {
             if (isRefreshing) return;
@@ -174,8 +265,10 @@ namespace EntryControl
             isRefreshing = true;
             refreshTimer.Stop();
 
-            lblToRefresh.Text = "обновляем...";
-            lblToRefresh2.Text = "обновляем...";
+            string refreshingText = "обновляем...";
+            lblToRefresh.Text = refreshingText;
+            lblToRefresh2.Text = refreshingText;
+            lblToRefresh3.Text = refreshingText;
 
             RefreshParams parameters = new RefreshParams();
             parameters.database = Database;
@@ -192,85 +285,25 @@ namespace EntryControl
             bgRefreshPlanAppointList.RunWorkerAsync(parameters);
         }
 
+        /// <summary>
+        ///     возвращает список пропусков из БД
+        /// </summary>
+        /// <param name="database">соединение с БД</param>
+        /// <param name="dateStart">период действия с</param>
+        /// <param name="dateFinish">период действия по</param>
+        /// <param name="entryPoint">п. пропуска</param>
+        /// <param name="defaultState">фильтр состояния пропуска</param>
+        /// <param name="pageNum">страница списка</param>
+        /// <returns></returns>
         private List<Permit> LoadPermitList(Database database, DateTime dateStart, DateTime dateFinish,
                                                 EntryPoint entryPoint, EnumerationItem defaultState, int pageNum)
         {
             return Permit.LoadList(database, dateStart, dateFinish, entryPoint, defaultState, pageNum);
         }
 
-
-
-        private void ReceptionForm_Load(object sender, EventArgs e)
-        {
-            //RefreshData();
-        }
-
-        private void bgLastUpdateDate_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Database database = (Database)e.Argument;
-
-            string query = EntryControl.Resources.Doc.Permit.GetLasUpdateDate;
-            object result = database.ExecuteScalar(query);
-            e.Result = (result == null || DBNull.Value.Equals(result) ? DateTime.MinValue : (DateTime)result);
-        }
-
-        private void bgLastUpdateDate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            DateTime lastDate = (DateTime)e.Result;
-
-            if (lastDate > lastPermitModifiedDate)
-            {
-                lastPermitModifiedDate = lastDate;
-
-                RefreshParams parameters = new RefreshParams();
-                parameters.database = Database;
-                parameters.dateStart = pickDateStart.Value;
-                parameters.dateFinish = pickDateFinish.Value;
-                parameters.entryPoint = EntryPoint.Empty;
-                parameters.defaultState = (EnumerationItem)cboxPermitType.SelectedItem;
-                parameters.pageNumber = PermitListPage;
-
-                bgRefreshPermitList.RunWorkerAsync(parameters);
-
-
-            }
-        }
-
-        private void bgRefresh_DoWork(object sender, DoWorkEventArgs e)
-        {
-            RefreshParams parameters = (RefreshParams)e.Argument;
-
-            RefreshResult result = new RefreshResult();
-
-            result.totalPages = Permit.GetCount(parameters.database, parameters.dateStart, parameters.dateFinish,
-                                        parameters.entryPoint, parameters.defaultState);
-
-            result.List = LoadPermitList(parameters.database, parameters.dateStart,
-                                            parameters.dateFinish, parameters.entryPoint, parameters.defaultState,
-                                            parameters.pageNumber);
-
-            e.Result = result;
-        }
-
-        private void bgRefresh_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            RefreshResult result = (RefreshResult)e.Result;
-
-            int totalPages = result.totalPages / 100;
-            if (result.totalPages % 100 > 0) totalPages++;
-
-            lblPermitPage.Text = PermitListPage.ToString() + " / " + totalPages.ToString();
-            btnPreviousPermitPage.Enabled = (PermitListPage > 1);
-            btnNextPermitPage.Enabled = (PermitListPage < totalPages);
-
-
-            List<Permit> permitList = (List<Permit>)result.List;
-
-            if (permitList != null)
-                bsPermitList.DataSource = new BindingList<Permit>(permitList);
-
-        }
-
+        /// <summary>
+        ///     запускает таймер до следующего обновления
+        /// </summary>
         private void StartTimer()
         {
             isRefreshing = false;
@@ -278,80 +311,12 @@ namespace EntryControl
             refreshTimer.Start();
         }
 
-        private void bgLastPlanAppointDate_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Database database = (Database)e.Argument;
+        #region PlanAppoint actions
 
-            string query = EntryControl.Resources.Doc.PlanAppoint.GetLastDateModified;
-            object result = database.ExecuteScalar(query);
-            e.Result = (result == null || DBNull.Value.Equals(result) ? DateTime.MinValue : (DateTime)result);
-
-        }
-
-        private void bgLastPlanAppointDate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            DateTime lastDate = (DateTime)e.Result;
-
-            if (lastDate > lastPlanAppouintModifiedDate)
-            {
-                lastPlanAppouintModifiedDate = lastDate;
-
-                RefreshParams args = new RefreshParams();
-                args.database = Database;
-                args.pageNumber = planAppointPage;
-                args.dateStart = pickPlanAppointStart.Value;
-
-                bgRefreshPlanAppointList.RunWorkerAsync(args);
-            }
-            else
-            {
-                StartTimer();
-            }
-        }
-
-        private void bgRefreshPlanAppointList_DoWork(object sender, DoWorkEventArgs e)
-        {
-            RefreshParams args = (RefreshParams)e.Argument;
-
-            Database database = args.database;
-
-            RefreshResult result = new RefreshResult();
-            result.totalPages = PlanAppoint.GetNumberWOPermit(database, args.dateStart);
-            result.List = PlanAppoint.LoadWoPermit(database, args.dateStart, args.pageNumber);
-            e.Result = result;
-        }
-
-        private void bgRefreshPlanAppointList_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            RefreshResult result = (RefreshResult)e.Result;
-
-            int totalPages = result.totalPages / 100;
-            if (result.totalPages % 100 > 0) totalPages++;
-
-            lblPageNumber.Text = PlanAppointPage.ToString() + "/" + totalPages.ToString();
-
-            btnPreviousPage.Enabled = (PlanAppointPage > 1);
-            btnNextPage.Enabled = (PlanAppointPage < totalPages);
-
-            List<PlanAppoint> appointList = (List<PlanAppoint>)result.List;
-
-            bsPlanAppointList.DataSource = new BindingList<PlanAppoint>(appointList);
-
-            StartTimer();
-        }
-
-        private void bsPlanAppointList_DataSourceChanged(object sender, EventArgs e)
-        {
-            pagePlanAppointList.Text = "Заявки (" + bsPlanAppointList.Count.ToString() + ")";
-        }
-
-        private void createPermitTool_Click(object sender, EventArgs e)
-        {
-            if (SelectedPlanAppoint != null)
-                CreatePermitForPlanAppoint(SelectedPlanAppoint);
-
-        }
-
+        /// <summary>
+        ///     создает пропуск на основе заявки
+        /// </summary>
+        /// <param name="planAppoint">Заявка на пропуск</param>
         private void CreatePermitForPlanAppoint(PlanAppoint planAppoint)
         {
             try
@@ -367,17 +332,10 @@ namespace EntryControl
             }
         }
 
-        void form_ItemSaved(object sender, EventArgs e)
-        {
-            ForceRefreshData();
-        }
-
-        private void lockAppointTool_Click(object sender, EventArgs e)
-        {
-            if (SelectedPlanAppoint != null)
-                LockPlanAppoint(SelectedPlanAppoint);
-        }
-
+        /// <summary>
+        ///     формирует отказ в удовлетворении заявки
+        /// </summary>
+        /// <param name="planAppoint"></param>
         private void LockPlanAppoint(PlanAppoint planAppoint)
         {
             if (MessageBox.Show("Отказать в проезде транспорта на территорию?",
@@ -386,63 +344,17 @@ namespace EntryControl
                 string query = EntryControl.Resources.Doc.PlanAppoint.SetPermitLocked;
                 QueryParameters parameters = new QueryParameters("planAppoint", planAppoint.Id);
                 Database.ExecuteQuery(query, parameters);
-                RefreshData();
+                ForceRefreshData();
             }
         }
 
-        private void dgvPlanAppointList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                PlanAppoint appoint = (PlanAppoint)bsPlanAppointList[e.RowIndex];
-                if (appoint.IsLocked)
-                {
-                    dgvPlanAppointList.Rows[e.RowIndex].DefaultCellStyle.ForeColor
-                        = Color.Red;
-                    dgvPlanAppointList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor
-                        = Color.Red;
-                }
-            }
-        }
+        #endregion
 
-        private void dgvPermitList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                Permit permit = (Permit)bsPermitList[e.RowIndex];
+        #region Permit actions
 
-
-                switch (permit.PermitState.Id)
-                {
-                    case 1:
-                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Green;
-                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Green;
-                        break;
-                        
-                    case 2:
-                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Blue;
-                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Blue;
-                        break;
-
-                    case 3:
-                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
-                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Red;
-                        break;
-
-                    case 4:
-                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Gray;
-                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Gray;
-                        break;
-                }
-
-            }
-        }
-
-        private void permitTools_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            CreateEmptyPermit();
-        }
-
+        /// <summary>
+        ///     создает незаполненный пропуск и вызывает форму редактирования
+        /// </summary>
         private void CreateEmptyPermit()
         {
             PermitItemForm form = new PermitItemForm(Database);
@@ -450,17 +362,10 @@ namespace EntryControl
             form.Show();
         }
 
-        private void pickDateStart_ValueChanged(object sender, EventArgs e)
-        {
-            if (isInitialized) ForceRefreshData();
-        }
-
-        private void editPermitTool_Click(object sender, EventArgs e)
-        {
-            if (SelectedPermit != null)
-                EditPermit(SelectedPermit);
-        }
-
+        /// <summary>
+        ///     вызывает форму редактирования для пропуска
+        /// </summary>
+        /// <param name="permit">редактируемый документ</param>
         private void EditPermit(Permit permit)
         {
             PermitItemForm form = new PermitItemForm(Database);
@@ -470,17 +375,10 @@ namespace EntryControl
 
         }
 
-        private void addPermitTool_Click(object sender, EventArgs e)
-        {
-            CreateEmptyPermit();
-        }
-
-        private void deletePermitTool_Click(object sender, EventArgs e)
-        {
-            if (SelectedPermit != null)
-            DeletePermit(SelectedPermit);
-        }
-
+        /// <summary>
+        ///     удаляет указынный пропуск
+        /// </summary>
+        /// <param name="permit">удаляемый документ</param>
         private void DeletePermit(Permit permit)
         {
             string message = EntryControl.Resources.Message.Question.Delete;
@@ -493,83 +391,32 @@ namespace EntryControl
             }
         }
 
-        private void refreshPermiListTool_Click(object sender, EventArgs e)
+        /// <summary>
+        ///     отражает данные пропуска в панели информации
+        /// </summary>
+        /// <param name="permit"></param>
+        private void ShowPermitInfo(Permit permit)
         {
-            ForceRefreshData();
+            tboxPermitComment.Text = permit.GetComment(Database);
+
+            dgvMoving.DataSource = permit.GetMovingList(Database);
+            dgvPointList.DataSource = permit.GetAllowedPointList(Database);
         }
 
-        private void materialPermitTool_Click(object sender, EventArgs e)
+        /// <summary>
+        ///     очищает панель информации
+        /// </summary>
+        private void ClearPermitInfo()
         {
-            ShowMaterialPermitList();
+            tboxPermitComment.Text = "";
+            dgvPointList.DataSource = null;
+            dgvPointList.DataSource = null;
         }
 
-        private void ShowMaterialPermitList()
-        {
-            MaterialPermitListForm form = new MaterialPermitListForm(Database);
-
-            form.Show();
-        }
-
-        private void bsPermitList_CurrentChanged(object sender, EventArgs e)
-        {
-            if (bsPermitList.Current != null)
-            {
-                Permit permit = (Permit)bsPermitList.Current;
-                tboxPermitComment.Text = permit.GetComment(Database);
-
-                dgvMoving.DataSource = permit.GetMovingList(Database);
-                dgvPointList.DataSource = permit.GetAllowedPointList(Database);
-                //MaterialPermit materialPermit = permit.GetMaterialPermit(Database);
-
-                //if (materialPermit != null)
-                //{
-                //    lblMaterialPermit.Text = materialPermit.ToString();
-                //    dgvPointList.DataSource = materialPermit.GetItemList(Database);
-                //    dgvPointList.Visible = true;
-                //}
-                //else
-                //{
-                //    lblMaterialPermit.Text = "не привязан";
-                //    dgvPointList.DataSource = null;
-                //    dgvPointList.Visible = false;
-                //}
-            }
-            else
-            {
-                tboxPermitComment.Text = "";
-                dgvPointList.DataSource = null;
-                //lblMaterialPermit.Text = "";
-                dgvPointList.DataSource = null;
-                //dgvPointList.Visible = false;
-            }
-        }
-
-        private void btnChangePassword_Click(object sender, EventArgs e)
-        {
-            ChangePasswordForm form = new ChangePasswordForm(Database);
-            form.CurrentUser = Database.ConnectedUser;
-            form.ShowDialog();
-        }
-
-        private void bsPlanAppointList_CurrentChanged(object sender, EventArgs e)
-        {
-            if (bsPlanAppointList.Current != null)
-            {
-                tboxComment.Text = ((PlanAppoint)bsPlanAppointList.Current).GetComment(Database); //.Comment;
-            }
-            else
-            {
-                tboxComment.Text = "";
-            }
-                
-        }
-
-        private void printPermitListTool_Click(object sender, EventArgs e)
-        {
-            printPermitList();
-        }
-
-        private void printPermitList()
+        /// <summary>
+        ///     печатает список пропусков
+        /// </summary>
+        private void PrintPermitList()
         {
             StiReport report = new StiReport();
             string path = Path.GetDirectoryName(Application.ExecutablePath);
@@ -591,27 +438,13 @@ namespace EntryControl
 
         }
 
-        private void findTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (findTextBox.Text.Length == 0)
-            {
-                findNextTool.Enabled = false;
-                return;
-            }
-
-            findNextTool.Enabled = true;
-
-            if (FindTextInPermitList(findTextBox.Text, 0, 0))
-            {
-                findTextBox.ForeColor = SystemColors.WindowText;
-            }
-            else
-            {
-                findTextBox.ForeColor = Color.Red;
-                System.Media.SystemSounds.Beep.Play();
-            }
-        }
-
+        /// <summary>
+        ///     ищет текст в таблице пропусков
+        /// </summary>
+        /// <param name="text">искомый текст</param>
+        /// <param name="startRow">строка начала поиска</param>
+        /// <param name="startColumn">столбец начала поиска</param>
+        /// <returns></returns>
         private bool FindTextInPermitList(string text, int startRow, int startColumn)
         {
             int startColumnIndex = startColumn;
@@ -659,35 +492,114 @@ namespace EntryControl
 
         }
 
-        private void findNextTool_Click(object sender, EventArgs e)
+
+
+        #endregion
+
+        /// <summary>
+        ///     сбрасывает настройки приложения
+        /// </summary>
+        private void ClearSettings()
         {
-            if (findTextBox.Text.Length == 0)
+            if (MessageBox.Show("Сбросить настройки приложения?", "ВНИМАНИЕ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                return;
+                Settings.Default.StartForm = 0;
+                Settings.Default.Save();
+
+                Environment.Exit(0);
             }
 
-            if (FindTextInPermitList(findTextBox.Text, 
-                                        dgvPermitList.CurrentCell.RowIndex, 
-                                        dgvPermitList.CurrentCell.ColumnIndex + 1))
+        }
+
+        #endregion
+
+        #region Event handlers
+
+        /// <summary>
+        ///     заполняет список для выбора пунктов пропуска
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rboxEntryPoint_GetList(object sender, ReferenceBox.ReferenceBoxEventArgs e)
+        {
+            e.ItemList = EntryPoint.LoadList(Database);
+        }
+
+        /// <summary>
+        ///     обработчик отсчета времени до обновления
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void refreshTimer_Tick(object sender, EventArgs e)
+        {
+            secToUpdate--;
+            string timeToRefresh = secToUpdate.ToString() + " сек.";
+            lblToRefresh.Text = timeToRefresh;
+            lblToRefresh2.Text = timeToRefresh;
+            lblToRefresh3.Text = timeToRefresh;
+
+            if (secToUpdate <= 0)
+                RefreshData();
+        }
+
+        /// <summary>
+        ///     при изменении списка заявок на пропуск - меняем заголовок соответствующей таблицы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bsPlanAppointList_DataSourceChanged(object sender, EventArgs e)
+        {
+            pagePlanAppointList.Text = "Заявки (" + bsPlanAppointList.Count.ToString() + ")";
+        }
+
+        /// <summary>
+        ///     при выборе строки заявки на пропуск - отражает комментарий документа
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bsPlanAppointList_CurrentChanged(object sender, EventArgs e)
+        {
+            if (bsPlanAppointList.Current != null)
             {
-                findTextBox.ForeColor = SystemColors.WindowText;
+                tboxComment.Text = ((PlanAppoint)bsPlanAppointList.Current).GetComment(Database); //.Comment;
             }
             else
             {
-                findTextBox.ForeColor = Color.Red;
-                System.Media.SystemSounds.Beep.Play();
+                tboxComment.Text = "";
             }
+
+        }
+
+        /// <summary>
+        ///     при выборе строки пропуска - отражает информацию в правой панели
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bsPermitList_CurrentChanged(object sender, EventArgs e)
+        {
+            if (bsPermitList.Current != null)
+                ShowPermitInfo((Permit)bsPermitList.Current);
+            else
+                ClearPermitInfo();
         }
 
 
-        private void RefreshPlanAppointList()
-        {
-            RefreshParams args = new RefreshParams();
-            args.database = Database;
-            args.pageNumber = PlanAppointPage;
-            args.dateStart = pickPlanAppointStart.Value;
 
-            bgRefreshPlanAppointList.RunWorkerAsync(args);
+        #region ToolPanels
+
+        #region PlanAppoint tools
+
+        private void createPermitTool_Click(object sender, EventArgs e)
+        {
+            if (SelectedPlanAppoint != null)
+                CreatePermitForPlanAppoint(SelectedPlanAppoint);
+
+        }
+
+        private void lockAppointTool_Click(object sender, EventArgs e)
+        {
+            if (SelectedPlanAppoint != null)
+                LockPlanAppoint(SelectedPlanAppoint);
         }
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
@@ -700,19 +612,92 @@ namespace EntryControl
             PlanAppointPage++;
         }
 
-        private void RefreshPermitList()
+
+        #endregion
+
+        #region Permit tools
+
+        /// <summary>
+        ///     обновляет список пропусков при изменении параметров фильтра
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pickDateStart_ValueChanged(object sender, EventArgs e)
         {
-            RefreshParams args = new RefreshParams();
-            args.database = Database;
-            args.dateStart = pickDateStart.Value;
-            args.dateFinish = pickDateFinish.Value;
+            if (isInitialized) ForceRefreshData();
+        }
 
-            args.entryPoint = EntryPoint.Empty; //(EntryPoint)rboxEntryPoint.SelectedItem;
-            args.defaultState = (EnumerationItem)cboxPermitType.SelectedItem;
+        //private void permitTools_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        //{
+        //    CreateEmptyPermit();
+        //}
 
-            args.pageNumber = PermitListPage;
+        private void editPermitTool_Click(object sender, EventArgs e)
+        {
+            if (SelectedPermit != null)
+                EditPermit(SelectedPermit);
+        }
 
-            bgRefreshPermitList.RunWorkerAsync(args);
+        private void addPermitTool_Click(object sender, EventArgs e)
+        {
+            CreateEmptyPermit();
+        }
+
+        private void deletePermitTool_Click(object sender, EventArgs e)
+        {
+            if (SelectedPermit != null)
+                DeletePermit(SelectedPermit);
+        }
+
+        private void refreshPermiListTool_Click(object sender, EventArgs e)
+        {
+            ForceRefreshData();
+        }
+
+        private void printPermitListTool_Click(object sender, EventArgs e)
+        {
+            PrintPermitList();
+        }
+
+        private void findTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (findTextBox.Text.Length == 0)
+            {
+                findNextTool.Enabled = false;
+                return;
+            }
+
+            findNextTool.Enabled = true;
+
+            if (FindTextInPermitList(findTextBox.Text, 0, 0))
+            {
+                findTextBox.ForeColor = SystemColors.WindowText;
+            }
+            else
+            {
+                findTextBox.ForeColor = Color.Red;
+                System.Media.SystemSounds.Beep.Play();
+            }
+        }
+
+        private void findNextTool_Click(object sender, EventArgs e)
+        {
+            if (findTextBox.Text.Length == 0)
+            {
+                return;
+            }
+
+            if (FindTextInPermitList(findTextBox.Text,
+                                        dgvPermitList.CurrentCell.RowIndex,
+                                        dgvPermitList.CurrentCell.ColumnIndex + 1))
+            {
+                findTextBox.ForeColor = SystemColors.WindowText;
+            }
+            else
+            {
+                findTextBox.ForeColor = Color.Red;
+                System.Media.SystemSounds.Beep.Play();
+            }
         }
 
         private void btnPreviousPermitPage_Click(object sender, EventArgs e)
@@ -725,6 +710,97 @@ namespace EntryControl
             PermitListPage++;
         }
 
+
+
+        #endregion
+
+        #endregion
+
+        /// <summary>
+        ///     по сохранению объектов в дочерних формах - обновляет списки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void form_ItemSaved(object sender, EventArgs e)
+        {
+            ForceRefreshData();
+        }
+
+        /// <summary>
+        ///     перед отрисовкой списка заявок - раскрашивает заявки с отказом
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvPlanAppointList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                PlanAppoint appoint = (PlanAppoint)bsPlanAppointList[e.RowIndex];
+                if (appoint.IsLocked)
+                {
+                    dgvPlanAppointList.Rows[e.RowIndex].DefaultCellStyle.ForeColor
+                        = Color.Red;
+                    dgvPlanAppointList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor
+                        = Color.Red;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     перед отрисовкой списка пропусков - раскрашивает пропуска по состоянию
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvPermitList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                Permit permit = (Permit)bsPermitList[e.RowIndex];
+
+
+                switch (permit.PermitState.Id)
+                {
+                    case 1:
+                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Green;
+                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Green;
+                        break;
+
+                    case 2:
+                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Blue;
+                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Blue;
+                        break;
+
+                    case 3:
+                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Red;
+                        break;
+
+                    case 4:
+                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Gray;
+                        dgvPermitList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Gray;
+                        break;
+                }
+
+            }
+        }
+
+        /// <summary>
+        ///     вызывает форму изменения пароля пользователя
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            ChangePasswordForm form = new ChangePasswordForm(Database);
+            form.CurrentUser = Database.ConnectedUser;
+            form.ShowDialog();
+        }
+
+        /// <summary>
+        ///     при изменении даты фильтра заявок - обновляет список
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pickPlanAppointStart_ValueChanged(object sender, EventArgs e)
         {
             if (isInitialized)
@@ -743,16 +819,177 @@ namespace EntryControl
                 ClearSettings();
         }
 
-        private void ClearSettings()
-        {
-            if (MessageBox.Show("Сбросить настройки приложения?", "ВНИМАНИЕ", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                Settings.Default.StartForm = 0;
-                Settings.Default.Save();
+        #endregion
 
-                Environment.Exit(0);
+
+        #region Фоновые задания
+
+        #region bgLastUpdateDate - Дата последних изменений в таблице пропусков
+
+        private void bgLastUpdateDate_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Database database = (Database)e.Argument;
+
+            string query = EntryControl.Resources.Doc.Permit.GetLasUpdateDate;
+            object result = database.ExecuteScalar(query);
+            e.Result = (result == null || DBNull.Value.Equals(result) ? DateTime.MinValue : (DateTime)result);
+        }
+
+        private void bgLastUpdateDate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            DateTime lastDate = (DateTime)e.Result;
+
+            if (lastDate > lastPermitModifiedDate)
+            {
+                lastPermitModifiedDate = lastDate;
+
+                RefreshParams parameters = new RefreshParams();
+                parameters.database = Database;
+                parameters.dateStart = pickDateStart.Value;
+                parameters.dateFinish = pickDateFinish.Value;
+                parameters.entryPoint = EntryPoint.Empty;
+                parameters.defaultState = (EnumerationItem)cboxPermitType.SelectedItem;
+                parameters.pageNumber = PermitListPage;
+
+                bgRefreshPermitList.RunWorkerAsync(parameters);
+
             }
+        }
+
+        #endregion
+
+        #region bgRefresh - Список пропусков
+
+        private void bgRefresh_DoWork(object sender, DoWorkEventArgs e)
+        {
+            RefreshParams parameters = (RefreshParams)e.Argument;
+
+            RefreshResult result = new RefreshResult();
+
+            result.totalPages = Permit.GetCount(parameters.database, parameters.dateStart, parameters.dateFinish,
+                                        parameters.entryPoint, parameters.defaultState);
+
+            result.List = LoadPermitList(parameters.database, parameters.dateStart,
+                                            parameters.dateFinish, parameters.entryPoint, parameters.defaultState,
+                                            parameters.pageNumber);
+
+            e.Result = result;
+        }
+
+        private void bgRefresh_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            RefreshResult result = (RefreshResult)e.Result;
+
+            int totalPages = result.totalPages / 100;
+            if (result.totalPages % 100 > 0) totalPages++;
+
+            lblPermitPage.Text = PermitListPage.ToString() + " / " + totalPages.ToString();
+            btnPreviousPermitPage.Enabled = (PermitListPage > 1);
+            btnNextPermitPage.Enabled = (PermitListPage < totalPages);
+
+
+            List<Permit> permitList = (List<Permit>)result.List;
+
+            if (permitList != null)
+                bsPermitList.DataSource = new BindingList<Permit>(permitList);
 
         }
+
+        #endregion
+
+        #region bgLastPlanAppointDate - Дата последних изменений в таблице заявок на пропуск
+
+        private void bgLastPlanAppointDate_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Database database = (Database)e.Argument;
+
+            string query = EntryControl.Resources.Doc.PlanAppoint.GetLastDateModified;
+            object result = database.ExecuteScalar(query);
+            e.Result = (result == null || DBNull.Value.Equals(result) ? DateTime.MinValue : (DateTime)result);
+
+        }
+
+        private void bgLastPlanAppointDate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            DateTime lastDate = (DateTime)e.Result;
+
+            if (lastDate > lastPlanAppouintModifiedDate)
+            {
+                lastPlanAppouintModifiedDate = lastDate;
+
+                RefreshParams args = new RefreshParams();
+                args.database = Database;
+                args.pageNumber = planAppointPage;
+                args.dateStart = pickPlanAppointStart.Value;
+
+                bgRefreshPlanAppointList.RunWorkerAsync(args);
+            }
+            else
+            {
+                StartTimer();
+            }
+        }
+
+        #endregion
+
+        #region bgRefreshPlanAppointList - Список заявок на пропуска
+
+        private void bgRefreshPlanAppointList_DoWork(object sender, DoWorkEventArgs e)
+        {
+            RefreshParams args = (RefreshParams)e.Argument;
+
+            Database database = args.database;
+
+            RefreshResult result = new RefreshResult();
+            result.totalPages = PlanAppoint.GetNumberWOPermit(database, args.dateStart);
+            result.List = PlanAppoint.LoadWoPermit(database, args.dateStart, args.pageNumber);
+            e.Result = result;
+        }
+
+        private void bgRefreshPlanAppointList_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            RefreshResult result = (RefreshResult)e.Result;
+
+            int totalPages = result.totalPages / 100;
+            if (result.totalPages % 100 > 0) totalPages++;
+
+            lblPageNumber.Text = PlanAppointPage.ToString() + "/" + totalPages.ToString();
+
+            btnPreviousPage.Enabled = (PlanAppointPage > 1);
+            btnNextPage.Enabled = (PlanAppointPage < totalPages);
+
+            List<PlanAppoint> appointList = (List<PlanAppoint>)result.List;
+
+            bsPlanAppointList.DataSource = new BindingList<PlanAppoint>(appointList);
+
+            StartTimer();
+        }
+
+        #endregion
+
+        #endregion
+
+
+
+
+
+
+        private void materialPermitTool_Click(object sender, EventArgs e)
+        {
+            ShowMaterialPermitList();
+        }
+
+        private void ShowMaterialPermitList()
+        {
+            MaterialPermitListForm form = new MaterialPermitListForm(Database);
+
+            form.Show();
+        }
+
+
+ 
+
+ 
+
     }
 }

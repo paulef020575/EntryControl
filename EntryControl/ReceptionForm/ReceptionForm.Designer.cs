@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceptionForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bsPermitList = new System.Windows.Forms.BindingSource(this.components);
             this.bsPlanAppointList = new System.Windows.Forms.BindingSource(this.components);
             this.bgRefreshPermitList = new System.ComponentModel.BackgroundWorker();
@@ -110,7 +110,7 @@
             this.panelFilter = new System.Windows.Forms.Panel();
             this.pickPlanAppointStart = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.materialDocumentPage = new System.Windows.Forms.TabPage();
+            this.pageMaterialDocumentLisy = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvMaterialPermitList = new System.Windows.Forms.DataGridView();
             this.bsMaterialDocumentList = new System.Windows.Forms.BindingSource(this.components);
@@ -120,7 +120,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.materialPermitTool = new System.Windows.Forms.ToolStripButton();
             this.btnChangePassword = new System.Windows.Forms.ToolStripButton();
-            this.bgGetMaterialDocumentList = new System.ComponentModel.BackgroundWorker();
+            this.bgRefreshMaterialDocumentList = new System.ComponentModel.BackgroundWorker();
             this.bgLastMaterialDocumentDate = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.bsPermitList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPlanAppointList)).BeginInit();
@@ -139,7 +139,7 @@
             this.pnlComment.SuspendLayout();
             this.planAppointTools.SuspendLayout();
             this.panelFilter.SuspendLayout();
-            this.materialDocumentPage.SuspendLayout();
+            this.pageMaterialDocumentLisy.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialPermitList)).BeginInit();
@@ -188,7 +188,7 @@
             // 
             this.tabControl.Controls.Add(this.permitPage);
             this.tabControl.Controls.Add(this.pagePlanAppointList);
-            this.tabControl.Controls.Add(this.materialDocumentPage);
+            this.tabControl.Controls.Add(this.pageMaterialDocumentLisy);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 25);
             this.tabControl.Name = "tabControl";
@@ -720,9 +720,9 @@
             // ColumnDateFrom
             // 
             this.ColumnDateFrom.DataPropertyName = "DateFrom";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.ColumnDateFrom.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ColumnDateFrom.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnDateFrom.HeaderText = "дата прибытия";
             this.ColumnDateFrom.Name = "ColumnDateFrom";
             this.ColumnDateFrom.ReadOnly = true;
@@ -893,16 +893,16 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Заявки не ранее";
             // 
-            // materialDocumentPage
+            // pageMaterialDocumentLisy
             // 
-            this.materialDocumentPage.Controls.Add(this.splitContainer1);
-            this.materialDocumentPage.Location = new System.Drawing.Point(4, 22);
-            this.materialDocumentPage.Name = "materialDocumentPage";
-            this.materialDocumentPage.Padding = new System.Windows.Forms.Padding(3);
-            this.materialDocumentPage.Size = new System.Drawing.Size(1007, 440);
-            this.materialDocumentPage.TabIndex = 2;
-            this.materialDocumentPage.Text = "materialDocumentPage";
-            this.materialDocumentPage.UseVisualStyleBackColor = true;
+            this.pageMaterialDocumentLisy.Controls.Add(this.splitContainer1);
+            this.pageMaterialDocumentLisy.Location = new System.Drawing.Point(4, 22);
+            this.pageMaterialDocumentLisy.Name = "pageMaterialDocumentLisy";
+            this.pageMaterialDocumentLisy.Padding = new System.Windows.Forms.Padding(3);
+            this.pageMaterialDocumentLisy.Size = new System.Drawing.Size(1007, 440);
+            this.pageMaterialDocumentLisy.TabIndex = 2;
+            this.pageMaterialDocumentLisy.Text = "materialDocumentPage";
+            this.pageMaterialDocumentLisy.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
@@ -991,6 +991,16 @@
             this.btnChangePassword.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
+            // bgRefreshMaterialDocumentList
+            // 
+            this.bgRefreshMaterialDocumentList.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgRefreshMaterialDocumentList_DoWork);
+            this.bgRefreshMaterialDocumentList.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgRefreshMaterialDocumentList_RunWorkerCompleted);
+            // 
+            // bgLastMaterialDocumentDate
+            // 
+            this.bgLastMaterialDocumentDate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgLastMaterialDocumentDate_DoWork);
+            this.bgLastMaterialDocumentDate.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgLastMaterialDocumentDate_RunWorkerCompleted);
+            // 
             // ReceptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1025,7 +1035,7 @@
             this.planAppointTools.PerformLayout();
             this.panelFilter.ResumeLayout(false);
             this.panelFilter.PerformLayout();
-            this.materialDocumentPage.ResumeLayout(false);
+            this.pageMaterialDocumentLisy.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
@@ -1124,13 +1134,13 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnMultiEntry;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPermitPoint;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TabPage materialDocumentPage;
+        private System.Windows.Forms.TabPage pageMaterialDocumentLisy;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dgvMaterialPermitList;
         private System.Windows.Forms.BindingSource bsMaterialDocumentList;
         private System.Windows.Forms.ToolStrip materialPermitToolStrip;
         private System.Windows.Forms.Panel pnlMaterialPermitFilter;
-        private System.ComponentModel.BackgroundWorker bgGetMaterialDocumentList;
+        private System.ComponentModel.BackgroundWorker bgRefreshMaterialDocumentList;
         private System.Windows.Forms.ToolStripLabel lblToRefresh3;
         private System.ComponentModel.BackgroundWorker bgLastMaterialDocumentDate;
     }

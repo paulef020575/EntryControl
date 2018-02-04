@@ -90,6 +90,21 @@ namespace EntryControl
 
         #endregion
 
+        #region MaterialDocumentListPage - страница списка материальных пропусков
+
+        private int materialDocumentListPage = 1;
+
+        public int MaterialDocumentListPage
+        {
+            get { return materialDocumentListPage; }
+            set
+            {
+                materialDocumentListPage = value;
+                RefreshMaterialDocumentList();
+            }
+        }
+
+         #endregion
 
         #region Значения для отсчета времени
 
@@ -254,6 +269,12 @@ namespace EntryControl
             bgRefreshPermitList.RunWorkerAsync(args);
         }
 
+        private void RefreshMaterialDocumentList()
+        {
+            throw new NotImplementedException();
+        }
+
+
 
         /// <summary>
         ///     принудительно обновляет данные
@@ -283,6 +304,12 @@ namespace EntryControl
             parameters.pageNumber = planAppointPage;
 
             bgRefreshPlanAppointList.RunWorkerAsync(parameters);
+
+            parameters.dateStart = DateTime.MinValue;
+            parameters.dateFinish = DateTime.MaxValue;
+            parameters.pageNumber = MaterialDocumentListPage;
+
+            bgRefreshMaterialDocumentList.RunWorkerAsync(parameters);
         }
 
         /// <summary>
@@ -306,9 +333,14 @@ namespace EntryControl
         /// </summary>
         private void StartTimer()
         {
-            isRefreshing = false;
-            secToUpdate = startSeconds;
-            refreshTimer.Start();
+            if (!bgRefreshPermitList.IsBusy
+                && !bgRefreshPlanAppointList.IsBusy
+                && !bgRefreshMaterialDocumentList.IsBusy)
+            {
+                isRefreshing = false;
+                secToUpdate = startSeconds;
+                refreshTimer.Start();
+            }
         }
 
         #region PlanAppoint actions
@@ -854,6 +886,10 @@ namespace EntryControl
                 bgRefreshPermitList.RunWorkerAsync(parameters);
 
             }
+            else
+            {
+                StartTimer();
+            }
         }
 
         #endregion
@@ -893,6 +929,7 @@ namespace EntryControl
             if (permitList != null)
                 bsPermitList.DataSource = new BindingList<Permit>(permitList);
 
+            StartTimer();
         }
 
         #endregion
@@ -967,6 +1004,68 @@ namespace EntryControl
 
         #endregion
 
+        #region bgLastMaterialDocumentDate - Дата последних изменений в таблице материальных пропусков
+
+        private void bgLastMaterialDocumentDate_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Database database = (Database)e.Argument;
+
+            string query = EntryControl.Resources.Doc.MaterialPermit.GetLastDate;
+            object result = database.ExecuteScalar(query);
+            e.Result = (result == null || DBNull.Value.Equals(result) ? DateTime.MinValue : (DateTime)result);
+        }
+
+        private void bgLastMaterialDocumentDate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            DateTime lastDate = (DateTime)e.Result;
+
+            if (lastDate > lastMaterialDocumentModifiedDate)
+            {
+                lastMaterialDocumentModifiedDate = lastDate;
+
+                RefreshParams args = new RefreshParams();
+                args.database = Database;
+                args.pageNumber = materialDocumentListPage;
+                args.dateStart = DateTime.MinValue;
+                args.dateFinish = DateTime.MaxValue;
+
+                bgRefreshMaterialDocumentList.RunWorkerAsync(args);
+            }
+            else
+            {
+                StartTimer();
+            }
+        }
+
+        #endregion
+
+        #region bgRefreshMaterialDocumentList - список материальных пропусков
+
+        private void bgRefreshMaterialDocumentList_DoWork(object sender, DoWorkEventArgs e)
+        {
+            RefreshParams args = (RefreshParams)e.Argument;
+
+            Database database = args.database;
+
+            RefreshResult result = new RefreshResult();
+            result.List = MaterialPermit.LoadList((EntryControlDatabase)database, args.dateStart, args.dateFinish);
+
+            e.Result = result;
+        }
+
+        private void bgRefreshMaterialDocumentList_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            RefreshResult result = (RefreshResult)e.Result;
+
+            List<MaterialPermit> materialDocumentList = (List<MaterialPermit>)result.List;
+            bsMaterialDocumentList.DataSource = new BindingList<MaterialPermit>(materialDocumentList);
+
+            pageMaterialDocumentLisy.Text = bsMaterialDocumentList.Count.ToString();
+
+            StartTimer();
+        }
+        #endregion
+
         #endregion
 
 
@@ -985,11 +1084,6 @@ namespace EntryControl
 
             form.Show();
         }
-
-
- 
-
- 
 
     }
 }

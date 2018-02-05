@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceptionForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bsPermitList = new System.Windows.Forms.BindingSource(this.components);
             this.bsPlanAppointList = new System.Windows.Forms.BindingSource(this.components);
             this.bgRefreshPermitList = new System.ComponentModel.BackgroundWorker();
@@ -113,15 +113,31 @@
             this.pageMaterialDocumentLisy = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvMaterialPermitList = new System.Windows.Forms.DataGridView();
+            this.ColumnMdDocNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnMdDocDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnMdUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsMaterialDocumentList = new System.Windows.Forms.BindingSource(this.components);
             this.materialPermitToolStrip = new System.Windows.Forms.ToolStrip();
             this.lblToRefresh3 = new System.Windows.Forms.ToolStripLabel();
             this.pnlMaterialPermitFilter = new System.Windows.Forms.Panel();
+            this.mdTable = new System.Windows.Forms.TableLayoutPanel();
+            this.tboxMdCreatedDate = new System.Windows.Forms.TextBox();
+            this.tboxMdCreator = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tboxMdLicensePlate = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tboxMdVehicleMark = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tboxMdPerson = new System.Windows.Forms.TextBox();
+            this.pboxCreatedImage = new System.Windows.Forms.PictureBox();
+            this.pbarMdLoading = new System.Windows.Forms.ProgressBar();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.materialPermitTool = new System.Windows.Forms.ToolStripButton();
             this.btnChangePassword = new System.Windows.Forms.ToolStripButton();
             this.bgRefreshMaterialDocumentList = new System.ComponentModel.BackgroundWorker();
             this.bgLastMaterialDocumentDate = new System.ComponentModel.BackgroundWorker();
+            this.bsMaterialDocumentItem = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsPermitList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPlanAppointList)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -141,11 +157,15 @@
             this.panelFilter.SuspendLayout();
             this.pageMaterialDocumentLisy.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialPermitList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsMaterialDocumentList)).BeginInit();
             this.materialPermitToolStrip.SuspendLayout();
+            this.mdTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxCreatedImage)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMaterialDocumentItem)).BeginInit();
             this.SuspendLayout();
             // 
             // bsPermitList
@@ -720,9 +740,9 @@
             // ColumnDateFrom
             // 
             this.ColumnDateFrom.DataPropertyName = "DateFrom";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ColumnDateFrom.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.ColumnDateFrom.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnDateFrom.HeaderText = "дата прибытия";
             this.ColumnDateFrom.Name = "ColumnDateFrom";
             this.ColumnDateFrom.ReadOnly = true;
@@ -915,6 +935,11 @@
             this.splitContainer1.Panel1.Controls.Add(this.dgvMaterialPermitList);
             this.splitContainer1.Panel1.Controls.Add(this.materialPermitToolStrip);
             this.splitContainer1.Panel1.Controls.Add(this.pnlMaterialPermitFilter);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.mdTable);
+            this.splitContainer1.Panel2.Controls.Add(this.pbarMdLoading);
             this.splitContainer1.Size = new System.Drawing.Size(1001, 434);
             this.splitContainer1.SplitterDistance = 670;
             this.splitContainer1.TabIndex = 0;
@@ -925,6 +950,10 @@
             this.dgvMaterialPermitList.AllowUserToDeleteRows = false;
             this.dgvMaterialPermitList.AutoGenerateColumns = false;
             this.dgvMaterialPermitList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMaterialPermitList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnMdDocNumber,
+            this.ColumnMdDocDate,
+            this.ColumnMdUnit});
             this.dgvMaterialPermitList.DataSource = this.bsMaterialDocumentList;
             this.dgvMaterialPermitList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMaterialPermitList.Location = new System.Drawing.Point(0, 60);
@@ -933,6 +962,31 @@
             this.dgvMaterialPermitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMaterialPermitList.Size = new System.Drawing.Size(670, 374);
             this.dgvMaterialPermitList.TabIndex = 2;
+            // 
+            // ColumnMdDocNumber
+            // 
+            this.ColumnMdDocNumber.DataPropertyName = "DocNumber";
+            this.ColumnMdDocNumber.HeaderText = "Номер документа";
+            this.ColumnMdDocNumber.Name = "ColumnMdDocNumber";
+            this.ColumnMdDocNumber.ReadOnly = true;
+            // 
+            // ColumnMdDocDate
+            // 
+            this.ColumnMdDocDate.DataPropertyName = "DocDate";
+            this.ColumnMdDocDate.HeaderText = "Дата документа";
+            this.ColumnMdDocDate.Name = "ColumnMdDocDate";
+            this.ColumnMdDocDate.ReadOnly = true;
+            // 
+            // ColumnMdUnit
+            // 
+            this.ColumnMdUnit.DataPropertyName = "Unit";
+            this.ColumnMdUnit.HeaderText = "Подразделение";
+            this.ColumnMdUnit.Name = "ColumnMdUnit";
+            this.ColumnMdUnit.ReadOnly = true;
+            // 
+            // bsMaterialDocumentList
+            // 
+            this.bsMaterialDocumentList.CurrentChanged += new System.EventHandler(this.bsMaterialDocumentList_CurrentChanged);
             // 
             // materialPermitToolStrip
             // 
@@ -959,6 +1013,149 @@
             this.pnlMaterialPermitFilter.Padding = new System.Windows.Forms.Padding(5);
             this.pnlMaterialPermitFilter.Size = new System.Drawing.Size(670, 35);
             this.pnlMaterialPermitFilter.TabIndex = 0;
+            // 
+            // mdTable
+            // 
+            this.mdTable.ColumnCount = 2;
+            this.mdTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.mdTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.mdTable.Controls.Add(this.tboxMdCreatedDate, 1, 4);
+            this.mdTable.Controls.Add(this.tboxMdCreator, 1, 3);
+            this.mdTable.Controls.Add(this.label9, 0, 3);
+            this.mdTable.Controls.Add(this.tboxMdLicensePlate, 1, 2);
+            this.mdTable.Controls.Add(this.label8, 0, 2);
+            this.mdTable.Controls.Add(this.tboxMdVehicleMark, 1, 1);
+            this.mdTable.Controls.Add(this.label7, 0, 1);
+            this.mdTable.Controls.Add(this.label6, 0, 0);
+            this.mdTable.Controls.Add(this.tboxMdPerson, 1, 0);
+            this.mdTable.Controls.Add(this.pboxCreatedImage, 0, 4);
+            this.mdTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mdTable.Location = new System.Drawing.Point(0, 23);
+            this.mdTable.Name = "mdTable";
+            this.mdTable.RowCount = 6;
+            this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.mdTable.Size = new System.Drawing.Size(327, 411);
+            this.mdTable.TabIndex = 1;
+            // 
+            // tboxMdCreatedDate
+            // 
+            this.tboxMdCreatedDate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tboxMdCreatedDate.Location = new System.Drawing.Point(92, 125);
+            this.tboxMdCreatedDate.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdCreatedDate.Name = "tboxMdCreatedDate";
+            this.tboxMdCreatedDate.ReadOnly = true;
+            this.tboxMdCreatedDate.Size = new System.Drawing.Size(230, 20);
+            this.tboxMdCreatedDate.TabIndex = 9;
+            // 
+            // tboxMdCreator
+            // 
+            this.tboxMdCreator.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tboxMdCreator.Location = new System.Drawing.Point(92, 95);
+            this.tboxMdCreator.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdCreator.Name = "tboxMdCreator";
+            this.tboxMdCreator.ReadOnly = true;
+            this.tboxMdCreator.Size = new System.Drawing.Size(230, 20);
+            this.tboxMdCreator.TabIndex = 7;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(3, 90);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 30);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Кладовщик";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tboxMdLicensePlate
+            // 
+            this.tboxMdLicensePlate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tboxMdLicensePlate.Location = new System.Drawing.Point(92, 65);
+            this.tboxMdLicensePlate.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdLicensePlate.Name = "tboxMdLicensePlate";
+            this.tboxMdLicensePlate.ReadOnly = true;
+            this.tboxMdLicensePlate.Size = new System.Drawing.Size(230, 20);
+            this.tboxMdLicensePlate.TabIndex = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Location = new System.Drawing.Point(3, 60);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(81, 30);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Номер ТС";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tboxMdVehicleMark
+            // 
+            this.tboxMdVehicleMark.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tboxMdVehicleMark.Location = new System.Drawing.Point(92, 35);
+            this.tboxMdVehicleMark.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdVehicleMark.Name = "tboxMdVehicleMark";
+            this.tboxMdVehicleMark.ReadOnly = true;
+            this.tboxMdVehicleMark.Size = new System.Drawing.Size(230, 20);
+            this.tboxMdVehicleMark.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Location = new System.Drawing.Point(3, 30);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(81, 30);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Марка ТС";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Location = new System.Drawing.Point(3, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 30);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Предъявитель";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tboxMdPerson
+            // 
+            this.tboxMdPerson.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tboxMdPerson.Location = new System.Drawing.Point(92, 5);
+            this.tboxMdPerson.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdPerson.Name = "tboxMdPerson";
+            this.tboxMdPerson.ReadOnly = true;
+            this.tboxMdPerson.Size = new System.Drawing.Size(230, 20);
+            this.tboxMdPerson.TabIndex = 1;
+            // 
+            // pboxCreatedImage
+            // 
+            this.pboxCreatedImage.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pboxCreatedImage.Location = new System.Drawing.Point(62, 125);
+            this.pboxCreatedImage.Margin = new System.Windows.Forms.Padding(5);
+            this.pboxCreatedImage.Name = "pboxCreatedImage";
+            this.pboxCreatedImage.Size = new System.Drawing.Size(20, 20);
+            this.pboxCreatedImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pboxCreatedImage.TabIndex = 8;
+            this.pboxCreatedImage.TabStop = false;
+            // 
+            // pbarMdLoading
+            // 
+            this.pbarMdLoading.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pbarMdLoading.Location = new System.Drawing.Point(0, 0);
+            this.pbarMdLoading.Name = "pbarMdLoading";
+            this.pbarMdLoading.Size = new System.Drawing.Size(327, 23);
+            this.pbarMdLoading.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.pbarMdLoading.TabIndex = 0;
+            this.pbarMdLoading.Visible = false;
             // 
             // toolStrip1
             // 
@@ -1038,13 +1235,18 @@
             this.pageMaterialDocumentLisy.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialPermitList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsMaterialDocumentList)).EndInit();
             this.materialPermitToolStrip.ResumeLayout(false);
             this.materialPermitToolStrip.PerformLayout();
+            this.mdTable.ResumeLayout(false);
+            this.mdTable.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxCreatedImage)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMaterialDocumentItem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1143,5 +1345,21 @@
         private System.ComponentModel.BackgroundWorker bgRefreshMaterialDocumentList;
         private System.Windows.Forms.ToolStripLabel lblToRefresh3;
         private System.ComponentModel.BackgroundWorker bgLastMaterialDocumentDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMdDocNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMdDocDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMdUnit;
+        private System.Windows.Forms.ProgressBar pbarMdLoading;
+        private System.Windows.Forms.TableLayoutPanel mdTable;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tboxMdPerson;
+        private System.Windows.Forms.BindingSource bsMaterialDocumentItem;
+        private System.Windows.Forms.TextBox tboxMdVehicleMark;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tboxMdLicensePlate;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tboxMdCreator;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pboxCreatedImage;
+        private System.Windows.Forms.TextBox tboxMdCreatedDate;
     }
 }

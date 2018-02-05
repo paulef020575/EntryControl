@@ -48,6 +48,7 @@ namespace EntryControl
             rboxEntryPoint.Database = Database;
 
             InitializeFilterControls();
+            InitializeMdFilterControls();
             //tboxComment.DataBindings.Add("Text", bsPlanAppointList, "Comment", true, DataSourceUpdateMode.OnPropertyChanged);
             //tboxPermitComment.DataBindings.Add("Text", bsPermitList, "Comment", true, DataSourceUpdateMode.OnPropertyChanged);
         }
@@ -164,6 +165,9 @@ namespace EntryControl
 
         #endregion
 
+        BackgroundWorker temporaryBgWorker;
+        Timer temporaryTimer;
+
         #endregion
 
         #region Структуры для выполнения фоновых задач
@@ -217,6 +221,14 @@ namespace EntryControl
             isInitialized = true;
             ForceRefreshData();
         }
+
+        private void InitializeMdFilterControls()
+        {
+            if (pnlMaterialPermitFilter.Controls.Count == 0)
+                pnlMaterialPermitFilter.Height = 0;
+        }
+
+
 
         /// <summary>
         ///     запускает обновление данных при наличии изменений в таблицах
@@ -1060,10 +1072,10 @@ namespace EntryControl
             List<MaterialPermit> materialDocumentList = (List<MaterialPermit>)result.List;
             bsMaterialDocumentList.DataSource = new BindingList<MaterialPermit>(materialDocumentList);
 
-            pageMaterialDocumentLisy.Text = bsMaterialDocumentList.Count.ToString();
-
+            pageMaterialDocumentLisy.Text = string.Format("Материальные пропуска ({0})", bsMaterialDocumentList.Count);
             StartTimer();
         }
+
         #endregion
 
         #endregion
@@ -1085,5 +1097,78 @@ namespace EntryControl
             form.Show();
         }
 
+        private void bsMaterialDocumentList_CurrentChanged(object sender, EventArgs e)
+        {
+            MaterialPermit materialDocument = bsMaterialDocumentList.Current as MaterialPermit;
+
+            if (materialDocument != null)
+                ShowMaterialDocumentInfo(materialDocument);
+        }
+
+        private void ShowMaterialDocumentInfo(MaterialPermit materialDocument)
+        {
+            if (temporaryBgWorker == null)
+            {
+                temporaryTimer = new Timer()
+                {
+                    Interval = 500
+                };
+
+                temporaryTimer.Start();
+                temporaryTimer.Tick += MdLoadingTimer_Tick;
+                pbarMdLoading.Visible = true;
+
+                temporaryBgWorker = new BackgroundWorker();
+                temporaryBgWorker.DoWork += MdLoadingBgWorker_DoWork;
+                temporaryBgWorker.RunWorkerCompleted += MdLoadingBgWorker_RunWorkerCompleted;
+
+                temporaryBgWorker.RunWorkerAsync(new LoadingDocumentParams()
+                {
+                    Database = Database,
+                    DocumentId = materialDocument.Id
+                });
+
+            }
+            
+        }
+
+        private void MdLoadingBgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MaterialPermit materialDocument = e.Result as MaterialPermit;
+            tboxMdPerson.Text = materialDocument.Person;
+            tboxMdVehicleMark.Text = materialDocument.VehicleMark;
+            tboxMdLicensePlate.Text = materialDocument.LicensePlate;
+            tboxMdCreator.Text = materialDocument.Creator.ToString();
+            pboxCreatedImage.Image = materialDocument.CreatedImage;
+            tboxMdCreatedDate.Text = materialDocument.CreatedDate.ToString("dd.MM.yyyy HH:mm");
+
+            temporaryTimer.Stop();
+            temporaryTimer.Dispose();
+            temporaryTimer = null;
+
+            pbarMdLoading.Visible = false;
+
+            temporaryBgWorker.Dispose();
+            temporaryBgWorker = null;
+        }
+
+        private void MdLoadingBgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            LoadingDocumentParams parameters = e.Argument as LoadingDocumentParams;
+
+            e.Result = MaterialPermit.Load(parameters.Database, parameters.DocumentId);
+        }
+
+        private class LoadingDocumentParams
+        {
+            public Database Database { get; set; }
+            public int DocumentId { get; set; }
+        }
+
+        private void MdLoadingTimer_Tick(object sender, EventArgs e)
+        {
+            if (pbarMdLoading.Value++ == 100)
+                pbarMdLoading.Value = 0;
+        }
     }
 }

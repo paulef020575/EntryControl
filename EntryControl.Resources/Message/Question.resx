@@ -123,10 +123,16 @@
   <data name="DeleteVehicleOwner" xml:space="preserve">
     <value>Удалить данные о перевозчике?</value>
   </data>
+  <data name="FailMaterialDocument" xml:space="preserve">
+    <value>Отозвать документ?</value>
+  </data>
   <data name="ItemIsModified" xml:space="preserve">
     <value>Данные были изменены. Сохранить изменения?</value>
   </data>
   <data name="NoSuchVehicle" xml:space="preserve">
     <value>Не найдено ТС с указанными данными. Создать новое?</value>
+  </data>
+  <data name="SignMaterialDocument" xml:space="preserve">
+    <value>Утвердить документ?</value>
   </data>
 </root>

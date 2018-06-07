@@ -51,6 +51,8 @@ namespace EntryControl
             InitializeMdFilterControls();
             //tboxComment.DataBindings.Add("Text", bsPlanAppointList, "Comment", true, DataSourceUpdateMode.OnPropertyChanged);
             //tboxPermitComment.DataBindings.Add("Text", bsPermitList, "Comment", true, DataSourceUpdateMode.OnPropertyChanged);
+
+            tabControl.TabPages.Remove(pageMaterialDocumentList);
         }
 
         #endregion
@@ -168,6 +170,8 @@ namespace EntryControl
         BackgroundWorker temporaryBgWorker;
         Timer temporaryTimer;
 
+        private bool ShowMaterialDocuments => (tabControl.TabPages.Contains(pageMaterialDocumentList));
+
         #endregion
 
         #region Структуры для выполнения фоновых задач
@@ -226,6 +230,10 @@ namespace EntryControl
         {
             if (pnlMaterialPermitFilter.Controls.Count == 0)
                 pnlMaterialPermitFilter.Height = 0;
+
+            DateTime today = DateTime.Today;
+            pickMdDateFrom.Value = new DateTime(today.Year, today.Month, 1);
+            pickMdDateTo.Value = pickMdDateFrom.Value.AddMonths(1).AddDays(-1);
         }
 
 
@@ -247,7 +255,9 @@ namespace EntryControl
 
             bgLastUpdateDate.RunWorkerAsync(Database);
             bgLastPlanAppointDate.RunWorkerAsync(Database);
-            bgLastMaterialDocumentDate.RunWorkerAsync(Database);
+
+            if (ShowMaterialDocuments)
+                bgLastMaterialDocumentDate.RunWorkerAsync(Database);
         }
 
         /// <summary>
@@ -283,7 +293,11 @@ namespace EntryControl
 
         private void RefreshMaterialDocumentList()
         {
-            throw new NotImplementedException();
+            RefreshParams args = new RefreshParams();
+            args.database = Database;
+            args.dateStart = pickMdDateFrom.Value;
+            args.dateFinish = pickMdDateTo.Value;
+            bgRefreshMaterialDocumentList.RunWorkerAsync(args);
         }
 
 
@@ -317,11 +331,12 @@ namespace EntryControl
 
             bgRefreshPlanAppointList.RunWorkerAsync(parameters);
 
-            parameters.dateStart = DateTime.MinValue;
-            parameters.dateFinish = DateTime.MaxValue;
+            parameters.dateStart = pickMdDateFrom.Value;
+            parameters.dateFinish = pickMdDateTo.Value;
             parameters.pageNumber = MaterialDocumentListPage;
 
-            bgRefreshMaterialDocumentList.RunWorkerAsync(parameters);
+            if (ShowMaterialDocuments)
+                bgRefreshMaterialDocumentList.RunWorkerAsync(parameters);
         }
 
         /// <summary>
@@ -442,6 +457,7 @@ namespace EntryControl
         private void ShowPermitInfo(Permit permit)
         {
             tboxPermitComment.Text = permit.GetComment(Database);
+            tboxPermitCreator.Text = Permit.GetPlanAppointCreator(Database, permit.Id);
 
             dgvMoving.DataSource = permit.GetMovingList(Database);
             dgvPointList.DataSource = permit.GetAllowedPointList(Database);
@@ -475,7 +491,7 @@ namespace EntryControl
 
             report["dateFrom"] = pickDateStart.Value;
             report["dateTo"] = pickDateFinish.Value;
-            report["entryPoint"] = EntryPoint.Empty;  //rboxEntryPoint.SelectedItem.Id;
+            report["entryPoint"] = EntryPoint.Empty.Id;  //rboxEntryPoint.SelectedItem.Id;
             report["defaultState"] = ((EnumerationItem)cboxPermitType.SelectedItem).Id;
 
             report.Show();
@@ -1072,7 +1088,7 @@ namespace EntryControl
             List<MaterialPermit> materialDocumentList = (List<MaterialPermit>)result.List;
             bsMaterialDocumentList.DataSource = new BindingList<MaterialPermit>(materialDocumentList);
 
-            pageMaterialDocumentLisy.Text = string.Format("Материальные пропуска ({0})", bsMaterialDocumentList.Count);
+            pageMaterialDocumentList.Text = string.Format("Материальные пропуска ({0})", bsMaterialDocumentList.Count);
             StartTimer();
         }
 
@@ -1135,12 +1151,45 @@ namespace EntryControl
         private void MdLoadingBgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MaterialPermit materialDocument = e.Result as MaterialPermit;
+
+            bsMaterialDocumentItem.DataSource = materialDocument;
+
             tboxMdPerson.Text = materialDocument.Person;
             tboxMdVehicleMark.Text = materialDocument.VehicleMark;
             tboxMdLicensePlate.Text = materialDocument.LicensePlate;
             tboxMdCreator.Text = materialDocument.Creator.ToString();
             pboxCreatedImage.Image = materialDocument.CreatedImage;
             tboxMdCreatedDate.Text = materialDocument.CreatedDate.ToString("dd.MM.yyyy HH:mm");
+
+            pboxMdSigned.Image = materialDocument.SignedImage;
+            if (materialDocument.SignedFlag != 0)
+            {
+                tboxSigner.Text = materialDocument.Signer.ToString();
+                tboxMdSignedDate.Text = materialDocument.SignedDate.ToString("dd.MM.yyyy HH:mm");
+            }
+            else
+            {
+                tboxSigner.Text = "";
+                tboxMdSignedDate.Text = "";
+            }
+
+            btnSignMd.Enabled = (materialDocument.CreatedFlag > 0 && materialDocument.SignedFlag < 1);
+            btnLockMd.Enabled = (materialDocument.EntryFlag < 1 && materialDocument.SignedFlag > -1 && materialDocument.CreatedFlag > 0);
+
+            pboxMdEntry.Image = materialDocument.EntryImage;
+
+            if (materialDocument.EntryFlag != 0)
+            {
+                tboxMdEntryPoint.Text = materialDocument.EntryPoint.ToString();
+                tboxMdEntryDate.Text = materialDocument.EntryDate.ToString("dd.MM.yyyy HH:mm");
+            }
+            else
+            {
+                tboxMdEntryDate.Text = "";
+                tboxMdEntryPoint.Text = "";
+            }
+
+            bsMdItems.DataSource = materialDocument.GetItemList(Database);
 
             temporaryTimer.Stop();
             temporaryTimer.Dispose();
@@ -1169,6 +1218,47 @@ namespace EntryControl
         {
             if (pbarMdLoading.Value++ == 100)
                 pbarMdLoading.Value = 0;
+        }
+
+        private void btnSignMd_Click(object sender, EventArgs e)
+        {
+            MaterialPermit document = bsMaterialDocumentItem.DataSource as MaterialPermit;
+
+            if (document != null
+                && MessageBox.Show(EntryControl.Resources.Message.Question.SignMaterialDocument, document.ToString(), MessageBoxButtons.YesNo)
+                    == DialogResult.Yes)
+                SignMaterialDocument(document, MaterialPermit.MaterialPermitFlag.Confirmed);
+        }
+
+        private void SignMaterialDocument(MaterialPermit document, MaterialPermit.MaterialPermitFlag flag)
+        {
+            try
+            {
+                document.SetSigned(Database, flag, DateTime.Now);
+                RefreshMaterialDocumentList();
+                bsMaterialDocumentList.Position = bsMaterialDocumentList.IndexOf(document);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(EntryControl.Resources.Message.Error.SavingError, document.ToString());
+            }
+        }
+
+        private void btnLockMd_Click(object sender, EventArgs e)
+        {
+            MaterialPermit document = bsMaterialDocumentItem.DataSource as MaterialPermit;
+
+            if (document != null
+                && MessageBox.Show(EntryControl.Resources.Message.Question.FailMaterialDocument, document.ToString(), MessageBoxButtons.YesNo)
+                    == DialogResult.Yes)
+                SignMaterialDocument(document, MaterialPermit.MaterialPermitFlag.Failed);
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            MaterialDocumentForm form = new EntryControl.MaterialDocumentForm();
+            form.MaterialPermit = bsMaterialDocumentList.Current as MaterialPermit;
+            form.Show();
         }
     }
 }

@@ -29,8 +29,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Автопропуска</ProductName>
     <PublisherName>ОАО Кондопога</PublisherName>
-    <MinimumRequiredVersion>1.0.0.1</MinimumRequiredVersion>
-    <ApplicationRevision>2</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.3</MinimumRequiredVersion>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -136,12 +136,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvancedSettings.cs" />
+    <Compile Include="Controls\CaptionLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\IEntityForm.cs" />
+    <Compile Include="Controls\IMemberControl.cs" />
+    <Compile Include="Controls\MemberPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MemberTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomerForms\ReportPlanAppointForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CustomerForms\ReportPlanAppointForm.Designer.cs">
       <DependentUpon>ReportPlanAppointForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataItemForms\MaterialDocumentForm.cs" />
     <Compile Include="EntryPointGroupsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +165,12 @@
     </Compile>
     <Compile Include="ExceptionForm.Designer.cs">
       <DependentUpon>ExceptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialDocumentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialDocumentForm.Designer.cs">
+      <DependentUpon>MaterialDocumentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemSecurity\DatabaseInitializingForm.cs">
       <SubType>Form</SubType>
@@ -429,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerForms\PlanAppointViewControl.resx">
       <DependentUpon>PlanAppointViewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialDocumentForm.resx">
+      <DependentUpon>MaterialDocumentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReceptionForm\MaterialPermitListForm.resx">
       <DependentUpon>MaterialPermitListForm.cs</DependentUpon>

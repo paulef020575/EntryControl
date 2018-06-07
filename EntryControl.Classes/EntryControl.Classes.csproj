@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaptionAttribute.cs" />
     <Compile Include="Doc\MaterialPermit\MaterialPermit.cs" />
     <Compile Include="Doc\MaterialPermit\MaterialPermitItem.cs" />
     <Compile Include="Doc\Permit\Permit.cs" />

@@ -117,25 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GetLastDate" xml:space="preserve">
-    <value>select max(date1) from (select max(modifyDate) as date1 from docMaterialPermit union select max(operationDate) as date1 from docHistory where documentType = 'materialPermit' and operation = 'delete')</value>
-  </data>
-  <data name="GetMaterialPermitId" xml:space="preserve">
-    <value>select id from docMaterialPermit where autoPermit = @autoPermit</value>
-  </data>
-  <data name="Load" xml:space="preserve">
-    <value>select * from docMaterialPermitLoadList(@id, NULL, NULL, NULL, NULL)</value>
-  </data>
-  <data name="LoadItemList" xml:space="preserve">
-    <value>select * from docMaterialPermitItem where document = @id</value>
-  </data>
-  <data name="LoadList" xml:space="preserve">
-    <value>select * from docMaterialPermitLoadList(NULL, @unitId, @dateFrom, @dateTo, @userId)</value>
-  </data>
-  <data name="SetEntry" xml:space="preserve">
-    <value>update docMaterialPermit set entryFlag = 1, entryPoint = @entryPoint, entryDate = @entryDate, modifier = @userId, modifyDate = current_timestamp where id = @id</value>
-  </data>
-  <data name="SetSigned" xml:space="preserve">
-    <value>update docMaterialPermit set signedFlag = @signedFlag, signDate = @signDate, signer = @signer, modifier = @modifier, modifyDate = current_timestamp where id = @id</value>
-  </data>
+  <metadata name="bsItem.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

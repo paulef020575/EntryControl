@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using EntryControl.Properties;
-using EPV.Database;
 using EntryControl.Classes;
+using EPV.Database;
 
 namespace EntryControl
 {
@@ -41,7 +41,7 @@ namespace EntryControl
         {
             Settings.Default.ServerName = cboxServer.Text;
             if (cboxServer.SelectedIndex == 2)
-                Settings.Default.Path = @"c:\Prog\dispatcher\DISPATCHER.FDB";
+                Settings.Default.Path = @"D:\Отладка\Entry\DISPATCHER.FDB";
             else
                 Settings.Default.Path = @"c:\DB_Pulp\Dispatcher.fdb";
             Settings.Default.Save();
@@ -96,7 +96,7 @@ namespace EntryControl
             
         }
 
-        private void ShowSystemSecurityForm(Database database)
+        private void ShowSystemSecurityForm(EPV.Database.Database database)
         {
             SystemSecurityForm form = new SystemSecurityForm(database);
             form.FormClosed += new FormClosedEventHandler(form_FormClosed);
@@ -104,7 +104,7 @@ namespace EntryControl
         }
 
 
-        private void ShowCustomerForm(Database database)
+        private void ShowCustomerForm(EPV.Database.Database database)
         {
             CustomerForm form = new CustomerForm(database);
             form.FormClosed += new FormClosedEventHandler(form_FormClosed);
@@ -146,7 +146,7 @@ namespace EntryControl
             return 0;
         }
 
-        private Database ShowAuthorizationForm()
+        private EPV.Database.Database ShowAuthorizationForm()
         {
             using (AuthorizationForm form = new AuthorizationForm())
             {

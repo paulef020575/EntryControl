@@ -124,9 +124,6 @@
     <Reference Include="Stimulsoft.Report">
       <HintPath>bin\Debug\Stimulsoft.Report.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.FirebirdDatabase">
-      <HintPath>bin\Debug\Stimulsoft.Report.FirebirdDatabase.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -589,12 +586,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EPV.Framework\EPV.Database\EPV.Database.csproj">
-      <Project>{21701B0B-284E-4721-B559-1E76ED8DCEDA}</Project>
+      <Project>{21701b0b-284e-4721-b559-1e76ed8dceda}</Project>
       <Name>EPV.Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\EPV.Framework\EPV.Database\EPV.DataItem\EPV.DataItem.csproj">
       <Project>{3F3C4D8B-E7F3-4BDA-9882-FD2C439AFF5D}</Project>
       <Name>EPV.DataItem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Stimulsoft.Report.FirebirdDatabase\Stimulsoft.Report.FirebirdDatabase.csproj">
+      <Project>{d353a092-5d7d-433b-9b53-17e9d8d7673f}</Project>
+      <Name>Stimulsoft.Report.FirebirdDatabase</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntryControl.Classes\EntryControl.Classes.csproj">
       <Project>{71B988EA-2F48-465D-83F0-008105CBA164}</Project>

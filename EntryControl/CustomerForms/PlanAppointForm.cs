@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using EPV.Database;
 using EntryControl.Classes;
 using EPV.DataItem;
+using EntryControl.Classes.Ref;
 
 namespace EntryControl
 {
@@ -193,7 +194,16 @@ namespace EntryControl
 
         protected override bool SaveItem()
         {
-            if (CheckProperties())
+            DialogResult result = DialogResult.Yes;
+
+            string columnsInBlackList = PlanAppoint.CheckBlackList(Database);
+            if (!string.IsNullOrEmpty(columnsInBlackList))
+            {
+                string message = string.Format(EntryControl.Resources.Message.BlackList.CustomerWarning, columnsInBlackList, Environment.NewLine);
+                result = MessageBox.Show(message, "Черный список", MessageBoxButtons.YesNo);
+            }
+
+            if (result == DialogResult.Yes && CheckProperties())
                 return base.SaveItem();
 
             return false;
@@ -210,6 +220,14 @@ namespace EntryControl
             }
 
             return result;
+        }
+
+        private void tboxDriverName_Validating(object sender, CancelEventArgs e)
+        {
+            if (BlackList.CheckText(Database, tboxDriverName.Text))
+                tboxDriverName.BackColor = Color.Salmon;
+            else
+                tboxDriverName.BackColor = SystemColors.Window;
         }
     }
 }

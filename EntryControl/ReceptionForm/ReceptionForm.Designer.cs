@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceptionForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bsPermitList = new System.Windows.Forms.BindingSource(this.components);
             this.bsPlanAppointList = new System.Windows.Forms.BindingSource(this.components);
             this.bgRefreshPermitList = new System.ComponentModel.BackgroundWorker();
@@ -164,6 +164,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.materialPermitTool = new System.Windows.Forms.ToolStripButton();
             this.btnChangePassword = new System.Windows.Forms.ToolStripButton();
+            this.blackListButton = new System.Windows.Forms.ToolStripButton();
             this.bgRefreshMaterialDocumentList = new System.ComponentModel.BackgroundWorker();
             this.bgLastMaterialDocumentDate = new System.ComponentModel.BackgroundWorker();
             this.bsMaterialDocumentItem = new System.Windows.Forms.BindingSource(this.components);
@@ -247,9 +248,10 @@
             this.tabControl.Controls.Add(this.pageMaterialDocumentList);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 25);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1015, 466);
+            this.tabControl.Size = new System.Drawing.Size(1522, 730);
             this.tabControl.TabIndex = 0;
             // 
             // permitPage
@@ -258,10 +260,11 @@
             this.permitPage.Controls.Add(this.permitTools);
             this.permitPage.Controls.Add(this.permitTopPanel);
             this.permitPage.Controls.Add(this.panel1);
-            this.permitPage.Location = new System.Drawing.Point(4, 22);
+            this.permitPage.Location = new System.Drawing.Point(4, 29);
+            this.permitPage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.permitPage.Name = "permitPage";
-            this.permitPage.Padding = new System.Windows.Forms.Padding(3);
-            this.permitPage.Size = new System.Drawing.Size(1007, 440);
+            this.permitPage.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.permitPage.Size = new System.Drawing.Size(1514, 697);
             this.permitPage.TabIndex = 0;
             this.permitPage.Text = "Пропуски";
             this.permitPage.UseVisualStyleBackColor = true;
@@ -283,12 +286,13 @@
             this.ColumnMultiEntry});
             this.dgvPermitList.DataSource = this.bsPermitList;
             this.dgvPermitList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPermitList.Location = new System.Drawing.Point(3, 116);
+            this.dgvPermitList.Location = new System.Drawing.Point(4, 165);
+            this.dgvPermitList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvPermitList.MultiSelect = false;
             this.dgvPermitList.Name = "dgvPermitList";
             this.dgvPermitList.ReadOnly = true;
             this.dgvPermitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPermitList.Size = new System.Drawing.Size(651, 321);
+            this.dgvPermitList.Size = new System.Drawing.Size(981, 527);
             this.dgvPermitList.TabIndex = 2;
             this.dgvPermitList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPermitList_CellDoubleClick);
             this.dgvPermitList.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvPermitList_RowPrePaint);
@@ -372,9 +376,10 @@
             this.lblPermitPage,
             this.btnPreviousPermitPage,
             this.btnNextPermitPage});
-            this.permitTools.Location = new System.Drawing.Point(3, 91);
+            this.permitTools.Location = new System.Drawing.Point(4, 140);
             this.permitTools.Name = "permitTools";
-            this.permitTools.Size = new System.Drawing.Size(651, 25);
+            this.permitTools.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.permitTools.Size = new System.Drawing.Size(981, 25);
             this.permitTools.TabIndex = 1;
             this.permitTools.Text = "toolStrip1";
             // 
@@ -459,8 +464,9 @@
             // 
             // findTextBox
             // 
+            this.findTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.findTextBox.Name = "findTextBox";
-            this.findTextBox.Size = new System.Drawing.Size(100, 25);
+            this.findTextBox.Size = new System.Drawing.Size(148, 25);
             this.findTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pickDateStart_KeyDown);
             this.findTextBox.TextChanged += new System.EventHandler(this.findTextBox_TextChanged);
             // 
@@ -522,19 +528,21 @@
             this.permitTopPanel.Controls.Add(this.pickDateStart);
             this.permitTopPanel.Controls.Add(this.label1);
             this.permitTopPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.permitTopPanel.Location = new System.Drawing.Point(3, 3);
+            this.permitTopPanel.Location = new System.Drawing.Point(4, 5);
+            this.permitTopPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.permitTopPanel.Name = "permitTopPanel";
-            this.permitTopPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.permitTopPanel.Size = new System.Drawing.Size(651, 88);
+            this.permitTopPanel.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.permitTopPanel.Size = new System.Drawing.Size(981, 135);
             this.permitTopPanel.TabIndex = 0;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(285, 37);
+            this.label5.Location = new System.Drawing.Point(428, 57);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 13);
+            this.label5.Size = new System.Drawing.Size(169, 20);
             this.label5.TabIndex = 7;
             this.label5.Text = "(на выбор не влияет)";
             // 
@@ -542,9 +550,10 @@
             // 
             this.cboxPermitType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxPermitType.FormattingEnabled = true;
-            this.cboxPermitType.Location = new System.Drawing.Point(92, 59);
+            this.cboxPermitType.Location = new System.Drawing.Point(138, 91);
+            this.cboxPermitType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboxPermitType.Name = "cboxPermitType";
-            this.cboxPermitType.Size = new System.Drawing.Size(183, 21);
+            this.cboxPermitType.Size = new System.Drawing.Size(272, 28);
             this.cboxPermitType.TabIndex = 6;
             this.cboxPermitType.SelectedIndexChanged += new System.EventHandler(this.pickDateStart_ValueChanged);
             this.cboxPermitType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pickDateStart_KeyDown);
@@ -552,9 +561,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 62);
+            this.label3.Location = new System.Drawing.Point(15, 95);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.Size = new System.Drawing.Size(112, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "Вид пропуска";
             // 
@@ -563,10 +573,11 @@
             this.rboxEntryPoint.Database = null;
             this.rboxEntryPoint.DataSource = null;
             this.rboxEntryPoint.ListForm = "EntryControl.EntryPointListForm";
-            this.rboxEntryPoint.Location = new System.Drawing.Point(92, 31);
+            this.rboxEntryPoint.Location = new System.Drawing.Point(138, 48);
+            this.rboxEntryPoint.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.rboxEntryPoint.Name = "rboxEntryPoint";
             this.rboxEntryPoint.SelectedItem = null;
-            this.rboxEntryPoint.Size = new System.Drawing.Size(183, 22);
+            this.rboxEntryPoint.Size = new System.Drawing.Size(274, 34);
             this.rboxEntryPoint.TabIndex = 4;
             this.rboxEntryPoint.GetList += new System.EventHandler<EntryControl.ReferenceBox.ReferenceBoxEventArgs>(this.rboxEntryPoint_GetList);
             this.rboxEntryPoint.SelectedItemChanged += new System.EventHandler(this.pickDateStart_ValueChanged);
@@ -574,9 +585,10 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(8, 30);
+            this.label2.Location = new System.Drawing.Point(12, 46);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 22);
+            this.label2.Size = new System.Drawing.Size(117, 34);
             this.label2.TabIndex = 3;
             this.label2.Text = "Проходная";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -584,9 +596,10 @@
             // pickDateFinish
             // 
             this.pickDateFinish.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.pickDateFinish.Location = new System.Drawing.Point(196, 5);
+            this.pickDateFinish.Location = new System.Drawing.Point(294, 8);
+            this.pickDateFinish.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pickDateFinish.Name = "pickDateFinish";
-            this.pickDateFinish.Size = new System.Drawing.Size(98, 20);
+            this.pickDateFinish.Size = new System.Drawing.Size(145, 26);
             this.pickDateFinish.TabIndex = 2;
             this.pickDateFinish.ValueChanged += new System.EventHandler(this.pickDateStart_ValueChanged);
             this.pickDateFinish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pickDateStart_KeyDown);
@@ -594,18 +607,20 @@
             // pickDateStart
             // 
             this.pickDateStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.pickDateStart.Location = new System.Drawing.Point(92, 5);
+            this.pickDateStart.Location = new System.Drawing.Point(138, 8);
+            this.pickDateStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pickDateStart.Name = "pickDateStart";
-            this.pickDateStart.Size = new System.Drawing.Size(98, 20);
+            this.pickDateStart.Size = new System.Drawing.Size(145, 26);
             this.pickDateStart.TabIndex = 1;
             this.pickDateStart.ValueChanged += new System.EventHandler(this.pickDateStart_ValueChanged);
             this.pickDateStart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pickDateStart_KeyDown);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(33, 6);
+            this.label1.Location = new System.Drawing.Point(50, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 22);
+            this.label1.Size = new System.Drawing.Size(80, 34);
             this.label1.TabIndex = 0;
             this.label1.Text = "Период";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -617,9 +632,10 @@
             this.panel1.Controls.Add(this.gboxPermitComment);
             this.panel1.Controls.Add(this.pnlInitializer);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(654, 3);
+            this.panel1.Location = new System.Drawing.Point(985, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(350, 434);
+            this.panel1.Size = new System.Drawing.Size(525, 687);
             this.panel1.TabIndex = 4;
             // 
             // dgvMoving
@@ -633,11 +649,12 @@
             this.ColumnMovingPoint,
             this.ColumnMovingTime});
             this.dgvMoving.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMoving.Location = new System.Drawing.Point(0, 138);
+            this.dgvMoving.Location = new System.Drawing.Point(0, 208);
+            this.dgvMoving.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvMoving.Name = "dgvMoving";
             this.dgvMoving.ReadOnly = true;
             this.dgvMoving.RowHeadersVisible = false;
-            this.dgvMoving.Size = new System.Drawing.Size(350, 139);
+            this.dgvMoving.Size = new System.Drawing.Size(525, 237);
             this.dgvMoving.TabIndex = 5;
             // 
             // ColumnMoving
@@ -667,9 +684,11 @@
             // 
             this.pnlEntryPoints.Controls.Add(this.dgvPointList);
             this.pnlEntryPoints.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlEntryPoints.Location = new System.Drawing.Point(0, 277);
+            this.pnlEntryPoints.Location = new System.Drawing.Point(0, 445);
+            this.pnlEntryPoints.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlEntryPoints.Name = "pnlEntryPoints";
-            this.pnlEntryPoints.Size = new System.Drawing.Size(350, 157);
+            this.pnlEntryPoints.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlEntryPoints.Size = new System.Drawing.Size(525, 242);
             this.pnlEntryPoints.TabIndex = 6;
             this.pnlEntryPoints.TabStop = false;
             this.pnlEntryPoints.Text = "Разрешенные пункты пропуска";
@@ -684,11 +703,12 @@
             this.dgvPointList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnPermitPoint});
             this.dgvPointList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPointList.Location = new System.Drawing.Point(3, 16);
+            this.dgvPointList.Location = new System.Drawing.Point(4, 24);
+            this.dgvPointList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvPointList.Name = "dgvPointList";
             this.dgvPointList.ReadOnly = true;
             this.dgvPointList.RowHeadersVisible = false;
-            this.dgvPointList.Size = new System.Drawing.Size(344, 138);
+            this.dgvPointList.Size = new System.Drawing.Size(517, 213);
             this.dgvPointList.TabIndex = 1;
             // 
             // ColumnPermitPoint
@@ -702,9 +722,11 @@
             // 
             this.gboxPermitComment.Controls.Add(this.tboxPermitComment);
             this.gboxPermitComment.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gboxPermitComment.Location = new System.Drawing.Point(0, 30);
+            this.gboxPermitComment.Location = new System.Drawing.Point(0, 42);
+            this.gboxPermitComment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gboxPermitComment.Name = "gboxPermitComment";
-            this.gboxPermitComment.Size = new System.Drawing.Size(350, 108);
+            this.gboxPermitComment.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gboxPermitComment.Size = new System.Drawing.Size(525, 166);
             this.gboxPermitComment.TabIndex = 4;
             this.gboxPermitComment.TabStop = false;
             this.gboxPermitComment.Text = "Комментарий";
@@ -713,10 +735,11 @@
             // 
             this.tboxPermitComment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tboxPermitComment.Enabled = false;
-            this.tboxPermitComment.Location = new System.Drawing.Point(3, 16);
+            this.tboxPermitComment.Location = new System.Drawing.Point(4, 24);
+            this.tboxPermitComment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxPermitComment.Multiline = true;
             this.tboxPermitComment.Name = "tboxPermitComment";
-            this.tboxPermitComment.Size = new System.Drawing.Size(344, 89);
+            this.tboxPermitComment.Size = new System.Drawing.Size(517, 137);
             this.tboxPermitComment.TabIndex = 1;
             // 
             // pnlInitializer
@@ -726,26 +749,29 @@
             this.pnlInitializer.Controls.Add(this.label13);
             this.pnlInitializer.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlInitializer.Location = new System.Drawing.Point(0, 0);
+            this.pnlInitializer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlInitializer.Name = "pnlInitializer";
-            this.pnlInitializer.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlInitializer.Size = new System.Drawing.Size(350, 30);
+            this.pnlInitializer.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.pnlInitializer.Size = new System.Drawing.Size(525, 42);
             this.pnlInitializer.TabIndex = 7;
             // 
             // tboxPermitCreator
             // 
             this.tboxPermitCreator.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxPermitCreator.Location = new System.Drawing.Point(96, 5);
+            this.tboxPermitCreator.Location = new System.Drawing.Point(144, 8);
+            this.tboxPermitCreator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxPermitCreator.Name = "tboxPermitCreator";
             this.tboxPermitCreator.ReadOnly = true;
-            this.tboxPermitCreator.Size = new System.Drawing.Size(249, 20);
+            this.tboxPermitCreator.Size = new System.Drawing.Size(373, 26);
             this.tboxPermitCreator.TabIndex = 1;
             // 
             // label13
             // 
             this.label13.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label13.Location = new System.Drawing.Point(5, 5);
+            this.label13.Location = new System.Drawing.Point(8, 8);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(91, 20);
+            this.label13.Size = new System.Drawing.Size(136, 26);
             this.label13.TabIndex = 0;
             this.label13.Text = "Инициатор";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -756,10 +782,11 @@
             this.pagePlanAppointList.Controls.Add(this.pnlComment);
             this.pagePlanAppointList.Controls.Add(this.planAppointTools);
             this.pagePlanAppointList.Controls.Add(this.panelFilter);
-            this.pagePlanAppointList.Location = new System.Drawing.Point(4, 22);
+            this.pagePlanAppointList.Location = new System.Drawing.Point(4, 29);
+            this.pagePlanAppointList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pagePlanAppointList.Name = "pagePlanAppointList";
-            this.pagePlanAppointList.Padding = new System.Windows.Forms.Padding(3);
-            this.pagePlanAppointList.Size = new System.Drawing.Size(1007, 440);
+            this.pagePlanAppointList.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pagePlanAppointList.Size = new System.Drawing.Size(1514, 697);
             this.pagePlanAppointList.TabIndex = 1;
             this.pagePlanAppointList.Text = "tabPage2";
             this.pagePlanAppointList.UseVisualStyleBackColor = true;
@@ -782,12 +809,13 @@
             this.ColumnAppointCreator});
             this.dgvPlanAppointList.DataSource = this.bsPlanAppointList;
             this.dgvPlanAppointList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPlanAppointList.Location = new System.Drawing.Point(3, 58);
+            this.dgvPlanAppointList.Location = new System.Drawing.Point(4, 76);
+            this.dgvPlanAppointList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvPlanAppointList.MultiSelect = false;
             this.dgvPlanAppointList.Name = "dgvPlanAppointList";
             this.dgvPlanAppointList.ReadOnly = true;
             this.dgvPlanAppointList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPlanAppointList.Size = new System.Drawing.Size(1001, 279);
+            this.dgvPlanAppointList.Size = new System.Drawing.Size(1506, 462);
             this.dgvPlanAppointList.TabIndex = 1;
             this.dgvPlanAppointList.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvPlanAppointList_RowPrePaint);
             // 
@@ -808,9 +836,9 @@
             // ColumnDateFrom
             // 
             this.ColumnDateFrom.DataPropertyName = "DateFrom";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.ColumnDateFrom.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ColumnDateFrom.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnDateFrom.HeaderText = "дата прибытия";
             this.ColumnDateFrom.Name = "ColumnDateFrom";
             this.ColumnDateFrom.ReadOnly = true;
@@ -855,9 +883,11 @@
             // 
             this.pnlComment.Controls.Add(this.tboxComment);
             this.pnlComment.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlComment.Location = new System.Drawing.Point(3, 337);
+            this.pnlComment.Location = new System.Drawing.Point(4, 538);
+            this.pnlComment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlComment.Name = "pnlComment";
-            this.pnlComment.Size = new System.Drawing.Size(1001, 100);
+            this.pnlComment.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlComment.Size = new System.Drawing.Size(1506, 154);
             this.pnlComment.TabIndex = 2;
             this.pnlComment.TabStop = false;
             this.pnlComment.Text = "Комментарий";
@@ -866,10 +896,11 @@
             // 
             this.tboxComment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tboxComment.Enabled = false;
-            this.tboxComment.Location = new System.Drawing.Point(3, 16);
+            this.tboxComment.Location = new System.Drawing.Point(4, 24);
+            this.tboxComment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxComment.Multiline = true;
             this.tboxComment.Name = "tboxComment";
-            this.tboxComment.Size = new System.Drawing.Size(995, 81);
+            this.tboxComment.Size = new System.Drawing.Size(1498, 125);
             this.tboxComment.TabIndex = 0;
             // 
             // planAppointTools
@@ -883,9 +914,10 @@
             this.lblPageNumber,
             this.btnPreviousPage,
             this.btnNextPage});
-            this.planAppointTools.Location = new System.Drawing.Point(3, 33);
+            this.planAppointTools.Location = new System.Drawing.Point(4, 51);
             this.planAppointTools.Name = "planAppointTools";
-            this.planAppointTools.Size = new System.Drawing.Size(1001, 25);
+            this.planAppointTools.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.planAppointTools.Size = new System.Drawing.Size(1506, 25);
             this.planAppointTools.TabIndex = 0;
             this.planAppointTools.Text = "toolStrip1";
             // 
@@ -958,36 +990,40 @@
             this.panelFilter.Controls.Add(this.pickPlanAppointStart);
             this.panelFilter.Controls.Add(this.label4);
             this.panelFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelFilter.Location = new System.Drawing.Point(3, 3);
+            this.panelFilter.Location = new System.Drawing.Point(4, 5);
+            this.panelFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelFilter.Name = "panelFilter";
-            this.panelFilter.Size = new System.Drawing.Size(1001, 30);
+            this.panelFilter.Size = new System.Drawing.Size(1506, 46);
             this.panelFilter.TabIndex = 3;
             // 
             // pickPlanAppointStart
             // 
             this.pickPlanAppointStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.pickPlanAppointStart.Location = new System.Drawing.Point(120, 3);
+            this.pickPlanAppointStart.Location = new System.Drawing.Point(180, 5);
+            this.pickPlanAppointStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pickPlanAppointStart.Name = "pickPlanAppointStart";
-            this.pickPlanAppointStart.Size = new System.Drawing.Size(99, 20);
+            this.pickPlanAppointStart.Size = new System.Drawing.Size(146, 26);
             this.pickPlanAppointStart.TabIndex = 1;
             this.pickPlanAppointStart.ValueChanged += new System.EventHandler(this.pickPlanAppointStart_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 5);
+            this.label4.Location = new System.Drawing.Point(8, 8);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 13);
+            this.label4.Size = new System.Drawing.Size(135, 20);
             this.label4.TabIndex = 0;
             this.label4.Text = "Заявки не ранее";
             // 
             // pageMaterialDocumentList
             // 
             this.pageMaterialDocumentList.Controls.Add(this.splitContainer1);
-            this.pageMaterialDocumentList.Location = new System.Drawing.Point(4, 22);
+            this.pageMaterialDocumentList.Location = new System.Drawing.Point(4, 29);
+            this.pageMaterialDocumentList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pageMaterialDocumentList.Name = "pageMaterialDocumentList";
-            this.pageMaterialDocumentList.Padding = new System.Windows.Forms.Padding(3);
-            this.pageMaterialDocumentList.Size = new System.Drawing.Size(1007, 440);
+            this.pageMaterialDocumentList.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pageMaterialDocumentList.Size = new System.Drawing.Size(1514, 684);
             this.pageMaterialDocumentList.TabIndex = 2;
             this.pageMaterialDocumentList.Text = "materialDocumentPage";
             this.pageMaterialDocumentList.UseVisualStyleBackColor = true;
@@ -995,7 +1031,8 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Location = new System.Drawing.Point(4, 5);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -1008,8 +1045,9 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.mdTable);
             this.splitContainer1.Panel2.Controls.Add(this.pbarMdLoading);
-            this.splitContainer1.Size = new System.Drawing.Size(1001, 434);
-            this.splitContainer1.SplitterDistance = 566;
+            this.splitContainer1.Size = new System.Drawing.Size(1506, 674);
+            this.splitContainer1.SplitterDistance = 851;
+            this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
             // 
             // dgvMaterialPermitList
@@ -1027,11 +1065,12 @@
             this.mdColumnEntry});
             this.dgvMaterialPermitList.DataSource = this.bsMaterialDocumentList;
             this.dgvMaterialPermitList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMaterialPermitList.Location = new System.Drawing.Point(0, 56);
+            this.dgvMaterialPermitList.Location = new System.Drawing.Point(0, 73);
+            this.dgvMaterialPermitList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvMaterialPermitList.Name = "dgvMaterialPermitList";
             this.dgvMaterialPermitList.ReadOnly = true;
             this.dgvMaterialPermitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMaterialPermitList.Size = new System.Drawing.Size(566, 378);
+            this.dgvMaterialPermitList.Size = new System.Drawing.Size(851, 601);
             this.dgvMaterialPermitList.TabIndex = 2;
             // 
             // ColumnMdDocNumber
@@ -1091,9 +1130,10 @@
             this.materialPermitToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblToRefresh3,
             this.toolStripButton1});
-            this.materialPermitToolStrip.Location = new System.Drawing.Point(0, 31);
+            this.materialPermitToolStrip.Location = new System.Drawing.Point(0, 48);
             this.materialPermitToolStrip.Name = "materialPermitToolStrip";
-            this.materialPermitToolStrip.Size = new System.Drawing.Size(566, 25);
+            this.materialPermitToolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.materialPermitToolStrip.Size = new System.Drawing.Size(851, 25);
             this.materialPermitToolStrip.TabIndex = 1;
             this.materialPermitToolStrip.Text = "toolStrip2";
             // 
@@ -1121,18 +1161,20 @@
             this.pnlMaterialPermitFilter.Controls.Add(this.label14);
             this.pnlMaterialPermitFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMaterialPermitFilter.Location = new System.Drawing.Point(0, 0);
+            this.pnlMaterialPermitFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlMaterialPermitFilter.Name = "pnlMaterialPermitFilter";
-            this.pnlMaterialPermitFilter.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlMaterialPermitFilter.Size = new System.Drawing.Size(566, 31);
+            this.pnlMaterialPermitFilter.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.pnlMaterialPermitFilter.Size = new System.Drawing.Size(851, 48);
             this.pnlMaterialPermitFilter.TabIndex = 0;
             // 
             // pickMdDateTo
             // 
             this.pickMdDateTo.Dock = System.Windows.Forms.DockStyle.Left;
             this.pickMdDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.pickMdDateTo.Location = new System.Drawing.Point(165, 5);
+            this.pickMdDateTo.Location = new System.Drawing.Point(246, 8);
+            this.pickMdDateTo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pickMdDateTo.Name = "pickMdDateTo";
-            this.pickMdDateTo.Size = new System.Drawing.Size(98, 20);
+            this.pickMdDateTo.Size = new System.Drawing.Size(145, 26);
             this.pickMdDateTo.TabIndex = 3;
             this.pickMdDateTo.ValueChanged += new System.EventHandler(this.pickDateStart_ValueChanged);
             // 
@@ -1140,18 +1182,20 @@
             // 
             this.pickMdDateFrom.Dock = System.Windows.Forms.DockStyle.Left;
             this.pickMdDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.pickMdDateFrom.Location = new System.Drawing.Point(67, 5);
+            this.pickMdDateFrom.Location = new System.Drawing.Point(101, 8);
+            this.pickMdDateFrom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pickMdDateFrom.Name = "pickMdDateFrom";
-            this.pickMdDateFrom.Size = new System.Drawing.Size(98, 20);
+            this.pickMdDateFrom.Size = new System.Drawing.Size(145, 26);
             this.pickMdDateFrom.TabIndex = 2;
             this.pickMdDateFrom.ValueChanged += new System.EventHandler(this.pickDateStart_ValueChanged);
             // 
             // label14
             // 
             this.label14.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label14.Location = new System.Drawing.Point(5, 5);
+            this.label14.Location = new System.Drawing.Point(8, 8);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(62, 21);
+            this.label14.Size = new System.Drawing.Size(93, 32);
             this.label14.TabIndex = 0;
             this.label14.Text = "Период";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1184,7 +1228,8 @@
             this.mdTable.Controls.Add(this.tableLayoutPanel1, 1, 7);
             this.mdTable.Controls.Add(this.dgvMdItems, 0, 11);
             this.mdTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mdTable.Location = new System.Drawing.Point(0, 23);
+            this.mdTable.Location = new System.Drawing.Point(0, 35);
+            this.mdTable.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.mdTable.Name = "mdTable";
             this.mdTable.RowCount = 12;
             this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1198,27 +1243,28 @@
             this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.mdTable.Size = new System.Drawing.Size(431, 411);
+            this.mdTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.mdTable.Size = new System.Drawing.Size(649, 639);
             this.mdTable.TabIndex = 1;
             // 
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Location = new System.Drawing.Point(108, 314);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.textBox1.Location = new System.Drawing.Point(159, 489);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(318, 20);
+            this.textBox1.Size = new System.Drawing.Size(482, 26);
             this.textBox1.TabIndex = 20;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(3, 309);
+            this.label12.Location = new System.Drawing.Point(4, 481);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(97, 30);
+            this.label12.Size = new System.Drawing.Size(143, 42);
             this.label12.TabIndex = 19;
             this.label12.Text = "Основание";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1226,30 +1272,31 @@
             // tboxMdEntryDate
             // 
             this.tboxMdEntryDate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxMdEntryDate.Location = new System.Drawing.Point(108, 284);
-            this.tboxMdEntryDate.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdEntryDate.Location = new System.Drawing.Point(159, 433);
+            this.tboxMdEntryDate.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tboxMdEntryDate.Name = "tboxMdEntryDate";
             this.tboxMdEntryDate.ReadOnly = true;
-            this.tboxMdEntryDate.Size = new System.Drawing.Size(318, 20);
+            this.tboxMdEntryDate.Size = new System.Drawing.Size(482, 26);
             this.tboxMdEntryDate.TabIndex = 18;
             // 
             // tboxMdEntryPoint
             // 
             this.tboxMdEntryPoint.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxMdEntryPoint.Location = new System.Drawing.Point(108, 254);
-            this.tboxMdEntryPoint.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdEntryPoint.Location = new System.Drawing.Point(159, 391);
+            this.tboxMdEntryPoint.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tboxMdEntryPoint.Name = "tboxMdEntryPoint";
             this.tboxMdEntryPoint.ReadOnly = true;
-            this.tboxMdEntryPoint.Size = new System.Drawing.Size(318, 20);
+            this.tboxMdEntryPoint.Size = new System.Drawing.Size(482, 26);
             this.tboxMdEntryPoint.TabIndex = 17;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 249);
+            this.label11.Location = new System.Drawing.Point(4, 383);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(97, 30);
+            this.label11.Size = new System.Drawing.Size(143, 42);
             this.label11.TabIndex = 16;
             this.label11.Text = "П. пропуска";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1257,10 +1304,10 @@
             // pboxMdEntry
             // 
             this.pboxMdEntry.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pboxMdEntry.Location = new System.Drawing.Point(78, 284);
-            this.pboxMdEntry.Margin = new System.Windows.Forms.Padding(5);
+            this.pboxMdEntry.Location = new System.Drawing.Point(113, 433);
+            this.pboxMdEntry.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.pboxMdEntry.Name = "pboxMdEntry";
-            this.pboxMdEntry.Size = new System.Drawing.Size(20, 20);
+            this.pboxMdEntry.Size = new System.Drawing.Size(30, 40);
             this.pboxMdEntry.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pboxMdEntry.TabIndex = 15;
             this.pboxMdEntry.TabStop = false;
@@ -1268,20 +1315,21 @@
             // tboxSigner
             // 
             this.tboxSigner.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxSigner.Location = new System.Drawing.Point(108, 155);
-            this.tboxSigner.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxSigner.Location = new System.Drawing.Point(159, 232);
+            this.tboxSigner.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tboxSigner.Name = "tboxSigner";
             this.tboxSigner.ReadOnly = true;
-            this.tboxSigner.Size = new System.Drawing.Size(318, 20);
+            this.tboxSigner.Size = new System.Drawing.Size(482, 26);
             this.tboxSigner.TabIndex = 14;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(3, 150);
+            this.label10.Location = new System.Drawing.Point(4, 224);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(97, 30);
+            this.label10.Size = new System.Drawing.Size(143, 42);
             this.label10.TabIndex = 13;
             this.label10.Text = "Сл. безопасности";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1289,20 +1337,20 @@
             // tboxMdSignedDate
             // 
             this.tboxMdSignedDate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxMdSignedDate.Location = new System.Drawing.Point(108, 185);
-            this.tboxMdSignedDate.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdSignedDate.Location = new System.Drawing.Point(159, 274);
+            this.tboxMdSignedDate.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tboxMdSignedDate.Name = "tboxMdSignedDate";
             this.tboxMdSignedDate.ReadOnly = true;
-            this.tboxMdSignedDate.Size = new System.Drawing.Size(318, 20);
+            this.tboxMdSignedDate.Size = new System.Drawing.Size(482, 26);
             this.tboxMdSignedDate.TabIndex = 11;
             // 
             // pboxMdSigned
             // 
             this.pboxMdSigned.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pboxMdSigned.Location = new System.Drawing.Point(78, 185);
-            this.pboxMdSigned.Margin = new System.Windows.Forms.Padding(5);
+            this.pboxMdSigned.Location = new System.Drawing.Point(113, 274);
+            this.pboxMdSigned.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.pboxMdSigned.Name = "pboxMdSigned";
-            this.pboxMdSigned.Size = new System.Drawing.Size(20, 20);
+            this.pboxMdSigned.Size = new System.Drawing.Size(30, 40);
             this.pboxMdSigned.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pboxMdSigned.TabIndex = 10;
             this.pboxMdSigned.TabStop = false;
@@ -1310,30 +1358,31 @@
             // tboxMdCreatedDate
             // 
             this.tboxMdCreatedDate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxMdCreatedDate.Location = new System.Drawing.Point(108, 125);
-            this.tboxMdCreatedDate.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdCreatedDate.Location = new System.Drawing.Point(159, 176);
+            this.tboxMdCreatedDate.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tboxMdCreatedDate.Name = "tboxMdCreatedDate";
             this.tboxMdCreatedDate.ReadOnly = true;
-            this.tboxMdCreatedDate.Size = new System.Drawing.Size(318, 20);
+            this.tboxMdCreatedDate.Size = new System.Drawing.Size(482, 26);
             this.tboxMdCreatedDate.TabIndex = 9;
             // 
             // tboxMdCreator
             // 
             this.tboxMdCreator.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxMdCreator.Location = new System.Drawing.Point(108, 95);
-            this.tboxMdCreator.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdCreator.Location = new System.Drawing.Point(159, 134);
+            this.tboxMdCreator.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tboxMdCreator.Name = "tboxMdCreator";
             this.tboxMdCreator.ReadOnly = true;
-            this.tboxMdCreator.Size = new System.Drawing.Size(318, 20);
+            this.tboxMdCreator.Size = new System.Drawing.Size(482, 26);
             this.tboxMdCreator.TabIndex = 7;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(3, 90);
+            this.label9.Location = new System.Drawing.Point(4, 126);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(97, 30);
+            this.label9.Size = new System.Drawing.Size(143, 42);
             this.label9.TabIndex = 6;
             this.label9.Text = "Кладовщик";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1341,20 +1390,21 @@
             // tboxMdLicensePlate
             // 
             this.tboxMdLicensePlate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxMdLicensePlate.Location = new System.Drawing.Point(108, 65);
-            this.tboxMdLicensePlate.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdLicensePlate.Location = new System.Drawing.Point(159, 92);
+            this.tboxMdLicensePlate.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tboxMdLicensePlate.Name = "tboxMdLicensePlate";
             this.tboxMdLicensePlate.ReadOnly = true;
-            this.tboxMdLicensePlate.Size = new System.Drawing.Size(318, 20);
+            this.tboxMdLicensePlate.Size = new System.Drawing.Size(482, 26);
             this.tboxMdLicensePlate.TabIndex = 5;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(3, 60);
+            this.label8.Location = new System.Drawing.Point(4, 84);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(97, 30);
+            this.label8.Size = new System.Drawing.Size(143, 42);
             this.label8.TabIndex = 4;
             this.label8.Text = "Номер ТС";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1362,20 +1412,21 @@
             // tboxMdVehicleMark
             // 
             this.tboxMdVehicleMark.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxMdVehicleMark.Location = new System.Drawing.Point(108, 35);
-            this.tboxMdVehicleMark.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdVehicleMark.Location = new System.Drawing.Point(159, 50);
+            this.tboxMdVehicleMark.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tboxMdVehicleMark.Name = "tboxMdVehicleMark";
             this.tboxMdVehicleMark.ReadOnly = true;
-            this.tboxMdVehicleMark.Size = new System.Drawing.Size(318, 20);
+            this.tboxMdVehicleMark.Size = new System.Drawing.Size(482, 26);
             this.tboxMdVehicleMark.TabIndex = 3;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(3, 30);
+            this.label7.Location = new System.Drawing.Point(4, 42);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 30);
+            this.label7.Size = new System.Drawing.Size(143, 42);
             this.label7.TabIndex = 2;
             this.label7.Text = "Марка ТС";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1384,9 +1435,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(3, 0);
+            this.label6.Location = new System.Drawing.Point(4, 0);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 30);
+            this.label6.Size = new System.Drawing.Size(143, 42);
             this.label6.TabIndex = 0;
             this.label6.Text = "Предъявитель";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1394,20 +1446,20 @@
             // tboxMdPerson
             // 
             this.tboxMdPerson.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxMdPerson.Location = new System.Drawing.Point(108, 5);
-            this.tboxMdPerson.Margin = new System.Windows.Forms.Padding(5);
+            this.tboxMdPerson.Location = new System.Drawing.Point(159, 8);
+            this.tboxMdPerson.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tboxMdPerson.Name = "tboxMdPerson";
             this.tboxMdPerson.ReadOnly = true;
-            this.tboxMdPerson.Size = new System.Drawing.Size(318, 20);
+            this.tboxMdPerson.Size = new System.Drawing.Size(482, 26);
             this.tboxMdPerson.TabIndex = 1;
             // 
             // pboxCreatedImage
             // 
             this.pboxCreatedImage.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pboxCreatedImage.Location = new System.Drawing.Point(78, 125);
-            this.pboxCreatedImage.Margin = new System.Windows.Forms.Padding(5);
+            this.pboxCreatedImage.Location = new System.Drawing.Point(113, 176);
+            this.pboxCreatedImage.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.pboxCreatedImage.Name = "pboxCreatedImage";
-            this.pboxCreatedImage.Size = new System.Drawing.Size(20, 20);
+            this.pboxCreatedImage.Size = new System.Drawing.Size(30, 40);
             this.pboxCreatedImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pboxCreatedImage.TabIndex = 8;
             this.pboxCreatedImage.TabStop = false;
@@ -1416,24 +1468,26 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.btnLockMd, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSignMd, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(106, 213);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(155, 327);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(322, 33);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(490, 51);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
             // btnLockMd
             // 
             this.btnLockMd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLockMd.Location = new System.Drawing.Point(169, 3);
+            this.btnLockMd.Location = new System.Drawing.Point(256, 5);
+            this.btnLockMd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLockMd.Name = "btnLockMd";
-            this.btnLockMd.Size = new System.Drawing.Size(150, 27);
+            this.btnLockMd.Size = new System.Drawing.Size(230, 42);
             this.btnLockMd.TabIndex = 1;
             this.btnLockMd.Text = "Отклонить";
             this.btnLockMd.UseVisualStyleBackColor = true;
@@ -1442,9 +1496,10 @@
             // btnSignMd
             // 
             this.btnSignMd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSignMd.Location = new System.Drawing.Point(3, 3);
+            this.btnSignMd.Location = new System.Drawing.Point(4, 5);
+            this.btnSignMd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSignMd.Name = "btnSignMd";
-            this.btnSignMd.Size = new System.Drawing.Size(150, 27);
+            this.btnSignMd.Size = new System.Drawing.Size(229, 42);
             this.btnSignMd.TabIndex = 0;
             this.btnSignMd.Text = "Подтвердить";
             this.btnSignMd.UseVisualStyleBackColor = true;
@@ -1465,10 +1520,11 @@
             this.mdTable.SetColumnSpan(this.dgvMdItems, 2);
             this.dgvMdItems.DataSource = this.bsMdItems;
             this.dgvMdItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMdItems.Location = new System.Drawing.Point(3, 342);
+            this.dgvMdItems.Location = new System.Drawing.Point(4, 528);
+            this.dgvMdItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvMdItems.Name = "dgvMdItems";
             this.dgvMdItems.ReadOnly = true;
-            this.dgvMdItems.Size = new System.Drawing.Size(425, 66);
+            this.dgvMdItems.Size = new System.Drawing.Size(641, 106);
             this.dgvMdItems.TabIndex = 21;
             // 
             // mdItemColName
@@ -1506,8 +1562,9 @@
             // 
             this.pbarMdLoading.Dock = System.Windows.Forms.DockStyle.Top;
             this.pbarMdLoading.Location = new System.Drawing.Point(0, 0);
+            this.pbarMdLoading.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbarMdLoading.Name = "pbarMdLoading";
-            this.pbarMdLoading.Size = new System.Drawing.Size(431, 23);
+            this.pbarMdLoading.Size = new System.Drawing.Size(649, 35);
             this.pbarMdLoading.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.pbarMdLoading.TabIndex = 0;
             this.pbarMdLoading.Visible = false;
@@ -1516,10 +1573,12 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.materialPermitTool,
-            this.btnChangePassword});
+            this.btnChangePassword,
+            this.blackListButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1015, 25);
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.toolStrip1.Size = new System.Drawing.Size(1522, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -1530,6 +1589,7 @@
             this.materialPermitTool.Name = "materialPermitTool";
             this.materialPermitTool.Size = new System.Drawing.Size(163, 22);
             this.materialPermitTool.Text = "материальные пропуска";
+            this.materialPermitTool.Visible = false;
             this.materialPermitTool.Click += new System.EventHandler(this.materialPermitTool_Click);
             // 
             // btnChangePassword
@@ -1543,6 +1603,15 @@
             this.btnChangePassword.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
+            // blackListButton
+            // 
+            this.blackListButton.Image = ((System.Drawing.Image)(resources.GetObject("blackListButton.Image")));
+            this.blackListButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.blackListButton.Name = "blackListButton";
+            this.blackListButton.Size = new System.Drawing.Size(113, 22);
+            this.blackListButton.Text = "Черный список";
+            this.blackListButton.Click += new System.EventHandler(this.blackListButton_Click);
+            // 
             // bgRefreshMaterialDocumentList
             // 
             this.bgRefreshMaterialDocumentList.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgRefreshMaterialDocumentList_DoWork);
@@ -1555,11 +1624,12 @@
             // 
             // ReceptionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1015, 491);
+            this.ClientSize = new System.Drawing.Size(1522, 755);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.toolStrip1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ReceptionForm";
             this.Text = "Бюро пропусков";
             ((System.ComponentModel.ISupportInitialize)(this.bsPermitList)).EndInit();
@@ -1754,5 +1824,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DateTimePicker pickMdDateTo;
         private System.Windows.Forms.DateTimePicker pickMdDateFrom;
+        private System.Windows.Forms.ToolStripButton blackListButton;
     }
 }

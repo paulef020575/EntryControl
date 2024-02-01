@@ -68,24 +68,33 @@
             // pnlBottom
             // 
             this.pnlBottom.Location = new System.Drawing.Point(0, 391);
+            this.pnlBottom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlBottom.Padding = new System.Windows.Forms.Padding(8);
             this.pnlBottom.Size = new System.Drawing.Size(714, 35);
             // 
             // pnlData
             // 
             this.pnlData.Controls.Add(this.tblPanel);
+            this.pnlData.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlData.Size = new System.Drawing.Size(714, 391);
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(409, 5);
+            this.btnOk.Location = new System.Drawing.Point(406, 8);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnOk.Size = new System.Drawing.Size(100, 19);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(509, 5);
+            this.btnSave.Location = new System.Drawing.Point(506, 8);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSave.Size = new System.Drawing.Size(100, 19);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(609, 5);
+            this.btnClose.Location = new System.Drawing.Point(606, 8);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnClose.Size = new System.Drawing.Size(100, 19);
             // 
             // tblPanel
             // 
@@ -134,16 +143,16 @@
             // pickDateTo
             // 
             this.pickDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.pickDateTo.Location = new System.Drawing.Point(278, 255);
+            this.pickDateTo.Location = new System.Drawing.Point(278, 268);
             this.pickDateTo.Name = "pickDateTo";
-            this.pickDateTo.Size = new System.Drawing.Size(119, 20);
+            this.pickDateTo.Size = new System.Drawing.Size(83, 20);
             this.pickDateTo.TabIndex = 19;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(8, 226);
+            this.label8.Location = new System.Drawing.Point(8, 239);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(264, 26);
             this.label8.TabIndex = 16;
@@ -153,7 +162,7 @@
             // tboxWhereTo
             // 
             this.tboxWhereTo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxWhereTo.Location = new System.Drawing.Point(278, 203);
+            this.tboxWhereTo.Location = new System.Drawing.Point(278, 216);
             this.tboxWhereTo.Name = "tboxWhereTo";
             this.tboxWhereTo.Size = new System.Drawing.Size(428, 20);
             this.tboxWhereTo.TabIndex = 5;
@@ -162,7 +171,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(8, 200);
+            this.label7.Location = new System.Drawing.Point(8, 213);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(264, 26);
             this.label7.TabIndex = 13;
@@ -206,7 +215,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(8, 36);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(264, 28);
+            this.label2.Size = new System.Drawing.Size(264, 32);
             this.label2.TabIndex = 1;
             this.label2.Text = "Вид груза";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -215,9 +224,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(8, 64);
+            this.label3.Location = new System.Drawing.Point(8, 68);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(264, 28);
+            this.label3.Size = new System.Drawing.Size(264, 32);
             this.label3.TabIndex = 3;
             this.label3.Text = "Перевозчик";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -226,9 +235,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(8, 92);
+            this.label4.Location = new System.Drawing.Point(8, 100);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(264, 28);
+            this.label4.Size = new System.Drawing.Size(264, 32);
             this.label4.TabIndex = 6;
             this.label4.Text = "Марка т/с";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -236,9 +245,9 @@
             // label5
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(8, 120);
+            this.label5.Location = new System.Drawing.Point(8, 132);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(264, 28);
+            this.label5.Size = new System.Drawing.Size(264, 29);
             this.label5.TabIndex = 7;
             this.label5.Text = "Автомобиль";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -249,10 +258,11 @@
             this.rboxContractor.DataSource = null;
             this.rboxContractor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rboxContractor.ListForm = "EntryControl.ContractorListForm";
-            this.rboxContractor.Location = new System.Drawing.Point(278, 67);
+            this.rboxContractor.Location = new System.Drawing.Point(279, 73);
+            this.rboxContractor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rboxContractor.Name = "rboxContractor";
             this.rboxContractor.SelectedItem = null;
-            this.rboxContractor.Size = new System.Drawing.Size(428, 22);
+            this.rboxContractor.Size = new System.Drawing.Size(426, 22);
             this.rboxContractor.TabIndex = 1;
             this.rboxContractor.GetList += new System.EventHandler<EntryControl.ReferenceBox.ReferenceBoxEventArgs>(this.rboxContractor_GetList);
             this.rboxContractor.ShowListForm += new System.EventHandler<EntryControl.ReferenceBox.ReferenceBoxEventArgs>(this.rboxContractor_ShowListForm);
@@ -263,10 +273,11 @@
             this.rboxCargo.DataSource = null;
             this.rboxCargo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rboxCargo.ListForm = "EntryControl.CargoListForm";
-            this.rboxCargo.Location = new System.Drawing.Point(278, 39);
+            this.rboxCargo.Location = new System.Drawing.Point(279, 41);
+            this.rboxCargo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rboxCargo.Name = "rboxCargo";
             this.rboxCargo.SelectedItem = null;
-            this.rboxCargo.Size = new System.Drawing.Size(428, 22);
+            this.rboxCargo.Size = new System.Drawing.Size(426, 22);
             this.rboxCargo.TabIndex = 0;
             this.rboxCargo.GetList += new System.EventHandler<EntryControl.ReferenceBox.ReferenceBoxEventArgs>(this.rboxCargo_GetList);
             // 
@@ -276,10 +287,11 @@
             this.rboxMark.DataSource = null;
             this.rboxMark.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rboxMark.ListForm = "EntryControl.MarkListForm";
-            this.rboxMark.Location = new System.Drawing.Point(278, 95);
+            this.rboxMark.Location = new System.Drawing.Point(279, 105);
+            this.rboxMark.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rboxMark.Name = "rboxMark";
             this.rboxMark.SelectedItem = null;
-            this.rboxMark.Size = new System.Drawing.Size(428, 22);
+            this.rboxMark.Size = new System.Drawing.Size(426, 22);
             this.rboxMark.TabIndex = 2;
             this.rboxMark.GetList += new System.EventHandler<EntryControl.ReferenceBox.ReferenceBoxEventArgs>(this.rboxMark_GetList);
             // 
@@ -288,7 +300,7 @@
             this.pnlVehicle.Controls.Add(this.tboxVehicle);
             this.pnlVehicle.Controls.Add(this.btnFindVehicle);
             this.pnlVehicle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlVehicle.Location = new System.Drawing.Point(278, 123);
+            this.pnlVehicle.Location = new System.Drawing.Point(278, 135);
             this.pnlVehicle.Name = "pnlVehicle";
             this.pnlVehicle.Size = new System.Drawing.Size(428, 22);
             this.pnlVehicle.TabIndex = 3;
@@ -319,7 +331,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(8, 148);
+            this.label6.Location = new System.Drawing.Point(8, 161);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(264, 26);
             this.label6.TabIndex = 12;
@@ -329,23 +341,24 @@
             // tboxDriverName
             // 
             this.tboxDriverName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxDriverName.Location = new System.Drawing.Point(278, 151);
+            this.tboxDriverName.Location = new System.Drawing.Point(278, 164);
             this.tboxDriverName.Name = "tboxDriverName";
             this.tboxDriverName.Size = new System.Drawing.Size(428, 20);
             this.tboxDriverName.TabIndex = 3;
+            this.tboxDriverName.Validating += new System.ComponentModel.CancelEventHandler(this.tboxDriverName_Validating);
             // 
             // pickDateFrom
             // 
             this.pickDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.pickDateFrom.Location = new System.Drawing.Point(278, 229);
+            this.pickDateFrom.Location = new System.Drawing.Point(278, 242);
             this.pickDateFrom.Name = "pickDateFrom";
-            this.pickDateFrom.Size = new System.Drawing.Size(119, 20);
+            this.pickDateFrom.Size = new System.Drawing.Size(83, 20);
             this.pickDateFrom.TabIndex = 6;
             // 
             // tboxContact
             // 
             this.tboxContact.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tboxContact.Location = new System.Drawing.Point(278, 177);
+            this.tboxContact.Location = new System.Drawing.Point(278, 190);
             this.tboxContact.Name = "tboxContact";
             this.tboxContact.Size = new System.Drawing.Size(428, 20);
             this.tboxContact.TabIndex = 4;
@@ -354,7 +367,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(8, 174);
+            this.label9.Location = new System.Drawing.Point(8, 187);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(264, 26);
             this.label9.TabIndex = 18;
@@ -365,9 +378,9 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(8, 278);
+            this.label10.Location = new System.Drawing.Point(8, 291);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(264, 108);
+            this.label10.Size = new System.Drawing.Size(264, 95);
             this.label10.TabIndex = 20;
             this.label10.Text = "Комментарий";
             this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -376,10 +389,10 @@
             // 
             this.tboxComment.AcceptsReturn = true;
             this.tboxComment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tboxComment.Location = new System.Drawing.Point(278, 281);
+            this.tboxComment.Location = new System.Drawing.Point(278, 294);
             this.tboxComment.Multiline = true;
             this.tboxComment.Name = "tboxComment";
-            this.tboxComment.Size = new System.Drawing.Size(428, 102);
+            this.tboxComment.Size = new System.Drawing.Size(428, 89);
             this.tboxComment.TabIndex = 21;
             // 
             // formErrorProvider
@@ -391,6 +404,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(714, 426);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "PlanAppointForm";
             this.Text = "PlanAppointForm";
             ((System.ComponentModel.ISupportInitialize)(this.bsDataItem)).EndInit();

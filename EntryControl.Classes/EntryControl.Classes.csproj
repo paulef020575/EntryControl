@@ -58,6 +58,7 @@
     <Compile Include="Enumeration.cs" />
     <Compile Include="EnumerationItem.cs" />
     <Compile Include="ItemEventArgs.cs" />
+    <Compile Include="Ref\BlackList.cs" />
     <Compile Include="Ref\Cargo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ref\Contractor\Contractor.cs" />

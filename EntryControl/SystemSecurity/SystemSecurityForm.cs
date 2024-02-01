@@ -76,6 +76,8 @@ namespace EntryControl
                                             DataSourceUpdateMode.OnPropertyChanged);
             tboxUserName.DataBindings.Add("Text", bsUserItem, "UserName", true,
                                             DataSourceUpdateMode.OnPropertyChanged);
+
+            chkOutBlackList.DataBindings.Add(nameof(chkOutBlackList.Checked), bsUserItem, nameof(User.OutBlackList), false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void SystemSecurityForm_Load(object sender, EventArgs e)

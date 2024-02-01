@@ -29,9 +29,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Автопропуска</ProductName>
     <PublisherName>ОАО Кондопога</PublisherName>
-    <MinimumRequiredVersion>1.0.0.3</MinimumRequiredVersion>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <MinimumRequiredVersion>1.1.0.0</MinimumRequiredVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -150,6 +150,12 @@
     <Compile Include="CustomerForms\ReportPlanAppointForm.Designer.cs">
       <DependentUpon>ReportPlanAppointForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataItemForms\BlackListItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataItemForms\BlackListItemForm.Designer.cs">
+      <DependentUpon>BlackListItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataItemForms\MaterialDocumentForm.cs" />
     <Compile Include="EntryPointGroupsForm.cs">
       <SubType>Form</SubType>
@@ -162,6 +168,12 @@
     </Compile>
     <Compile Include="ExceptionForm.Designer.cs">
       <DependentUpon>ExceptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListForms\BlackListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForms\BlackListForm.Designer.cs">
+      <DependentUpon>BlackListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MaterialDocumentForm.cs">
       <SubType>Form</SubType>
@@ -394,6 +406,9 @@
     <EmbeddedResource Include="CustomerForms\ReportPlanAppointForm.resx">
       <DependentUpon>ReportPlanAppointForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DataItemForms\BlackListItemForm.resx">
+      <DependentUpon>BlackListItemForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DataItemForms\CargoItemForm.resx">
       <DependentUpon>CargoItemForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -426,6 +441,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExceptionForm.resx">
       <DependentUpon>ExceptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\BlackListForm.resx">
+      <DependentUpon>BlackListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListForms\CargoListForm.resx">
       <DependentUpon>CargoListForm.cs</DependentUpon>

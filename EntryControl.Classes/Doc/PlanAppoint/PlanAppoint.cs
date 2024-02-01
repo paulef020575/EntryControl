@@ -5,6 +5,7 @@ using EPV.DataItem;
 using System.Data.Common;
 using EPV.Database;
 using System.Collections.ObjectModel;
+using EntryControl.Classes.Ref;
 
 namespace EntryControl.Classes
 {
@@ -430,6 +431,31 @@ namespace EntryControl.Classes
 
             return Comment;
         }
+
+        #region CheckBlackList
+
+        public string CheckBlackList(Database database)
+        {
+            Dictionary<string, string> properties = new Dictionary<string, string>
+            {
+                { "Водитель", DriverName },
+                { "Автомобиль", Vehicle.Description },
+                { "Телефон", Contact }
+            };
+
+            string result = "";
+
+            foreach (string key in properties.Keys)
+            {
+                if (BlackList.CheckText(database, properties[key]))
+                    result += (string.IsNullOrEmpty(result) ? "" : ", ") + key;
+            }
+
+            return result;
+
+        }
+
+        #endregion
 
     }
 }

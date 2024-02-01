@@ -99,10 +99,30 @@ namespace EntryControl
         {
             try
             {
-                PermitItemForm form = new PermitItemForm(Database);
-                form.PlanAppoint = planAppoint;
-                form.ItemSaved += new EventHandler(permitItemSaved);
-                form.Show();
+                bool createPermit = true;
+                string columns = planAppoint.CheckBlackList(Database);
+                if (!string.IsNullOrEmpty(columns))
+                {
+                    createPermit = Database.ConnectedUser.OutBlackList;
+                    if (createPermit)
+                    {
+                        string warning = string.Format(EntryControl.Resources.Message.BlackList.PermitWarning, columns, Environment.NewLine);
+                        createPermit = (MessageBox.Show(warning, "Черный список", MessageBoxButtons.YesNo) == DialogResult.Yes);
+                    }
+                    else
+                    {
+                        string block = string.Format(EntryControl.Resources.Message.BlackList.PermitBlock, columns, Environment.NewLine);
+                        MessageBox.Show(block, "Черный список");
+                    }
+                }
+
+                if (createPermit)
+                {
+                    PermitItemForm form = new PermitItemForm(Database);
+                    form.PlanAppoint = planAppoint;
+                    form.ItemSaved += new EventHandler(permitItemSaved);
+                    form.Show();
+                }
             }
             catch (Exception exc)
             {

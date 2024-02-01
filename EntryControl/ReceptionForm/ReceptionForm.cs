@@ -11,6 +11,7 @@ using Stimulsoft.Report;
 using System.IO;
 using Stimulsoft.Report.Dictionary;
 using EntryControl.Properties;
+using EntryControl.ListForms;
 
 namespace EntryControl
 {
@@ -41,6 +42,7 @@ namespace EntryControl
             btnNextPermitPage.Image = EntryControl.Resources.Images.Right;
 
             materialPermitTool.Image = EntryControl.Resources.Images.Document;
+            blackListButton.Image = EntryControl.Resources.Images.TrafficlightRed;
 
             dgvMoving.AutoGenerateColumns = false;
             dgvPointList.AutoGenerateColumns = false;
@@ -380,10 +382,30 @@ namespace EntryControl
         {
             try
             {
-                PermitItemForm form = new PermitItemForm(Database);
-                form.PlanAppoint = planAppoint;
-                form.ItemSaved += new EventHandler(form_ItemSaved);
-                form.Show();
+                bool createPermit = true;
+                string columns = planAppoint.CheckBlackList(Database);
+                if (!string.IsNullOrEmpty(columns))
+                {
+                    createPermit = Database.ConnectedUser.OutBlackList;
+                    if (createPermit)
+                    {
+                        string warning = string.Format(EntryControl.Resources.Message.BlackList.PermitWarning, columns, Environment.NewLine);
+                        createPermit = (MessageBox.Show(warning, "Черный список", MessageBoxButtons.YesNo) == DialogResult.Yes);
+                    }
+                    else
+                    {
+                        string block = string.Format(EntryControl.Resources.Message.BlackList.PermitBlock, columns, Environment.NewLine);
+                        MessageBox.Show(block, "Черный список");
+                    }
+                }
+
+                if (createPermit)
+                {
+                    PermitItemForm form = new PermitItemForm(Database);
+                    form.PlanAppoint = planAppoint;
+                    form.ItemSaved += new EventHandler(form_ItemSaved);
+                    form.Show();
+                }
             }
             catch (Exception exc)
             {
@@ -1258,6 +1280,18 @@ namespace EntryControl
         {
             MaterialDocumentForm form = new EntryControl.MaterialDocumentForm();
             form.MaterialPermit = bsMaterialDocumentList.Current as MaterialPermit;
+            form.Show();
+        }
+
+        private void blackListButton_Click(object sender, EventArgs e)
+        {
+            ShowBlackList();
+        }
+
+        private void ShowBlackList()
+        {
+            BlackListForm form = new BlackListForm(Database, false);
+            
             form.Show();
         }
     }

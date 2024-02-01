@@ -81,7 +81,27 @@ namespace EntryControl.Classes
             }
         }
 
+        #region OutBlackList
 
+        private short isOutBlackList;
+        [DataField("outBlackList")]
+        public short IsOutBlackList
+        {
+            get => isOutBlackList;
+            set => SetField(nameof(isOutBlackList), value);
+        }
+
+        public bool OutBlackList
+        {
+            get => (isOutBlackList > 0);
+            set
+            {
+                IsOutBlackList = (short)(value ? 1 : 0);
+                RaisePropertyChanged("OutBlackList");
+            }
+        }
+
+        #endregion
 
 
         #region Запросы
@@ -198,6 +218,7 @@ namespace EntryControl.Classes
             firstname = "Имя";
             secondname = "Отчество";
             locked = 0;
+            isOutBlackList = 0;
         }
 
         protected override void ReadProperties(DbDataReader reader)
@@ -206,6 +227,7 @@ namespace EntryControl.Classes
             firstname = (string)reader["firstname"];
             secondname = (string)reader["secondname"];
             locked = (short)reader["isLocked"];
+            isOutBlackList = (short)reader["outBlackList"];
         }
 
         protected override string StringDescription()

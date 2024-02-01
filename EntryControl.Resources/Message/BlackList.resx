@@ -117,61 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CargoDelete" xml:space="preserve">
-    <value>delete from secUserCargo where userId = @userId and cargoId = @cargoId</value>
+  <data name="CustomerWarning" xml:space="preserve">
+    <value>В черном списке на проезд найдены значения следующих полей: {0}.{1}Продолжить сохранение?</value>
   </data>
-  <data name="CargoLoadList" xml:space="preserve">
-    <value>select id, name, count(userId) as cnt from refCargos left join secUserCargo on (cargoId = id and userId = @userId) group by id, name order by name</value>
+  <data name="PermitBlock" xml:space="preserve">
+    <value>В черном списке на проезд найдены значения следующих полей: {0}.{1}Проезд запрещен</value>
   </data>
-  <data name="CargoSave" xml:space="preserve">
-    <value>update or insert into secUserCargo (userId, cargoId) values (@userId, @cargoId) matching (userId, cargoId)</value>
-  </data>
-  <data name="CheckPassword" xml:space="preserve">
-    <value>select id from secUsers where id = @id and accessPassword = @password</value>
-  </data>
-  <data name="CheckRole" xml:space="preserve">
-    <value>select userId from secUserRole where userId = @id and userRole = @role</value>
-  </data>
-  <data name="ClearDomainUser" xml:space="preserve">
-    <value>delete from secDomainUser where userId = @id</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>delete from secUsers where id = @id</value>
-  </data>
-  <data name="GeneratorName" xml:space="preserve">
-    <value>gen_secUsers_id</value>
-  </data>
-  <data name="GetDomainUser" xml:space="preserve">
-    <value>select * from secDomainUser where userId = @id</value>
-  </data>
-  <data name="GetUserId" xml:space="preserve">
-    <value>select * from secUsers where id = (select userId from secDomainUser where domainName like @domainName and userName like @userName) and isLocked = 0</value>
-  </data>
-  <data name="Insert" xml:space="preserve">
-    <value>insert into secUsers (id, lastname, firstname, secondname, isLocked, outBlackList) values (@id, @lastname, @firstname, @secondname, @isLocked, @outBlackList)</value>
-  </data>
-  <data name="Load" xml:space="preserve">
-    <value>select * from secUsers where id = @id</value>
-  </data>
-  <data name="LoadList" xml:space="preserve">
-    <value>select * from secUsers order by lastname, firstname, secondname</value>
-  </data>
-  <data name="RoleDelete" xml:space="preserve">
-    <value>delete from secUserRole where userId = @userId and userRole = @userRole</value>
-  </data>
-  <data name="RoleLoadList" xml:space="preserve">
-    <value>select id, count(userId) AS cnt from systemEnumerations left join secUserRole on (userRole = id and userId = @userId) where enumerationName = 'userRole' group by id</value>
-  </data>
-  <data name="RoleSave" xml:space="preserve">
-    <value>update or insert into secUserRole (userId, userRole) values (@userId, @userRole) matching (userId, userRole)</value>
-  </data>
-  <data name="SetDomainUser" xml:space="preserve">
-    <value>update or insert into secDomainUser (userId, domainName, userName) values (@id, @domainName, @userName) matching (userId)</value>
-  </data>
-  <data name="SetPassword" xml:space="preserve">
-    <value>update secUsers set accesspassword = @password where id = @id</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>update secUsers set lastname = @lastname, firstname = @firstname, secondname = @secondname, isLocked = @isLocked, outBlackList = @outBlackList where id = @id</value>
+  <data name="PermitWarning" xml:space="preserve">
+    <value>В черном списке на проезд найдены значения следующих полей: {0}.{1}Создаем пропуск?</value>
   </data>
 </root>
